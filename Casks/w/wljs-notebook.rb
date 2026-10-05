@@ -1,12 +1,11 @@
 cask "wljs-notebook" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.9.1"
-  sha256 arm:   "e572f88080233fb1c8a5b169624656f239979f17f0a31da8c66bebd38d5d3917",
-         intel: "c99fbe7c566faee04aa4cecb0b8972be792dcbc13aba83d4279e84707267c710"
+  version "3.1.4"
+  sha256 arm:   "29bd46e6ee38f869befeb674080dc8e0508143bd0ed8a0afb95125564c7c22e7",
+         intel: "c9af93a32509b5ccbd260949bb57af00692a91c73053f98b5579884e3259c6a8"
 
-  url "https://github.com/JerryI/wolfram-js-frontend/releases/download/v#{version.csv.second || version.csv.first}/wljs-notebook-#{version.csv.first}-#{arch}-macos.dmg",
-      verified: "github.com/JerryI/wolfram-js-frontend/"
+  url "https://github.com/JerryI/wolfram-js-frontend/releases/download/v#{version.csv.second || version.csv.first}/wljs-notebook-#{version.csv.first}-#{arch}-macos.dmg"
   name "WLJS Notebook"
   desc "Javascript frontend for Wolfram Engine"
   homepage "https://jerryi.github.io/wljs-docs/"
@@ -36,9 +35,11 @@ cask "wljs-notebook" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "WLJS Notebook.app"
+
+  uninstall quit: "wljs-notebook"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/wljs-notebook.sfl*",

@@ -1,9 +1,8 @@
 cask "macwhisper" do
-  version "13.11.1,1371"
-  sha256 "9065813e93d1e5c756a8ab1456ab64df1f3b79a882bb2d1e5152cd1b344d4616"
+  version "15.3,1530"
+  sha256 "5a3adcf71bac82eda3ffad2e14f16b95c0d4a2c95d4dc1501a46bdc8bc8853e3"
 
-  url "https://cdn.macwhisper.com/macwhisper/MacWhisper-#{version.csv.second}#{"_#{version.csv.third}" if version.csv.third}.zip",
-      verified: "cdn.macwhisper.com/"
+  url "https://cdn.macwhisper.com/macwhisper/MacWhisper-#{version.csv.second}#{"_#{version.csv.third}" if version.csv.third}.zip"
   name "MacWhisper"
   desc "Speech recognition tool"
   homepage "https://goodsnooze.gumroad.com/l/macwhisper"
@@ -24,9 +23,11 @@ cask "macwhisper" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sequoia
 
   app "MacWhisper.app"
+
+  uninstall quit: "com.goodsnooze.MacWhisper"
 
   zap trash: [
     "~/Library/Application Scripts/com.goodsnooze.MacWhisper",

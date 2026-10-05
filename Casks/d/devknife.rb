@@ -1,9 +1,8 @@
 cask "devknife" do
-  version "1.9.0"
-  sha256 "7d62b28202325d2fbd5f1e9ea2ceb9664c674c50cb9c524947e97dffdba2d630"
+  version "1.19.0"
+  sha256 "df591cb1933c2573495d048696de779c99606daf465de8ae1ddd824d59cde075"
 
-  url "https://files.solotuna.com/devknife/DevKnife-#{version}.dmg",
-      verified: "files.solotuna.com/devknife/"
+  url "https://files.solotuna.com/devknife/DevKnife-#{version}.dmg"
   name "DevKnife"
   desc "Collection of handy developer tools"
   homepage "https://devknife.app/"
@@ -14,12 +13,15 @@ cask "devknife" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DevKnife.app"
 
+  uninstall quit: "com.solotuna.devknife"
+
   zap trash: [
-    "~/Library/Application Support/com.solotuna.devknife/",
+    "~/Library/Application Support/com.solotuna.devknife",
+    "~/Library/Application Support/DevKnife",
     "~/Library/Preferences/com.solotuna.devknife.plist",
   ]
 end

@@ -1,5 +1,5 @@
 cask "switch" do
-  version "13.07"
+  version "14.08"
   sha256 :no_check
 
   url "https://www.nch.com.au/components/switchmaci.zip"
@@ -12,12 +12,13 @@ cask "switch" do
     regex(/Version\s+v?(\d+(?:\.\d+)+)[^>]*>\s*macOS/im)
   end
 
+  depends_on :macos
+
   app "Switch.app"
 
   zap trash: [
     "~/Library/Application Support/Switch",
     "~/Library/Application Support/SwitchSubStatAbort",
-    "~/Library/Caches/com.apple.tiswitcher.cache",
     "~/Library/Caches/SwitchCounts.txt",
     "~/Library/Preferences/ByHost/com.nchsoftware.switch.*.plist",
     "~/Library/Preferences/com.nchsoftware.switch.plist",

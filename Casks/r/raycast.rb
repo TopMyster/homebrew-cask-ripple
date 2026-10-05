@@ -6,6 +6,8 @@ cask "raycast" do
     sha256 arm:   "a6fb8f2e097768b74b5ddf9e9f9c127b1fdfa980993a20c0d3b593a2e3fa0534",
            intel: "b46f66225fdaed22b59d8c8d319a63961374c7fd47b7b8a40ef5573e6f36e888"
 
+    url "https://releases.raycast.com/releases/#{version}/download?build=#{arch}"
+
     livecheck do
       skip "Legacy version"
     end
@@ -15,32 +17,50 @@ cask "raycast" do
     sha256 arm:   "235082e306ed250026f8afb5f9240dfa3ebf2238cac33d15b18bf673c0a9e896",
            intel: "cad71d7846c313b9b71ee3d33c547b3931fa0657109441c0c76e6a725c2bd270"
 
+    url "https://releases.raycast.com/releases/#{version}/download?build=#{arch}"
+
     livecheck do
       skip "Legacy version"
     end
   end
   on_ventura :or_newer do
-    version "1.104.1"
-    sha256 arm:   "ce6fabedfeee4d43edbcb4d5c957f5f15c000e5b723aeafc94faaabe95ab46ef",
-           intel: "4d03563d0ceb3f0e3785e5becce09e8baacce6c418708cfa3045e89e3f05dd63"
+    on_sequoia :or_older do
+      version "1.104.31"
+      sha256 arm:   "5088ee941b7cbcbcacee639b6463cbea08f98eb095d0b6c2516627c248b57a8b",
+             intel: "88f4f7603f0ebd5ae8332fb8cfedab4c38d609158c17d03f5750b54aeb9913a0"
 
-    livecheck do
-      url "https://releases.raycast.com/releases/latest?build=#{arch}"
-      strategy :json do |json|
-        json["version"]
+      url "https://releases.raycast.com/releases/#{version}/download?build=#{arch}"
+
+      livecheck do
+        url "https://releases.raycast.com/releases/latest?build=#{arch}"
+        strategy :json do |json|
+          json["version"]
+        end
       end
+    end
+    on_tahoe :or_newer do
+      version "2.6.2.0"
+      sha256 "15e4bbaa22bf2c439783f26ce3d33f35afa9a618080112197469aa5c18f4c5dc"
+
+      url "https://x.raycast-releases.com/download?platform=macos&architecture=arm64&version=#{version}"
+
+      livecheck do
+        url "https://x.raycast-releases.com/releases/latest?platform=macos&architecture=arm64"
+        strategy :json do |json|
+          json["version"]
+        end
+      end
+
+      depends_on arch: :arm64
     end
   end
 
-  url "https://releases.raycast.com/releases/#{version}/download?build=#{arch}"
   name "Raycast"
   desc "Control your tools with a few keystrokes"
   homepage "https://raycast.com/"
 
-  no_autobump! because: :bumped_by_upstream
-
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Raycast.app"
 

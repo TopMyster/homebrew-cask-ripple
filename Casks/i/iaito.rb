@@ -1,12 +1,11 @@
 cask "iaito" do
   arch arm: "arm64", intel: "x64"
 
-  version "6.0.8"
-  sha256 arm:   "4fbb4428c75674e65b3cac6414959adeffa6d0d4dc7f8bd37b38427307240eed",
-         intel: "a03f2fc56905b7aca9fc8dc9e3601489f2004f680aefd534ba9c1152d93c9292"
+  version "6.2.2"
+  sha256 arm:   "dc47554a5f1da68ce53b750f1a89786aa25601eea5e208c769bdac47fbaf4f17",
+         intel: "78e06ae8923514158c4f1531c810f391e80db3a0f1d348b723f79a782e4e1273"
 
-  url "https://github.com/radareorg/iaito/releases/download/#{version}/iaito_#{version}_#{arch}.dmg",
-      verified: "github.com/radareorg/iaito/"
+  url "https://github.com/radareorg/iaito/releases/download/#{version}/iaito_#{version}_#{arch}.dmg"
   name "iaito"
   desc "GUI for radare2"
   homepage "https://www.radare.org/n/iaito.html"
@@ -16,9 +15,11 @@ cask "iaito" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "iaito.app"
+
+  uninstall quit: "org.radare.iaito"
 
   zap trash: [
     "~/Library/Application Support/radareorg/iaito",

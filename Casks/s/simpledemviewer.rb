@@ -1,6 +1,6 @@
 cask "simpledemviewer" do
-  version "8.5.2"
-  sha256 "0888ad07505196c8c5daccec2feb25c73280f64dadd23898c2228cd4fa50c7bf"
+  version "8.6.2"
+  sha256 "209e6caf4a64f20e502c8239605c9714596883d58b091128bf10126146b92549"
 
   url "https://jizoh.jp/program/SDVr_#{version.no_dots}.zip"
   name "SimpleDEMViewer"
@@ -12,7 +12,7 @@ cask "simpledemviewer" do
     regex(/SimpleDEMViewer\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "SimpleDEMViewer #{version}/SimpleDEMViewer.app"
 

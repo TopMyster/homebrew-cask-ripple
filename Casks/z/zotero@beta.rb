@@ -1,6 +1,6 @@
 cask "zotero@beta" do
-  version "8.0-beta.25,145fbfa19"
-  sha256 "68287c40447b0f2b3eeabeb3ca5ef7bfcc0ecfa161d328791d23b378172f831d"
+  version "10.0.6-beta.1,77a1c03f7"
+  sha256 "1e7a7e660ba8d755e0c2480773985417a358581c1c26ee10f484d2f8532747b6"
 
   url "https://download.zotero.org/client/beta/#{version.csv.first}%2B#{version.csv.second}/Zotero-#{version.csv.first}%2B#{version.csv.second}.dmg"
   name "Zotero Beta"
@@ -20,14 +20,19 @@ cask "zotero@beta" do
 
   auto_updates true
   conflicts_with cask: "zotero"
+  depends_on :macos
 
   app "Zotero.app"
 
+  uninstall quit: "org.zotero.zotero-beta"
+
   zap trash: [
         "~/Library/Application Scripts/org.zotero.SafariExtensionApp.SafariExtension",
+        "~/Library/Application Scripts/org.zotero.zotero-beta.SafariExtension",
         "~/Library/Application Support/Zotero",
         "~/Library/Caches/Zotero",
         "~/Library/Containers/org.zotero.SafariExtensionApp.SafariExtension",
+        "~/Library/Containers/org.zotero.zotero-beta.SafariExtension",
         "~/Library/Preferences/org.zotero.zotero-beta.plist",
         "~/Library/Saved Application State/org.zotero.zotero-beta.savedState",
       ],

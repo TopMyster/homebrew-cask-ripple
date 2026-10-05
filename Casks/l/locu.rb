@@ -1,12 +1,11 @@
 cask "locu" do
   arch arm: "-arm64"
 
-  version "0.28.1"
-  sha256 arm:   "0947f2fd532db216dd7bb428ac9f573d21226fa6863d2883f6e85506393ac698",
-         intel: "c8486697f68dc76d7af535fb96182b299b1e884fb602733839d3b896ce9958b4"
+  version "0.34.0"
+  sha256 arm:   "0881b518268c3f16e5009ec54cb5998ea3dd82fac0b8e9fcc36de13b36437adc",
+         intel: "5cda21a2ecda7de72f691ecc7970eb5637306cc3b9f8fb8cc1d336dcd96b3d3a"
 
-  url "https://locu.sfo2.digitaloceanspaces.com/Locu-#{version}#{arch}-mac.zip",
-      verified: "locu.sfo2.digitaloceanspaces.com/"
+  url "https://locu.sfo2.digitaloceanspaces.com/Locu-#{version}#{arch}-mac.zip"
   name "Locu"
   desc "Daily planner and focus timer"
   homepage "https://locu.app/"
@@ -17,7 +16,7 @@ cask "locu" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Locu.app"
 

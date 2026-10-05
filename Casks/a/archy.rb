@@ -1,9 +1,8 @@
 cask "archy" do
-  version "2.36.0"
-  sha256 "2969f6301291b99187db4ae659370ed6131b6afa34cf3d3271cef47adb80a79c"
+  version "2.42.2"
+  sha256 "2811fa3ce5a3e48a5376872f702a20af95acc81713943b2c58217caef93dbee5"
 
-  url "https://sdk-cdn.mypurecloud.com/archy/#{version}/archy-macos.zip",
-      verified: "sdk-cdn.mypurecloud.com/archy/"
+  url "https://sdk-cdn.mypurecloud.com/archy/#{version}/archy-macos.zip"
   name "Archy"
   desc "YAML processor"
   homepage "https://developer.genesys.cloud/devapps/archy/"
@@ -16,6 +15,8 @@ cask "archy" do
   end
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   binary "archyBin/archy-macos-#{version}", target: "archy"
 

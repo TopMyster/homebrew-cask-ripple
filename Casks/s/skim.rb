@@ -1,9 +1,8 @@
 cask "skim" do
-  version "1.7.12"
-  sha256 "12c2a3464cc26e1717a7cc28929123ad09f6bed737f033bdfbdfd43830df8e8c"
+  version "1.7.17"
+  sha256 "b477f869f7d57759195020963ab7536432af4638f553afcc88962345a440428c"
 
-  url "https://downloads.sourceforge.net/skim-app/Skim/Skim-#{version}/Skim-#{version}.dmg",
-      verified: "downloads.sourceforge.net/skim-app/Skim/"
+  url "https://downloads.sourceforge.net/skim-app/Skim/Skim-#{version}/Skim-#{version}.dmg"
   name "Skim"
   desc "PDF reader and note-taking application"
   homepage "https://skim-app.sourceforge.io/"
@@ -14,6 +13,7 @@ cask "skim" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Skim.app"
   binary "#{appdir}/Skim.app/Contents/SharedSupport/displayline"
@@ -21,9 +21,13 @@ cask "skim" do
   binary "#{appdir}/Skim.app/Contents/SharedSupport/skimpdf"
 
   zap trash: [
+    "~/Library/Application Scripts/net.sourceforge.skim-app.skim.quicklook-preview",
+    "~/Library/Application Scripts/net.sourceforge.skim-app.skim.quicklook-thumbnails",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/net.sourceforge.skim-app.skim.sfl*",
     "~/Library/Caches/com.apple.helpd/Generated/net.sourceforge.skim-app.skim.help*",
     "~/Library/Caches/net.sourceforge.skim-app.skim",
+    "~/Library/Containers/net.sourceforge.skim-app.skim.quicklook-preview",
+    "~/Library/Containers/net.sourceforge.skim-app.skim.quicklook-thumbnails",
     "~/Library/Cookies/net.sourceforge.skim-app.skim.binarycookies",
     "~/Library/HTTPStorages/net.sourceforge.skim-app.skim",
     "~/Library/Preferences/net.sourceforge.skim-app.skim.bookmarks.plist",

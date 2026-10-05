@@ -1,16 +1,16 @@
 cask "zedis" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.1.8"
-  sha256 arm:   "44eb9a2c7994a5c3a3df784e03687da59e026ce959ecd346014a51c25a7f9ad4",
-         intel: "758ed940c8fd1293e6fc3bb073a6133be484c1b94ad9d4a2f66503cf1f48282b"
+  version "0.12.1"
+  sha256 arm:   "4776281e14df3c08d0e40c1346309c19065d2c2326301749cd59cfa55bc68e75",
+         intel: "bb4769e9ec05b4eaab915cc2263d221dff72c798ca88200e3800f0a4afa34521"
 
   url "https://github.com/vicanso/zedis/releases/download/v#{version}/Zedis-#{arch}.dmg"
   name "Zedis"
   desc "Redis GUI built with Rust and GPUI"
   homepage "https://github.com/vicanso/zedis"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Zedis.app"
 

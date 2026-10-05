@@ -1,6 +1,6 @@
 cask "power-manager" do
-  version "5.11.0"
-  sha256 "c726e2cd5bbdc921f8db2c4096d4b8c6969ba9eec57a6240ef4a9e5ebe641cda"
+  version "5.15.2"
+  sha256 "67f4cdabc7d4499f29d30b708ddc8b542fb3369d3ae341bfa40ef59c2c5ed063"
 
   url "https://www.dssw.co.uk/powermanager/dsswpowermanager-#{version.no_dots}.dmg"
   name "Power Manager"
@@ -13,6 +13,7 @@ cask "power-manager" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Power Manager.app"
 

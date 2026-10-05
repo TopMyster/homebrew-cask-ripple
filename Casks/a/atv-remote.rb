@@ -1,11 +1,11 @@
 cask "atv-remote" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "-arm64"
 
-  version "1.4.3"
-  sha256 arm:   "346c95cdae25f78d4d75d9e1fafc60a6d37e05258dfadfd2a40b010231b1b39f",
-         intel: "80c7b55da85799f23e4e36ede23990a9d9ee22c90d9c23bd5fcd8c55125b48e5"
+  version "2.2.1"
+  sha256 arm:   "0f3cfca6a7cc68261ff302f7b5163cfd9b8b6cc6c30417580c0d537a35c84629",
+         intel: "20092f59e500298c17d83c6aec03998455362a1e61c0f97116537d4e46e442bf"
 
-  url "https://github.com/bsharper/atv-desktop-remote/releases/download/v#{version}/ATV.Remote-#{version}-#{arch}.dmg"
+  url "https://github.com/bsharper/atv-desktop-remote/releases/download/v#{version}/ATV.Remote-#{version}#{arch}.dmg"
   name "ATV Remote"
   desc "Control Apple TV from your desktop"
   homepage "https://github.com/bsharper/atv-desktop-remote"
@@ -17,9 +17,11 @@ cask "atv-remote" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "ATV Remote.app"
+
+  uninstall quit: "com.electron.atvMacRemote"
 
   zap trash: [
     "~/Library/Application Support/ATV Remote",

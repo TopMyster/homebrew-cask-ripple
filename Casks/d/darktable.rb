@@ -1,36 +1,37 @@
 cask "darktable" do
-  arch arm: "arm64", intel: "x86_64"
+  arch arm: on_system_conditional(macos: "arm64", linux: "aarch64"), intel: "x86_64"
+  os macos: "dmg", linux: "AppImage"
+  url_name = on_system_conditional macos: "darktable", linux: "Darktable"
 
-  on_arm do
-    version "5.4.0"
-    sha256 "17e1eaf2bd7ab0ada2e93d4bba2ba6b81345e99eb338635682d08dae64d7a150"
+  version "5.6.2"
+  sha256 arm:          "6ff88e58a2a59cb07b0a1502fea7205e68cd783380a33a3ce7bda68ec29def0c",
+         arm64_linux:  "5b8015f8534453cb3bbd6e5a03e362cb7d9d9573f20d3928aadad354df18ad10",
+         x86_64_linux: "4b0d1c737a2a18c7d8afb81aa3daaf25930bbe541dda98e6354dabd5c2e4dc36"
 
-    livecheck do
-      url "https://www.darktable.org/install/"
-      regex(/href=.*?darktable[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
-    end
+  on_macos do
+    disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-    depends_on macos: ">= :sonoma"
+    depends_on arch: :arm64
+    depends_on macos: :sonoma
+
+    app "darktable.app"
+
+    uninstall quit: "org.darktable"
   end
-  on_intel do
-    version "5.2.1"
-    sha256 "5060d73c03b3c7f4ca69a77039e69653fd2310df8cb649d66fc89f4c45289b0c"
-
-    livecheck do
-      skip "darktable only supports x86_64 up to version 5.2.1"
-    end
-    depends_on macos: ">= :ventura"
+  on_linux do
+    app_image "Darktable-#{version}-#{arch}.AppImage", target: "darktable.AppImage"
   end
 
-  url "https://github.com/darktable-org/darktable/releases/download/release-#{version.major_minor_patch}/darktable-#{version}-#{arch}.dmg",
-      verified: "github.com/darktable-org/darktable/"
+  url "https://github.com/darktable-org/darktable/releases/download/release-#{version.major_minor_patch}/#{url_name}-#{version}-#{arch}.#{os}"
   name "darktable"
   desc "Photography workflow application and raw developer"
   homepage "https://www.darktable.org/"
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
-
-  app "darktable.app"
+  livecheck do
+    url :url
+    regex(/^release[._-]v?(\d+(?:\.\d+)+)$/i)
+    strategy :github_latest
+  end
 
   zap trash: [
     "~/.cache/darktable",

@@ -1,9 +1,8 @@
 cask "kubeterm" do
-  version "2.0.0"
-  sha256 "5f17ac7114cab4bcfc61f04a49b63a119a2de7f1b8c93cc373d53cadce5184fd"
+  version "2.8.1"
+  sha256 "f9cb1a62fd305eef49acd5f4966d9a6c2e97dfac140dc94f73b6be5df1aef548"
 
-  url "https://github.com/kbterm/kubeterm/releases/download/v#{version}/Kubeterm-v#{version}-universal.dmg",
-      verified: "github.com/kbterm/kubeterm/"
+  url "https://github.com/kbterm/kubeterm/releases/download/v#{version}/Kubeterm-v#{version}-universal.dmg"
   name "Kubeterm"
   desc "Kubernetes graphical management tool"
   homepage "https://www.kubeterm.com/"
@@ -13,7 +12,7 @@ cask "kubeterm" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "kubeterm.app"
 

@@ -1,6 +1,6 @@
 cask "cork" do
-  version "1.7.3.1"
-  sha256 "007c1e2c218b2367e9a18726c8525f9ecf6b67327eff3f2f88f1a765dd4f6c2d"
+  version "2.0.3"
+  sha256 "45db405cec3909074e75da66b5e94d34609af1face0f1277f9c6f5c1beb84131"
 
   url "https://corkmac.app/RLS/#{version}/Cork.zip"
   name "Cork"
@@ -12,15 +12,21 @@ cask "cork" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Cork.app"
 
+  uninstall quit: "eu.davidbures.cork"
+
   zap trash: [
     "~/Documents/Cork",
+    "~/Library/Application Support/Cork",
     "~/Library/Caches/com.davidbures.cork",
+    "~/Library/Caches/eu.davidbures.cork",
     "~/Library/HTTPStorages/com.davidbures.cork",
+    "~/Library/HTTPStorages/eu.davidbures.cork",
     "~/Library/Preferences/com.davidbures.cork.plist",
+    "~/Library/Preferences/eu.davidbures.cork.plist",
     "~/Library/Saved Application State/com.davidbures.cork.savedState",
   ]
 end

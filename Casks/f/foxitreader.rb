@@ -1,9 +1,8 @@
 cask "foxitreader" do
-  version "2025.3"
-  sha256 "36ab2f04bcd082a7dee7b19e938c66c0289a5959a0271774106846b962665195"
+  version "2026.2"
+  sha256 "9f90e263bc45255dbe7fdfa4fdbbf92d692e95a5a263bbd9c16c0f6e212e08ef"
 
-  url "https://cdn01.foxitsoftware.com/pub/foxit/phantomPDF/desktop/mac/#{version.major}.x/#{version.major_minor}/FoxitPDFReader#{version.major_minor.no_dots}.L10N.Setup.pkg",
-      verified: "cdn01.foxitsoftware.com/pub/foxit/phantomPDF/desktop/mac/"
+  url "https://cdn01.foxitsoftware.com/pub/foxit/reader/desktop/mac/#{version}.0/FoxitPDFReader#{version.major_minor.no_dots}.L10N.Setup.pkg"
   name "Foxit Reader"
   desc "PDF reader"
   homepage "https://www.foxit.com/pdf-reader/"
@@ -15,7 +14,7 @@ cask "foxitreader" do
     end
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   pkg "FoxitPDFReader#{version.major_minor.no_dots}.L10N.Setup.pkg"
 

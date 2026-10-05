@@ -1,12 +1,17 @@
 cask "xpra" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "6.4.1,0"
-  sha256 arm:   "a9b8cecee254e96368bd5b171934988de259dc90f88fb40afc15e20c79bb8be9",
-         intel: "8a5b586327bd53bc70028f48b68152cd82ce894c05de9ad2091f1dc7b78a5163"
+  sha256 arm:   "b1c76739dcb69a46a7ec25d022105f4b43ea9c7b3e2aa52072b44a9541417d84",
+         intel: "5bfaff0d6e7f6d107f8be676fdb5497f101446deed74d4a797db5fe8394af529"
 
-  url "https://xpra.org/dists/MacOS/#{arch}/Xpra-#{arch}-#{version.csv.first}-r#{version.csv.second}.dmg",
-      verified: "xpra.org/"
+  on_arm do
+    version "6.5.3,0"
+  end
+  on_intel do
+    version "6.5.3,0"
+  end
+
+  url "https://xpra.org/dists/MacOS/#{arch}/Xpra-#{arch}-#{version.csv.first}-r#{version.csv.second}.dmg"
   name "Xpra"
   desc "Screen and application forwarding system"
   homepage "https://github.com/Xpra-org/xpra/"
@@ -23,7 +28,7 @@ cask "xpra" do
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Xpra.app"
   binary "#{appdir}/Xpra.app/Contents/MacOS/Xpra", target: "xpra"

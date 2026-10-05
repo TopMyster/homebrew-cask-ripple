@@ -1,9 +1,8 @@
 cask "thunder" do
-  version "5.80.5.66632"
-  sha256 "79529f4d78f5504f8084767f04ce0096a606e6029c50c87b9a06b3f3c43074e3"
+  version "5.80.8.66675"
+  sha256 "820b9023348d3923b0414cb63d9f5eb253a43e832112e1e38c9eaa66e6f9a32d"
 
-  url "https://down.sandai.net/mac/thunder_#{version}.dmg",
-      verified: "down.sandai.net/mac/"
+  url "https://down.sandai.net/mac/thunder_#{version}.dmg"
   name "Thunder"
   name "迅雷"
   desc "VPN and WiFi proxy"
@@ -15,9 +14,11 @@ cask "thunder" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Thunder.app"
+
+  uninstall quit: "com.xunlei.Thunder"
 
   zap trash: [
     "~/Library/Application Support/Thunder",

@@ -1,12 +1,11 @@
 cask "openchrom" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "1.6.1"
-  sha256 arm:   "d9f0500cd60f7fd3d4face5dc1bacf75ff5e90af4a24304caf2e0a78009bb332",
-         intel: "4881d651d283f729de20f775e0a10675bd683b7afe14b8bce1362ae439206276"
+  version "1.6.35"
+  sha256 arm:   "7e75d34a6e8326d67b0d06225e2b06cde5207a0bb98636b98c3a1ddc43ee7807",
+         intel: "dfe66fbfc6714d2afd7a00c9ae51e9b523d013a3ad358637f3e9e05bf55539f7"
 
-  url "https://products.lablicate.com/openchrom/#{version}/OpenChrom_#{version}_#{arch}.dmg",
-      verified: "products.lablicate.com/openchrom/"
+  url "https://products.lablicate.com/openchrom/#{version}/OpenChrom_#{version}_#{arch}.dmg"
   name "OpenChrom"
   desc "Data analysis for analytical chemistry"
   homepage "https://www.openchrom.net/"
@@ -21,14 +20,15 @@ cask "openchrom" do
     end
   end
 
-  no_autobump! because: :bumped_by_upstream
-
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "OpenChrom.app"
 
+  uninstall quit: "net.openchrom.rcp.compilation.community.product.id"
+
   zap trash: [
     "~/.openchrom",
+    "~/Library/Preferences/net.openchrom.rcp.compilation.community.product.id.plist",
     "~/OpenChrom",
   ]
 end

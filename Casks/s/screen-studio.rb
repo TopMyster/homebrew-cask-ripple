@@ -2,12 +2,11 @@ cask "screen-studio" do
   arch arm: "-arm64"
   livecheck_arch = on_arch_conditional arm: "arm64", intel: "x64"
 
-  version "3.5.1-4051"
-  sha256 arm:   "6bc00b83c6aaa38200d0b089bf8a3c158d03a9be9b86cb0669f4bcd647bc28a1",
-         intel: "7711cf189139329a9a38db3164830156a3bd2f412db29745ca4ccba80758b5eb"
+  version "4.0.2-4909"
+  sha256 arm:   "4936ffbda604036ed8b06688eee4e74b624b40b6bcaef0330155f37b74d54efd",
+         intel: "d8fe52afb5ee3ad5df1fac10ba25e16e1fdb949e09a931fd6fd196c03eebac99"
 
-  url "https://screenstudioassets.com/releases/#{version}/Screen%20Studio-#{version}#{arch}-mac.zip",
-      verified: "screenstudioassets.com/"
+  url "https://screenstudioassets.com/releases/#{version}/Screen%20Studio-#{version}#{arch}-mac.zip"
   name "Screen Studio"
   desc "Screen recorder and editor"
   homepage "https://screen.studio/"
@@ -20,7 +19,7 @@ cask "screen-studio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Screen Studio.app"
 

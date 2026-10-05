@@ -1,6 +1,6 @@
 cask "novation-components" do
-  version "1.61.3"
-  sha256 "592f9011696fee419025b0b91a779fdeef20d92251612568a05e7f5770e3b555"
+  version "1.72.1"
+  sha256 "38a18324a989151f1dba633fe4cc59ae450960044f8ba1cc380db1bd93b8ab1f"
 
   url "https://components-updates.novationmusic.com/download/version/#{version}/osx_64?filetype=zip"
   name "Novation Components"
@@ -15,7 +15,7 @@ cask "novation-components" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Components.app"
 

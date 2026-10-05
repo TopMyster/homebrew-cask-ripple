@@ -2,16 +2,15 @@ cask "es-de" do
   arch arm: "macOSApple", intel: "macOSIntel"
 
   on_arm do
-    version "3.4.0,243196872"
-    sha256 "7e9c0cc22eefc1b7749fff95cb52410d6189b59ec691448177d6fac1b12b43ac"
+    version "3.5.0,357717468"
+    sha256 "060bd289fa17f8f07bac2eb688698047f7be79b80495983f08580b5f1a046e1e"
   end
   on_intel do
-    version "3.4.0,243196947"
-    sha256 "88306fc3f71ac47088950dd0ba839c194623b7197722a9a38a460150de191f6c"
+    version "3.5.0,357717755"
+    sha256 "36418337e9f499506ee4fed6f8c880665abfb24eda1fde0b23f224f0ca69cd39"
   end
 
-  url "https://gitlab.com/es-de/emulationstation-de/-/package_files/#{version.csv.second}/download",
-      verified: "gitlab.com/es-de/emulationstation-de/"
+  url "https://gitlab.com/es-de/emulationstation-de/-/package_files/#{version.csv.second}/download"
   name "ES-DE"
   name "EmulationStation Desktop Edition"
   desc "Frontend for browsing and launching games from your multi-platform collection"
@@ -36,9 +35,11 @@ cask "es-de" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "ES-DE.app"
+
+  uninstall quit: version.csv.first.to_s
 
   zap trash: [
     "~/ES-DE",

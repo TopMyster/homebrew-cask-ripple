@@ -1,9 +1,8 @@
 cask "raiderio" do
-  version "4.8.9"
-  sha256 "484b9d69c30ad40b347ad834d5ac5361ff297a696c25e58399efc4bfee4e6b90"
+  version "5.0.9"
+  sha256 "fb6701c28cf881ed6d92a9e9eceae7d3338ff4f98ed825f2682a9bb7e22e9be9"
 
-  url "https://github.com/RaiderIO/raiderio-client-builds/releases/download/v#{version}/RaiderIO_Client.dmg",
-      verified: "github.com/RaiderIO/raiderio-client-builds/"
+  url "https://github.com/RaiderIO/raiderio-client-builds/releases/download/v#{version}/RaiderIO_Client.dmg"
   name "Raider.io Client"
   desc "World of Warcraft client to track Mythic+ and Raid Progression"
   homepage "https://raider.io/"
@@ -13,7 +12,7 @@ cask "raiderio" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "RaiderIO.app"
 

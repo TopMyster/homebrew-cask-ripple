@@ -1,9 +1,8 @@
 cask "playdate-simulator" do
-  version "3.0.2"
-  sha256 "8670a68143d73c750ae0ee5ac6b9f6eb4c59c4822758fefe9a692896fca288ed"
+  version "3.1.2"
+  sha256 "7828f84b6c5e258f8b6c78648a70052bebffb4d23631a9828601ecdd764f1357"
 
-  url "https://download-cdn.panic.com/playdate_sdk/PlaydateSDK-#{version}.zip",
-      verified: "download-cdn.panic.com/playdate_sdk/"
+  url "https://download-cdn.panic.com/playdate_sdk/PlaydateSDK-#{version}.zip"
   name "Playdate SDK"
   desc "Playdate Lua and C APIs, docs and Simulator for local development"
   homepage "https://play.date/dev/"
@@ -13,12 +12,12 @@ cask "playdate-simulator" do
     strategy :header_match
   end
 
+  depends_on :macos
+
   pkg "PlaydateSDK.pkg"
 
-  uninstall_preflight do
-    Pathname("/usr/local/bin").glob("arm-*").each do |exec|
-      Utils.gain_permissions_remove(exec) if exec.exist? && exec.readlink.to_s.include?("playdate")
-    end
+  uninstall_preflight_steps do
+    remove "/usr/local/bin/arm-*", symlink_target_contains: "playdate", sudo: true
   end
 
   uninstall pkgutil: "date.play.sdk",

@@ -1,9 +1,8 @@
 cask "coherence-x" do
-  version "5.1.1"
-  sha256 "92b538b69f99563407ddbd375454aa130b3a5ee7d87da839f00ac36a74132ee6"
+  version "5.1.4"
+  sha256 "25321db4c6925dac527211e8a176118adf32840a351d3870b553492bad6a4a99"
 
-  url "https://bzgdownloads.s3.amazonaws.com/Coherence/Coherence+X+#{version}.zip",
-      verified: "bzgdownloads.s3.amazonaws.com/Coherence/"
+  url "https://bzgdownloads.s3.amazonaws.com/Coherence/Coherence+X+#{version}.zip"
   name "Coherence X"
   desc "Turn websites into apps"
   homepage "https://bzgapps.com/coherence"
@@ -14,7 +13,7 @@ cask "coherence-x" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Coherence X.app"
 

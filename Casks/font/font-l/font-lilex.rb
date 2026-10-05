@@ -1,6 +1,6 @@
 cask "font-lilex" do
-  version "2.621"
-  sha256 "4ec2c9f7a499a68916df7e78ff2b7445ee19b455ea60aff8ea2c995dd3ca8681"
+  version "2.700"
+  sha256 "34310edb4ba749f772d42b88e3eec4a6318527e75ceeaa96cfc556ee35366fbc"
 
   url "https://github.com/mishamyrt/Lilex/releases/download/#{version}/Lilex.zip"
   name "Lilex"
@@ -11,9 +11,13 @@ cask "font-lilex" do
   font "ttf/Lilex-ExtraLight.ttf"
   font "ttf/Lilex-ExtraLightItalic.ttf"
   font "ttf/Lilex-Italic.ttf"
+  font "ttf/Lilex-Light.ttf"
+  font "ttf/Lilex-LightItalic.ttf"
   font "ttf/Lilex-Medium.ttf"
   font "ttf/Lilex-MediumItalic.ttf"
   font "ttf/Lilex-Regular.ttf"
+  font "ttf/Lilex-SemiBold.ttf"
+  font "ttf/Lilex-SemiBoldItalic.ttf"
   font "ttf/Lilex-Thin.ttf"
   font "ttf/Lilex-ThinItalic.ttf"
   font "variable/Lilex-Italic[wght].ttf"

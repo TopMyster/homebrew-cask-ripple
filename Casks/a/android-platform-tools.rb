@@ -1,14 +1,16 @@
 cask "android-platform-tools" do
   os macos: "darwin", linux: "linux"
 
-  version "36.0.2"
-  sha256 arm:          "106a5d31fad8c1c0c5a180d06f5779767d129d7d5edbe629005c11a85eec5b4b",
-         x86_64:       "106a5d31fad8c1c0c5a180d06f5779767d129d7d5edbe629005c11a85eec5b4b",
-         x86_64_linux: "3afdea91441815ab41254193df0343d92c1b1c0d0237165c3a345c8af8891c31",
-         arm64_linux:  "3afdea91441815ab41254193df0343d92c1b1c0d0237165c3a345c8af8891c31"
+  version "37.0.1"
+  sha256 arm:          "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
+         intel:        "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
+         x86_64_linux: "d230f13842f60f782a8645f9c813f8f845bf36089ea7289f28c48f17979313f1"
 
-  url "https://dl.google.com/android/repository/platform-tools_r#{version}-#{os}.zip",
-      verified: "google.com/android/repository/"
+  on_linux do
+    depends_on arch: :x86_64
+  end
+
+  url "https://dl.google.com/android/repository/platform-tools_r#{version}-#{os}.zip"
   name "Android SDK Platform-Tools"
   desc "Android SDK component"
   homepage "https://developer.android.com/tools/releases/platform-tools"

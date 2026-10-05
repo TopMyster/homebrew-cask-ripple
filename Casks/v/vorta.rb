@@ -1,9 +1,9 @@
 cask "vorta" do
   arch arm: "arm", intel: "intel"
 
-  version "0.11.2"
-  sha256 arm:   "e3a1204e31db5ba7938b7f552f03e64bb2c43c386d60f060d8a9110938ad1079",
-         intel: "b99602668ce323c55330df35655deb0cde2a570aa9554ab954d959a5bed7778b"
+  version "0.11.6"
+  sha256 arm:   "5e8c736b8f4a96ffd870a8f81bfbda2f68568beaf63c932ff33b9f91f2e84c08",
+         intel: "9fa72a71d8cb4b6802cf4e53ecb672738524d1b3eb28c97ed6875839460d27b7"
 
   url "https://github.com/borgbase/vorta/releases/download/v#{version}/Vorta-v#{version}-#{arch}.dmg"
   name "Vorta"
@@ -16,6 +16,7 @@ cask "vorta" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Vorta.app"
 

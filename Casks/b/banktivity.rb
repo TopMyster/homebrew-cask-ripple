@@ -1,23 +1,32 @@
 cask "banktivity" do
-  version "9.7.4,335"
-  sha256 "de0c391faf5825da5ea3288cfc96df65972b4384b80e4ed1fa390b1b4d8c6f9a"
+  version "10.1.2,434"
+  sha256 "73374518871c896d88d484ad6baf9429a85ea2a832559f38d92d3bef159b7424"
 
-  url "https://www.iggsoft.com/banktivity/Banktivity#{version.csv.first}-#{version.csv.second}.dmg",
-      verified: "iggsoft.com/banktivity/"
+  url "https://www.iggsoft.com/banktivity/Banktivity#{version.csv.first}-#{version.csv.second}.dmg"
   name "Banktivity"
   desc "App to manage bank accounts in one place"
   homepage "https://www.iggsoftware.com/banktivity/"
 
+  # The build number in the release data may not always align with the file name
+  # suffix, so we match against the file name.
   livecheck do
     url "https://www.iggsoft.com/banktivity/banktivity#{version.major}-versions-feed.json"
-    strategy :json do |json|
-      json["Banktivity"]&.map do |release|
-        "#{release["version"]},#{release["build"]}"
+    regex(/Banktivity[._-]?v?(\d+(?:\.\d+)+)-(\d+)\.dmg/i)
+    strategy :json do |json, regex|
+      json["Banktivity"]&.filter_map do |release|
+        match = release["downloadURL"]&.match(regex)
+        next unless match
+
+        "#{match[1]},#{match[2]}"
       end
     end
   end
 
+  depends_on macos: :monterey
+
   app "Banktivity.app"
+
+  uninstall quit: "com.iggsoftware.banktivity"
 
   zap trash: [
     "~/Library/Application Scripts/com.iggsoftware.banktivity",

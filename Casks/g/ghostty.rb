@@ -1,6 +1,6 @@
 cask "ghostty" do
-  version "1.2.3"
-  sha256 "f35ee91f116e28027ab9f8def45098c7575b44b407ff883a2dcd2985c483206b"
+  version "1.3.1"
+  sha256 "18cff2b0a6cee90eead9c7d3064e808a252a40baf214aa752c1ecb793b8f5f69"
 
   url "https://release.files.ghostty.org/#{version}/Ghostty.dmg"
   name "Ghostty"
@@ -14,17 +14,20 @@ cask "ghostty" do
 
   auto_updates true
   conflicts_with cask: "ghostty@tip"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Ghostty.app"
   manpage "#{appdir}/Ghostty.app/Contents/Resources/man/man1/ghostty.1"
   manpage "#{appdir}/Ghostty.app/Contents/Resources/man/man5/ghostty.5"
   bash_completion "#{appdir}/Ghostty.app/Contents/Resources/bash-completion/completions/ghostty.bash"
-  fish_completion "#{appdir}/Ghostty.app/Contents/Resources/fish/vendor_completions.d/ghostty.fish"
   zsh_completion "#{appdir}/Ghostty.app/Contents/Resources/zsh/site-functions/_ghostty"
+  fish_completion "#{appdir}/Ghostty.app/Contents/Resources/fish/vendor_completions.d/ghostty.fish"
+
+  uninstall quit: "com.mitchellh.ghostty"
 
   zap trash: [
-    "~/.config/ghostty/",
+    "~/.cache/ghostty",
+    "~/.config/ghostty",
     "~/Library/Application Support/com.mitchellh.ghostty",
     "~/Library/Caches/com.mitchellh.ghostty",
     "~/Library/HTTPStorages/com.mitchellh.ghostty",

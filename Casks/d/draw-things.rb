@@ -1,6 +1,6 @@
 cask "draw-things" do
-  version "1.20260105.0-a266dcdb"
-  sha256 "a266dcdb91f4490085d0400226c5d7cb24d622c97e988f703b62c93f046700e6"
+  version "26.0924.0-4311758c"
+  sha256 "4311758c58f60b93f62073344989d987fa4c3cb9d936a2b87a570e5fc671eeff"
 
   url "https://static.drawthings.ai/DrawThings-#{version}.zip"
   name "Draw Things"
@@ -12,9 +12,11 @@ cask "draw-things" do
     regex(/href=.*?DrawThings[._-]v?(\d+(?:\.\d+)+(?:-\h+)?)\.zip/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Draw Things.app"
+
+  uninstall quit: "com.liuliu.draw-things"
 
   zap trash: [
     "~/Library/Application Scripts/com.liuliu.draw-things",

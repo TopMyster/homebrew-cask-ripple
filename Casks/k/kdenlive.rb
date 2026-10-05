@@ -1,12 +1,11 @@
 cask "kdenlive" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "25.12.1"
-  sha256 arm:   "b32f56785ebb721c03d4716852facd4c8ada7f4505e78bfbd021beb7a627b938",
-         intel: "033a61a85812dacf2bd36bb6800315f1594afa09c0514e97f0bb68c652f1114e"
+  version "26.08.1"
+  sha256 arm:   "b606beaf42c0482a07c052bd2da384587b3aedcc948e7c885f954e195ff10bda",
+         intel: "1c7a9fa703d8357aaf40d5a74f7aa41b36aee4504926d03d929907d076583d82"
 
-  url "https://cdn.download.kde.org/stable/kdenlive/#{version.csv.first.major_minor}/macOS/kdenlive-#{version.csv.first}#{"-#{version.csv.second}" if version.csv.second}-#{arch}.dmg",
-      verified: "cdn.download.kde.org/stable/kdenlive/"
+  url "https://cdn.download.kde.org/stable/kdenlive/#{version.csv.first.major_minor}/macOS/kdenlive-#{version.csv.first}#{"-#{version.csv.second}" if version.csv.second}-#{arch}.dmg"
   name "Kdenlive"
   desc "Free and Open Source Video Editor"
   homepage "https://kdenlive.org/"
@@ -19,7 +18,7 @@ cask "kdenlive" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "kdenlive.app"
 

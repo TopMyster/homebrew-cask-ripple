@@ -2,13 +2,15 @@ cask "webpquicklook" do
   version "1.0"
   sha256 :no_check
 
-  url "https://raw.githubusercontent.com/emin/WebPQuickLook/master/WebpQuickLook.tar.gz",
-      verified: "raw.githubusercontent.com/emin/WebPQuickLook/"
+  url "https://raw.githubusercontent.com/emin/WebPQuickLook/master/WebpQuickLook.tar.gz"
   name "WebPQuickLook"
   desc "Quick Look plugin for webp files"
   homepage "https://github.com/emin/WebPQuickLook"
 
   deprecate! date: "2025-09-22", because: :no_longer_meets_criteria
+  disable! date: "2026-09-27", because: :no_longer_meets_criteria
+
+  depends_on :macos
 
   qlplugin "WebpQuickLook.qlgenerator"
 

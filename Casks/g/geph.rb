@@ -1,21 +1,32 @@
 cask "geph" do
-  version "5.4.1"
-  sha256 "8d6707446e38407e6e9e12d3b3f0e43069ca7fe39b3cc7d0c9489d1b2aaf65db"
+  version "5.9.1"
+  sha256 "ca13af9ce315fc25848e7be402c84cf0375a888d2a2e7639fba07315dfa6101b"
 
-  url "https://dl.geph.io/geph-releases/macos-stable/#{version}/geph-macos.dmg"
+  url "https://dl.geph.io/geph-releases/macos-stable/#{version}/geph-macos.pkg"
   name "Geph"
   desc "Modular Internet censorship circumvention system"
   homepage "https://geph.io/en"
 
   livecheck do
     url :homepage
-    regex(%r{href=.*?v?(\d+(?:\.\d+)+)/geph[._-]macos\.dmg}i)
+    regex(%r{href=.*?v?(\d+(?:\.\d+)+)/geph[._-]macos\.pkg}i)
   end
 
-  app "Geph.app"
+  depends_on :macos
+
+  pkg "geph-macos.pkg"
+
+  uninstall launchctl: "io.geph.manager",
+            pkgutil:   "io.geph.GephGui"
 
   zap trash: [
+    "/Library/Application Support/geph",
+    "/Library/LaunchDaemons/io.geph.manager.plist",
     "~/Library/Application Support/gephgui#{version.major}",
     "~/Library/Preferences/io.geph.geph-electron.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

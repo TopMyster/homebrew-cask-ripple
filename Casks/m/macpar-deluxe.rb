@@ -7,15 +7,9 @@ cask "macpar-deluxe" do
   desc "Utility to combine binary content files after download"
   homepage "https://gp.home.xs4all.nl/Site/MacPAR_deLuxe.html"
 
-  livecheck do
-    url "https://gp.home.xs4all.nl/versionlist.xml"
-    strategy :xml do |xml|
-      version = xml.elements["//key[text()='MacPARdeLuxe']"]&.next_element&.text
-      next if version.blank?
+  disable! date: "2026-09-14", because: :no_longer_available
 
-      version.strip
-    end
-  end
+  depends_on :macos
 
   app "MacPAR deLuxe.app"
 

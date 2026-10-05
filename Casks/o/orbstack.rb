@@ -1,9 +1,9 @@
 cask "orbstack" do
   arch arm: "arm64", intel: "amd64"
 
-  version "2.0.5,19905"
-  sha256 arm:   "601889551cdfdc7feee148b7fdb0480fa0ba5c0db0be8f1c047fc840886a7571",
-         intel: "a858fa2dcd26f7f75cd7f99c24ed1a69f459b39bf2090c826f997ecc9c1d17eb"
+  version "2.2.3,20963"
+  sha256 arm:   "7ca77868f3a0d7d9f57b3f98615aad30cc59d23cc84bbff13f78846df0b493d4",
+         intel: "d1aa8723d19a6bc8dba4b6490e99710e926aa5f229920da8e1be0fbba903641f"
 
   url "https://cdn-updates.orbstack.dev/#{arch}/OrbStack_v#{version.csv.first}_#{version.csv.second}_#{arch}.dmg"
   name "OrbStack"
@@ -18,29 +18,31 @@ cask "orbstack" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "OrbStack.app"
   binary "#{appdir}/OrbStack.app/Contents/MacOS/bin/orb"
   binary "#{appdir}/OrbStack.app/Contents/MacOS/bin/orbctl"
   bash_completion "#{appdir}/OrbStack.app/Contents/Resources/completions/bash/orbctl.bash"
-  fish_completion "#{appdir}/OrbStack.app/Contents/Resources/completions/fish/orbctl.fish"
   zsh_completion "#{appdir}/OrbStack.app/Contents/Resources/completions/zsh/_orb"
   zsh_completion "#{appdir}/OrbStack.app/Contents/Resources/completions/zsh/_orbctl"
+  fish_completion "#{appdir}/OrbStack.app/Contents/Resources/completions/fish/orbctl.fish"
 
-  postflight do
-    system_command "#{appdir}/OrbStack.app/Contents/MacOS/bin/orbctl",
-                   args: ["_internal", "brew-postflight"]
+  postflight_steps do
+    run "OrbStack.app/Contents/MacOS/bin/orbctl", args: ["_internal", "brew-postflight"], base: :appdir
   end
 
-  uninstall script: {
-    executable: "#{appdir}/OrbStack.app/Contents/MacOS/bin/orbctl",
-    args:       ["_internal", "brew-uninstall"],
-  }
+  uninstall quit:   "dev.kdrag0n.MacVirt",
+            script: {
+              executable: "#{appdir}/OrbStack.app/Contents/MacOS/bin/orbctl",
+              args:       ["_internal", "brew-uninstall"],
+            }
 
   zap trash: [
         "~/.orbstack",
+        "~/Library/Application Scripts/*.dev.orbstack",
         "~/Library/Caches/dev.kdrag0n.MacVirt",
+        "~/Library/Caches/SentryCrash/OrbStack",
         "~/Library/Group Containers/*.dev.orbstack",
         "~/Library/HTTPStorages/dev.kdrag0n.MacVirt",
         "~/Library/HTTPStorages/dev.kdrag0n.MacVirt.binarycookies",

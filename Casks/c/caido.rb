@@ -1,12 +1,11 @@
 cask "caido" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.54.1"
-  sha256 arm:   "efa4b5146024efb4bec3c7c03481f74507f0515a5bc4411cac262dc02f540e6d",
-         intel: "805e46f3a301493fd3294687bb4b02db9424edc5554df284f82b0eba437b9b01"
+  version "0.58.3"
+  sha256 arm:   "4a116836e12a4bf93805f1eed0b181254e9abe3a1aebdf3d7dcab34697955696",
+         intel: "514f0a5d7677708ce5be3f31af31307bbba2246b245143dc95d70236641d7a1b"
 
-  url "https://caido.download/releases/v#{version}/caido-desktop-v#{version}-mac-#{arch}.dmg",
-      verified: "caido.download/"
+  url "https://caido.download/releases/v#{version}/caido-desktop-v#{version}-mac-#{arch}.dmg"
   name "Caido"
   desc "Web security auditing toolkit"
   homepage "https://caido.io/"
@@ -18,7 +17,7 @@ cask "caido" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Caido.app"
   binary "#{appdir}/Caido.app/Contents/Resources/bin/caido-cli"
@@ -27,6 +26,7 @@ cask "caido" do
     "~/Library/Application Support/Caido",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.caido.caido.sfl*",
     "~/Library/Application Support/io.caido.Caido",
+    "~/Library/Logs/Caido",
     "~/Library/Preferences/io.caido.Caido.plist",
     "~/Library/Saved Application State/io.caido.Caido.savedState",
   ]

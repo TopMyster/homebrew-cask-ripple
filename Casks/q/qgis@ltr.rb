@@ -1,6 +1,6 @@
 cask "qgis@ltr" do
-  version "3.40.5,20250321_160709"
-  sha256 "e25964bff62a884aab696c86f698172b0aa7b26a5fbb8279c0e17c97287c75e8"
+  version "3.44.15"
+  sha256 "302547ebee16d4d38ddfd509469cc86e337b23c545307cdbe13c2c2d233ab7cb"
 
   url "https://download.qgis.org/downloads/macos/ltr/qgis_ltr_final-#{version.dots_to_underscores.csv.join("_")}.dmg"
   name "QGIS LTR"
@@ -18,15 +18,19 @@ cask "qgis@ltr" do
     end
   end
 
+  depends_on :macos
+
+  # The application path can change between versions,
+  # renaming also allows installation alongside the main "qgis" cask.
+  rename "QGIS.app", "QGIS-LTR.app"
+
   app "QGIS-LTR.app"
+
+  uninstall quit: "org.qgis.qgis3"
 
   zap trash: [
     "~/Library/Application Support/QGIS",
     "~/Library/Caches/QGIS",
     "~/Library/Saved Application State/org.qgis.qgis*.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

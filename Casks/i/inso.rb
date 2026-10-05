@@ -1,9 +1,8 @@
 cask "inso" do
-  version "12.3.0"
-  sha256 "dcdbf12af872c056323cfc6ebac1e49ff834d4282692e6fce163cf5e672d71bd"
+  version "13.3.0"
+  sha256 "c63043015fd1ef129f614b5eb146a34f1b1585ded9b186eb2494b420980139e6"
 
-  url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/inso-macos-#{version}.zip",
-      verified: "github.com/Kong/insomnia/"
+  url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/inso-macos-#{version}.zip"
   name "inso"
   desc "CLI HTTP and GraphQL Client"
   homepage "https://insomnia.rest/products/inso"
@@ -15,6 +14,7 @@ cask "inso" do
   end
 
   conflicts_with cask: "inso@beta"
+  depends_on :macos
 
   binary "inso"
 

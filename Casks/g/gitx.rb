@@ -1,9 +1,9 @@
 cask "gitx" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "1.1"
-  sha256 arm:   "60e214e848026e605f64cf1b60319541c9174d65bacdf8bee8e5fc6ef2b858c1",
-         intel: "df18702bb1d3ccfbedbf9ae0ff89ec016308ed4018e3ec1828e1d38475220f2c"
+  version "1.7.1"
+  sha256 arm:   "629ea0b6f956c9926cd0201bafd8e66cc6e272076904668f1a8b1db504c102f6",
+         intel: "7384183e38899fc11d61555c1711313399228b9468e74cb8816b716d88166f30"
 
   url "https://github.com/gitx/gitx/releases/download/#{version}/GitX-#{arch}.dmg"
   name "GitX"
@@ -11,11 +11,11 @@ cask "gitx" do
   homepage "https://github.com/gitx/gitx"
 
   livecheck do
-    url "https://gitx.github.io/gitx/appcast.xml"
-    strategy :sparkle
+    url :url
+    strategy :github_latest
   end
 
-  auto_updates true
+  depends_on macos: :ventura
 
   app "GitX.app"
   binary "#{appdir}/GitX.app/Contents/Resources/gitx"

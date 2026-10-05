@@ -1,9 +1,9 @@
 cask "aks-desktop" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.1.0-alpha"
-  sha256 arm:   "be01ae7fe8e17b0737c58b7bf03ee38e39556d0354d98dad7da52ac389849fd3",
-         intel: "98be1017eaf5efdddd48d2b9c9fee36269578f6e513e41961ec2a0a21c5dcbae"
+  version "0.10.0"
+  sha256 arm:   "c8282d17404a5ac6fe4fa552d3deb3a7ee65a9107fd07436d306abf173094911",
+         intel: "cfe0431c943565e2b840d25d442575364e0336ea40ddf0349414c513806ba0d8"
 
   url "https://github.com/Azure/aks-desktop/releases/download/v#{version}/aks-desktop-#{version}-mac-#{arch}.dmg"
   name "AKS desktop"
@@ -12,8 +12,11 @@ cask "aks-desktop" do
 
   livecheck do
     url :url
-    regex(/v?(\d+(?:\.\d+)+(?:-alpha|-beta)?)/i)
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    strategy :github_latest
   end
+
+  depends_on macos: :monterey
 
   app "AKS desktop.app"
 

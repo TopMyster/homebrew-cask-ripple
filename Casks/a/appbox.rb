@@ -1,9 +1,8 @@
 cask "appbox" do
-  version "3.6.0"
-  sha256 "e978af3b776a3efd8cc6cef4cb69729173b4277dbec291eb6710545f550ade72"
+  version "4.1.0"
+  sha256 "eac5efb75115cb9340b1cbe9933519a0a4e69565f2f72df39f9b98caaa4e8cec"
 
-  url "https://github.com/getappbox/AppBox-iOSAppsWirelessInstallation/releases/download/#{version}/AppBox.app.zip",
-      verified: "github.com/getappbox/AppBox-iOSAppsWirelessInstallation/"
+  url "https://github.com/getappbox/AppBox-iOSAppsWirelessInstallation/releases/download/#{version}/AppBox.app.zip"
   name "AppBox"
   desc "iOS app distribution tool"
   homepage "https://getappbox.com/"
@@ -13,13 +12,17 @@ cask "appbox" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sequoia
 
   app "AppBox.app"
 
+  uninstall quit: "com.developerinsider.AppBox"
+
   zap trash: [
     "~/Library/Application Support/com.developerinsider.AppBox",
+    "~/Library/Caches/com.developerinsider.AppBox",
     "~/Library/Containers/com.developerinsider.AppBox",
+    "~/Library/HTTPStorages/com.developerinsider.AppBox",
     "~/Library/Preferences/com.developerinsider.AppBox.plist",
   ]
 end

@@ -1,6 +1,6 @@
 cask "tg-pro" do
-  version "2.100"
-  sha256 "7d6427d805244c6fd17436eec4d7a16713d864967c883831e6eb0eb0e506bda5"
+  version "2.104"
+  sha256 "81c34edc9dc869af829c722c604b13c072049c7ed4f4e18400bc7592f0c500ca"
 
   url "https://www.tunabellysoftware.com/resources/TG%20Pro%20#{version}.dmg"
   name "TG Pro"
@@ -13,9 +13,11 @@ cask "tg-pro" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "TG Pro.app"
+
+  uninstall quit: "com.tunabellysoftware.tgpro"
 
   zap trash: [
     "/Library/LaunchDaemons/com.tunabellysoftware.TGFanHelper.plist",

@@ -1,9 +1,9 @@
 cask "mubu" do
   arch arm: "-arm64"
 
-  version "5.4.0"
-  sha256 arm:   "b76c0af0fc4638aba29423853de471a62ed67e4f82147945e558cb622eb67f44",
-         intel: "313b84d43cf7df88f01ea47e36e02408b22a56c54054eb2e0a5b8d35ed356be2"
+  version "6.0.2"
+  sha256 arm:   "f4c93d384e1929d900e774c18f730d5aabbf2588ae1208954acc61460d2004ac",
+         intel: "cdb57aadb9115f116355ea985e3b5c53b6754e059ffb785b2c15b73c7e746709"
 
   url "https://assets.mubu.com/client/#{version}/Mubu-#{version}#{arch}.dmg"
   name "Mubu"
@@ -18,6 +18,7 @@ cask "mubu" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "幕布.app"
 

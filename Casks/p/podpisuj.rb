@@ -1,6 +1,6 @@
 cask "podpisuj" do
-  version "5.7.118"
-  sha256 "564053bd521ca6b545f6748a4f6cbb8e89af184fc380382e6c9978e93c750251"
+  version "5.7.151"
+  sha256 "83bad3e7ee13cdd8f7dc30f7b63814e2feac509959ee3d47a7a0ee6ca76d863a"
 
   url "https://www.podpisuj.sk/staticweb/install/podpisuj-#{version}.dmg"
   name "Podpisuj"
@@ -11,6 +11,8 @@ cask "podpisuj" do
     url "https://www.podpisuj.sk/staticweb/install/"
     regex(/href=.*?podpisuj[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
+
+  depends_on :macos
 
   app "Podpisuj.app"
 

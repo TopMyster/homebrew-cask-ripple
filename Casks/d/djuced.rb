@@ -1,9 +1,8 @@
 cask "djuced" do
-  version "6.4.1"
-  sha256 "c844da96e2fb5c027771dac74741acbba2cf66c038043dbf92b2cb6a32b3f9d8"
+  version "6.8.0"
+  sha256 "365dba06bf56cbabbdfa0aa7fcd1c9148879f00349d4a519160058f7adf08bf8"
 
-  url "https://ts.hercules.com/download/djuced/#{version.major_minor}/DJUCED_#{version}.dmg",
-      verified: "hercules.com/download/djuced/"
+  url "https://ts.hercules.com/download/djuced/#{version.major_minor}/DJUCED_#{version}.dmg"
   name "DJUCED"
   desc "DJ software for Hercules controllers"
   homepage "https://www.djuced.com/"
@@ -13,7 +12,7 @@ cask "djuced" do
     regex(/Version\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   pkg "djuced_#{version}.pkg"
 

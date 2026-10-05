@@ -6,7 +6,7 @@ cask "font-line-seed-jp" do
       branch:    "main",
       only_path: "ofl/lineseedjp"
   name "LINE Seed JP"
-  homepage "https://github.com/line/seed"
+  homepage "https://fonts.google.com/specimen/LINE+Seed+JP"
 
   font "LINESeedJP-Bold.ttf"
   font "LINESeedJP-ExtraBold.ttf"

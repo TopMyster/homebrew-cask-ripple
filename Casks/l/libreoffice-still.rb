@@ -2,19 +2,11 @@ cask "libreoffice-still" do
   arch arm: "aarch64", intel: "x86-64"
   folder = on_arch_conditional arm: "aarch64", intel: "x86_64"
 
-  version "25.8.4"
-  sha256 arm:   "972bb495bd5e249257c53d4030c013f2a5706a6203d3669b8c410ceafe3d0426",
-         intel: "12ff8890c425758a4634a57572b361c8270098da6a25c7318459ab380b83e6bf"
+  version "26.2.6"
+  sha256 arm:   "94bb3248df074c225490a8a6d1d9dc87c7d6783dbb7a8e9f0d0c3d94348552af",
+         intel: "135b8a95b8133396d54bf8e726dbc0066145efa0d785963fc3d4592acbfcfe5b"
 
-  on_arm do
-    depends_on macos: ">= :big_sur"
-  end
-  on_intel do
-    depends_on macos: ">= :catalina"
-  end
-
-  url "https://download.documentfoundation.org/libreoffice/stable/#{version}/mac/#{folder}/LibreOffice_#{version}_MacOS_#{arch}.dmg",
-      verified: "download.documentfoundation.org/libreoffice/stable/"
+  url "https://download.documentfoundation.org/libreoffice/stable/#{version}/mac/#{folder}/LibreOffice_#{version}_MacOS_#{arch}.dmg"
   name "LibreOffice Still"
   desc "Free cross-platform office suite, stable version recommended for enterprises"
   homepage "https://www.libreoffice.org/"
@@ -23,8 +15,8 @@ cask "libreoffice-still" do
   # cask, so we need to make sure that the former always checks a page that
   # provides the latest versions for both Fresh and Still.
   livecheck do
-    url "https://www.libreoffice.org/download/download-libreoffice/?type=mac-#{folder}"
-    regex(/href=.*?LibreOffice[._-]v?(\d+(?:\.\d+)+)(?:[._-]MacOS)?[._-]#{arch}\.dmg/i)
+    url "https://www.libreoffice.org/download/"
+    regex(%r{href=["']?[^"' >]*/stable/[^"' >]*LibreOffice[._-]v?(\d+(?:\.\d+)+)(?:[._-]MacOS)?[._-]#{arch}\.dmg}i)
     strategy :page_match do |page, regex|
       # Sort versions from lowest to highest, using the lowest (or only) version
       page.scan(regex).map(&:first).uniq.min_by { |v| Version.new(v) }
@@ -32,6 +24,7 @@ cask "libreoffice-still" do
   end
 
   conflicts_with cask: "libreoffice"
+  depends_on :macos
 
   app "LibreOffice.app"
   binary "#{appdir}/LibreOffice.app/Contents/MacOS/gengal"
@@ -42,16 +35,8 @@ cask "libreoffice-still" do
   binary "#{appdir}/LibreOffice.app/Contents/MacOS/unopkg"
   binary "#{appdir}/LibreOffice.app/Contents/MacOS/uri-encode"
   binary "#{appdir}/LibreOffice.app/Contents/MacOS/xpdfimport"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/soffice.wrapper.sh"
-  binary shimscript, target: "soffice"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      '#{appdir}/LibreOffice.app/Contents/MacOS/soffice' "$@"
-    EOS
-  end
+  command_wrapper "soffice",
+                  executable: "#{appdir}/LibreOffice.app/Contents/MacOS/soffice"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.libreoffice.script.sfl*",

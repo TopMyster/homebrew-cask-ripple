@@ -1,6 +1,6 @@
 cask "paste" do
-  version "6.3.3"
-  sha256 "50c83fa758721fdb06729fde1f92d858c88e284ce565714f17360263055ccc08"
+  version "7.0.1"
+  sha256 "94d893aad21aec260951ccac9bbd01ffe5b129314c3f7c88400f8a5a0b54864f"
 
   url "https://downloads.pasteapp.io/dist/stable/Paste-#{version}.zip"
   name "Paste"
@@ -13,13 +13,14 @@ cask "paste" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Paste.app"
 
   zap trash: [
     "~/Library/Application Support/com.wiheads.paste-direct",
     "~/Library/Caches/com.wiheads.paste-direct",
+    "~/Library/Group Containers/group.com.wiheads.paste",
     "~/Library/HTTPStorages/com.wiheads.paste-direct",
     "~/Library/Preferences/com.wiheads.paste-direct.plist",
   ]

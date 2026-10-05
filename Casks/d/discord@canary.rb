@@ -1,9 +1,8 @@
 cask "discord@canary" do
-  version "0.0.956"
-  sha256 "673a9a91507646472ae73304d969d20b0d422f3a43dd50ccfe9bb89d0eeb44db"
+  version "0.0.1354"
+  sha256 "a8dfc407b308c06d269d6bd062bd9db5de7ce7b6e3536913e34b832082e933c2"
 
-  url "https://dl-canary.discordapp.net/apps/osx/#{version}/DiscordCanary.dmg",
-      verified: "dl-canary.discordapp.net/"
+  url "https://dl-canary.discordapp.net/apps/osx/#{version}/DiscordCanary.dmg"
   name "Discord Canary"
   desc "Voice and text chat software"
   homepage "https://canary.discord.com/"
@@ -14,11 +13,12 @@ cask "discord@canary" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Discord Canary.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hnc.discordcanary.sfl*",
     "~/Library/Application Support/discordcanary",
     "~/Library/Caches/com.hnc.DiscordCanary",
     "~/Library/Caches/com.hnc.DiscordCanary.ShipIt",

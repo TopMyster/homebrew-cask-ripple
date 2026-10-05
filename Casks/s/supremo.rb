@@ -1,9 +1,8 @@
 cask "supremo" do
-  version "4.11.6.2934"
-  sha256 "6b84683ba4c238d223030a267875e95040b54bf2a166e8b8715900af661275ec"
+  version "4.12.0.3004"
+  sha256 "878611cd82a49c6a9f26c35a1ed473e97546f3f1083f39ae20f212ffa3e79307"
 
-  url "https://www.nanosystems.com/AutoUpdateS/macOS/stable/Supremo_#{version}.dmg",
-      verified: "nanosystems.com/"
+  url "https://assets.nanosystems.com/AutoUpdateS/macOS/standard/stable/Supremo_#{version}.dmg"
   name "Supremo"
   desc "Remote desktop software"
   homepage "https://www.supremocontrol.com/"
@@ -14,6 +13,7 @@ cask "supremo" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Supremo.app"
 

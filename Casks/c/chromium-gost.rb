@@ -1,9 +1,9 @@
 cask "chromium-gost" do
   arch arm: "arm64", intel: "amd64"
 
-  version "143.0.7499.193"
-  sha256 arm:   "1f2157d35fe4dd24791a942045ef994ac3f42733698b6edee70bc4abe8a5932a",
-         intel: "c1576d4a2b16ae246e0e609dbfbb76c44d81adeb10e334e25be2c38451eca2ec"
+  version "150.0.7871.224"
+  sha256 arm:   "9bc80d7ecd9caf43459d89d4c4880f95aae333b4a73ab6e886b59018cae1e2e7",
+         intel: "e4dbe5b029c0c688c5c077e5818a9e2ad00caad76feb697f6c8f9d3b016f709a"
 
   url "https://github.com/deemru/Chromium-Gost/releases/download/#{version}/chromium-gost-#{version}-macos-#{arch}.tar.bz2"
   name "Chromium-Gost"
@@ -17,12 +17,13 @@ cask "chromium-gost" do
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Chromium-Gost.app"
 
   zap trash: [
     "~/Library/Application Support/Chromium",
     "~/Library/Caches/Chromium",
+    "~/Library/Preferences/ru.cryptopro.chromium-gost.plist",
   ]
 end

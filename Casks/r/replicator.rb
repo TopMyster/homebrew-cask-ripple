@@ -1,6 +1,6 @@
 cask "replicator" do
-  version "8.5.2"
-  sha256 "fa3cc1cdb388948e5b82cd3a760f1ed9d301742382f5c30c7fad04e53a23b4b2"
+  version "8.6.0"
+  sha256 "6bc7bfa2557a6500d3ca8db68214493fbbb4531477160efa3c1ced756d44a51f"
 
   url "https://github.com/jamf/Replicator/releases/download/v#{version}/Replicator.zip"
   name "Replicator"
@@ -12,7 +12,7 @@ cask "replicator" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Replicator.app"
 

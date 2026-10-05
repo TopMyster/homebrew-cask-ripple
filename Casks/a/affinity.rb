@@ -1,9 +1,8 @@
 cask "affinity" do
-  version "3.0.2,3912"
-  sha256 "5addd72d646ab15e2ebfa99c3d79cfb7989c016524e751edf9c8fb695c0aa8f4"
+  version "3.3.0,4850"
+  sha256 "317f5cf64a5364319898576b4648b6a96dc9ec39f50039aebf9901b7ed3a5d96"
 
-  url "https://affinity-update.s3.amazonaws.com/mac2/retail/Affinity%20Affinity%20Store%20#{version.csv.second}.zip",
-      verified: "affinity-update.s3.amazonaws.com/"
+  url "https://affinity-update.s3.amazonaws.com/mac2/retail/Affinity%20Affinity%20Store%20#{version.csv.second}.zip"
   name "Affinity"
   desc "Image editing and design software"
   homepage "https://www.affinity.studio/"
@@ -14,7 +13,7 @@ cask "affinity" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on :macos
 
   app "Affinity.app"
 

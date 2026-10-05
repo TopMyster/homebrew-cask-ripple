@@ -1,18 +1,18 @@
 cask "nomachine-enterprise-client" do
-  version "9.3.7_1"
-  sha256 "cc0b09efb540a1c7094253aefea7a48837ea659b9565a53e83733554067ed120"
+  version "10.1.7_1"
+  sha256 "31f6bd4924bfe77f272952c0a6fddeb4bc19dde4b0d69a60feba15e3066df358"
 
   url "https://download.nomachine.com/download/#{version.major_minor}/MacOSX/nomachine-enterprise-client_#{version}.dmg"
   name "NoMachine Enterprise Client"
   desc "Remote desktop software"
   homepage "https://www.nomachine.com/"
 
-  # We couldn't find a checkable source of Enterprise-specific version
-  # information but it seems to generally follow the `nomachine` version, so
-  # aligning the versions is better than nothing.
   livecheck do
-    cask "nomachine"
+    url "https://download.nomachine.com/download/?id=7&platform=mac"
+    regex(/nomachine[._-]enterprise[._-]client[._-]?v?(\d+(?:[._]\d+)+)\.dmg/i)
   end
+
+  depends_on :macos
 
   pkg "NoMachine.pkg"
 

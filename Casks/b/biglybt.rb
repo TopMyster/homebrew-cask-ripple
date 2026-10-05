@@ -1,17 +1,19 @@
 cask "biglybt" do
-  arch arm: "Silicon", intel: "Intel"
+  version "4.1.0.0"
+  sha256 "2e20642b6fda147ee7fd3e523235359355a07e753e5c7961e27d005a72753b0d"
 
-  version "4.0.0.0"
-  sha256 arm:   "f8664211a4f7868b608e906c2162877e8e74165058ff0e4555684e53447869c1",
-         intel: "90d328ebe577bdd4db979996de7071ee24902bbc2412c67cf513d97f9c8bbbd3"
-
-  url "https://github.com/BiglySoftware/BiglyBT/releases/download/v#{version}/GitHub_BiglyBT_Mac_#{arch}_Installer.dmg",
-      verified: "github.com/BiglySoftware/BiglyBT/"
+  url "https://github.com/BiglySoftware/BiglyBT/releases/download/v#{version}/GitHub_BiglyBT_Mac_Universal_Installer.dmg"
   name "biglybt"
   desc "Bittorrent client based on the Azureus open source project"
   homepage "https://www.biglybt.com/"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   auto_updates true
+  depends_on :macos
 
   installer script: {
     executable:   "BiglyBT Installer.app/Contents/MacOS/JavaApplicationStub",

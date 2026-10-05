@@ -1,9 +1,8 @@
 cask "macsyzones" do
-  version "2.0.2"
-  sha256 "0090b8764fe3698f1ad101b89399614a87567b9a5d2477455bea75fb901b901b"
+  version "3.1.1"
+  sha256 "6db860035ba72aaa7ea5eab0e37350687f3a69a243b4c87829168edb30281665"
 
-  url "https://github.com/rohanrhu/MacsyZones/releases/download/v#{version}/MacsyZones.zip",
-      verified: "github.com/rohanrhu/MacsyZones/"
+  url "https://github.com/rohanrhu/MacsyZones/releases/download/v#{version}/MacsyZones.zip"
   name "MacsyZones"
   desc "Window management utility"
   homepage "https://macsyzones.com/"
@@ -14,7 +13,7 @@ cask "macsyzones" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "MacsyZones.app"
 

@@ -2,9 +2,9 @@ cask "feed-the-beast" do
   arch arm: "arm64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "arm", intel: "x64"
 
-  version "1.29.4"
-  sha256 arm:   "5611137adece4d82828c60d16c4fc565f474e10281371c999ba9243ba2177b62",
-         intel: "2b7f8d02e3d30baa4f8969161d783fc6d9c0b8f3d49e4f052309a95be21b003c"
+  version "1.30.1"
+  sha256 arm:   "926e7fa8dcfc2fd783f95a8ee8b6c603e3b3991e20d00e4af9a6b9b8af8c667b",
+         intel: "3d1a60ca18e2d3db6e8b7ea51c1713a15fea9de13b587d38f76ede8d15d8f404"
 
   url "https://piston.feed-the-beast.com/app/ftb-app-macos-#{version}-#{arch}.dmg"
   name "Feed the Beast"
@@ -23,7 +23,7 @@ cask "feed-the-beast" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "FTB Electron App.app"
 

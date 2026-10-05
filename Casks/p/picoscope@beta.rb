@@ -1,6 +1,6 @@
 cask "picoscope@beta" do
-  version "7.2.12.7852"
-  sha256 "89bb01a0768d5108c27c04b08d06dae662915747d7f851dd52a9bfdcbc2a5872"
+  version "7.2.30.10176"
+  sha256 "3f0b0df944f1bc0c9186e183f3f9dfa888b8f1b31bfae8e6926db114791a905d"
 
   url "https://www.picotech.com/download/software/beta/PicoScope_#{version.major}_TandM_Early_Access_#{version}.x64.pkg"
   name "PicoScope beta"
@@ -13,6 +13,7 @@ cask "picoscope@beta" do
   end
 
   conflicts_with cask: "picoscope"
+  depends_on :macos
 
   pkg "PicoScope_#{version.major}_TandM_Early_Access_#{version}.x64.pkg"
 

@@ -1,9 +1,8 @@
 cask "bibdesk" do
-  version "1.9.8"
-  sha256 "0fec367468bdfcf11163e97fda7426ec480eb3fab5648bd13ef70e946b977374"
+  version "1.9.13"
+  sha256 "0435887d5f3fc7ae7ed735515a1290cf6efc479afeae755c1d1d0693c008004b"
 
-  url "https://downloads.sourceforge.net/bibdesk/BibDesk/BibDesk-#{version.csv.first}/BibDesk-#{version.csv.first}.dmg",
-      verified: "downloads.sourceforge.net/bibdesk/"
+  url "https://downloads.sourceforge.net/bibdesk/BibDesk/BibDesk-#{version.csv.first}/BibDesk-#{version.csv.first}.dmg"
   name "BibDesk"
   desc "Edit and manage bibliographies"
   homepage "https://bibdesk.sourceforge.io/"
@@ -14,6 +13,7 @@ cask "bibdesk" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "BibDesk.app"
 

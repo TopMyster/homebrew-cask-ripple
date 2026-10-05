@@ -1,15 +1,18 @@
 cask "qdirstat" do
-  version "1.9-2"
-  sha256 "c954d11fca3335073c007c4ba1c8fc4954a1b81fbbf08146bffaa1fe6c2ca721"
+  version "2.0-macos.3"
+  sha256 "83dc0544d3a4df5a1c9de3084c6eb8cec23bf6151657e42d6c567c9ea1b9673a"
 
-  url "https://github.com/jesusha123/qdirstat-macos/releases/download/#{version}/QDirStat-#{version}.dmg"
+  url "https://github.com/jesusha123/qdirstat-macos/releases/download/#{version}/QDirStat.dmg"
   name "QDirStat"
   desc "Disk utilisation visualiser"
   homepage "https://github.com/jesusha123/qdirstat-macos/"
 
   auto_updates true
+  depends_on macos: :ventura
 
   app "QDirStat.app"
+
+  uninstall quit: "com.qdirstat.QDirStat"
 
   zap trash: [
     "~/Library/Preferences/com.qdirstat.QDirStat*.plist",

@@ -1,9 +1,9 @@
 cask "intellij-idea@eap" do
   arch arm: "-aarch64"
 
-  version "2025.3.2,253.30387.20"
-  sha256 arm:   "2cd8a11751b2cf5ef14dda201373387143ba1f9c784c8a0ce13f124fb5688d20",
-         intel: "68e991c7c63203436e3ede8cb2f899ce5ee58e81476eecee8ec74724e756d64a"
+  version "2026.3,263.6259.32"
+  sha256 arm:   "b14aa54b32477663d1a034f4940a46cb066e8ce683c18a744e9cc87c80b65301",
+         intel: "b9fa9609de7d26ae39da9a33de82a7170bb9a25f3d05f1fb42efe0e129f21a61"
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.csv.second}#{arch}.dmg"
   name "IntelliJ IDEA EAP"
@@ -11,7 +11,7 @@ cask "intellij-idea@eap" do
   homepage "https://www.jetbrains.com/idea/nextversion"
 
   livecheck do
-    url "https://data.services.jetbrains.com/products/releases?code=IIU&release.type=eap"
+    url "https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap"
     strategy :json do |json|
       json["IIU"]&.map do |release|
         version = release["version"]
@@ -25,6 +25,7 @@ cask "intellij-idea@eap" do
 
   auto_updates true
   conflicts_with cask: "intellij-idea"
+  depends_on :macos
 
   # The application path is often inconsistent between version
   rename "IntelliJ IDEA*.app", "IntelliJ IDEA.app"
@@ -32,19 +33,13 @@ cask "intellij-idea@eap" do
   app "IntelliJ IDEA.app"
   binary "#{appdir}/IntelliJ IDEA.app/Contents/MacOS/idea"
 
-  uninstall_postflight do
-    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
-      if File.readable?(path) &&
-         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
-        File.delete(path)
-      end
-    end
-  end
+  uninstall quit: ["com.jetbrains.intellij-EAP", "com.jetbrains.intellij"]
 
   zap trash: [
     "~/Library/Application Support/JetBrains/IntelliJIdea#{version.csv.first}",
     "~/Library/Caches/JetBrains/IntelliJIdea#{version.csv.first}",
     "~/Library/Logs/JetBrains/IntelliJIdea#{version.csv.first}",
+    "~/Library/Preferences/com.jetbrains.intellij-EAP.plist",
     "~/Library/Preferences/com.jetbrains.intellij.plist",
     "~/Library/Preferences/IntelliJIdea#{version.csv.first}",
     "~/Library/Preferences/jetbrains.idea.*.plist",

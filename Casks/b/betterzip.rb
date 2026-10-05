@@ -1,6 +1,6 @@
 cask "betterzip" do
-  version "5.4"
-  sha256 "70e4841dfe63c4fc3c109bd582bda608b727f207163916283879aed020ac1e2c"
+  version "6.0.6"
+  sha256 "da670bf02cb98344cb58ce041a60344f84930eb24ac17744cbdd0429716e953e"
 
   url "https://macitbetter.com/dl/BetterZip-#{version}.zip"
   name "BetterZip"
@@ -13,8 +13,12 @@ cask "betterzip" do
   end
 
   auto_updates true
+  depends_on macos: :ventura
 
   app "BetterZip.app"
+  binary "#{appdir}/BetterZip.app/Contents/Resources/betterzip"
+
+  uninstall quit: "com.macitbetter.betterzip"
 
   zap trash: [
     "~/Library/Application Scripts/79RR9LPM2N.group.com.macitbetter.betterzip",

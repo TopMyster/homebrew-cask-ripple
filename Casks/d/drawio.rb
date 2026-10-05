@@ -1,12 +1,43 @@
 cask "drawio" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "arm64", intel: on_system_conditional(macos: "x64", linux: "x86_64")
+  os macos: "draw.io", linux: "drawio"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  version "29.3.0"
-  sha256 arm:   "920b82c0f6889f7b8f6b55d9329e2afb08d44dc2c934b0ad1e55ad9f5a2b6bfb",
-         intel: "dcc1390ea93b3ba1656a7df1d57a9a34a3b5a386e694d320e465f6eca9f23345"
+  version "31.7.0"
+  sha256 arm:          "bf52537fdc6454b6ff994e428d37032050e0baadbce78104b5a46405444ade81",
+         intel:        "dcfde3f4109c85a01c19657e48408ac393635866f7011a99424472cfe33e172b",
+         arm64_linux:  "dec2d0663db45d1ae736bbbc0569ff00e961a38da7e58564839f9ac830fedf90",
+         x86_64_linux: "6a304fed85da0d3db0ba4b8dc5dad8779ff02318c56e45bcc2dd64f4ddf91645"
 
-  url "https://github.com/jgraph/drawio-desktop/releases/download/v#{version}/draw.io-#{arch}-#{version}.dmg",
-      verified: "github.com/jgraph/drawio-desktop/"
+  on_macos do
+    depends_on macos: :ventura
+
+    app "draw.io.app"
+    command_wrapper "drawio",
+                    executable: "#{appdir}/draw.io.app/Contents/MacOS/draw.io"
+
+    zap trash: [
+      "~/Library/Application Scripts/com.jgraph.drawio.desktop.PreviewExtension",
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.jgraph.drawio.desktop.sfl*",
+      "~/Library/Application Support/draw.io",
+      "~/Library/Caches/com.jgraph.drawio.desktop",
+      "~/Library/Caches/com.jgraph.drawio.desktop.ShipIt",
+      "~/Library/Caches/draw.io-updater",
+      "~/Library/Containers/com.jgraph.drawio.desktop.PreviewExtension",
+      "~/Library/HTTPStorages/com.jgraph.drawio.desktop",
+      "~/Library/Logs/draw.io",
+      "~/Library/Preferences/ByHost/com.jgraph.drawio.desktop.ShipIt.*.plist",
+      "~/Library/Preferences/com.jgraph.drawio.desktop.helper.plist",
+      "~/Library/Preferences/com.jgraph.drawio.desktop.plist",
+      "~/Library/Saved Application State/com.jgraph.drawio.desktop.savedState",
+      "~/Library/WebKit/com.jgraph.drawio.desktop",
+    ]
+  end
+  on_linux do
+    app_image "drawio-#{arch}-#{version}.AppImage", target: "drawio.AppImage"
+  end
+
+  url "https://github.com/jgraph/drawio-desktop/releases/download/v#{version}/#{os}-#{arch}-#{version}.#{url_end}"
   name "draw.io Desktop"
   desc "Online diagram software"
   homepage "https://www.diagrams.net/"
@@ -17,31 +48,4 @@ cask "drawio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
-
-  app "draw.io.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/drawio.wrapper.sh"
-  binary shimscript, target: "drawio"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/draw.io.app/Contents/MacOS/draw.io' "$@"
-    EOS
-  end
-
-  zap trash: [
-    "~/Library/Application Support/draw.io",
-    "~/Library/Caches/com.jgraph.drawio.desktop",
-    "~/Library/Caches/com.jgraph.drawio.desktop.ShipIt",
-    "~/Library/Caches/draw.io-updater",
-    "~/Library/HTTPStorages/com.jgraph.drawio.desktop",
-    "~/Library/Logs/draw.io",
-    "~/Library/Preferences/ByHost/com.jgraph.drawio.desktop.ShipIt.*.plist",
-    "~/Library/Preferences/com.jgraph.drawio.desktop.helper.plist",
-    "~/Library/Preferences/com.jgraph.drawio.desktop.plist",
-    "~/Library/Saved Application State/com.jgraph.drawio.desktop.savedState",
-    "~/Library/WebKit/com.jgraph.drawio.desktop",
-  ]
 end

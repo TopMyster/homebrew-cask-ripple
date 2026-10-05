@@ -1,14 +1,14 @@
 cask "dbeaver-enterprise" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "25.3.0"
-  sha256 arm:   "fde54b4b1c4014adec517f066a8d780012f6e582a9892314b84c58c01b9f65f5",
-         intel: "f545e430afbf05bd116d882f9a2f73d5eb94f972aa1c495858e8fbd2c30b878a"
+  version "26.2.0"
+  sha256 arm:   "5d84f78aa23e90ce7c7ad4f7d235b5e950e0b090f67ed8dca7164e865959da97",
+         intel: "7d9aef0f7140c030c6c74a08150cdf638f08532699b827e30fe67eec9f1d0d45"
 
-  url "https://dbeaver.com/files/#{version}/dbeaver-ee-#{version}-macos-#{arch}.dmg"
+  url "https://downloads.dbeaver.net/enterprise/#{version}/dbeaver-ee-#{version}-macos-#{arch}.dmg"
   name "DBeaver Enterprise Edition"
   desc "Universal database tool and SQL client"
-  homepage "https://dbeaver.com/"
+  homepage "https://dbeaver.com/dbeaver-enterprise/"
 
   livecheck do
     url "https://dbeaver.com/product/dbeaver-ee-version.xml"
@@ -17,7 +17,7 @@ cask "dbeaver-enterprise" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "DBeaverEE.app"
 

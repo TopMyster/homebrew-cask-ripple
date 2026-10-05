@@ -1,6 +1,6 @@
 cask "ckan-app" do
-  version "1.36.2"
-  sha256 "8c6eae224102f4fcfffca13ba600735f4812cc83850a82d6803dce33d3f12056"
+  version "1.36.4"
+  sha256 "4a996aec992de5e92658c6219f2fd848b2f4dc48d464e731c652b5bd02d10d07"
 
   url "https://github.com/KSP-CKAN/CKAN/releases/download/v#{version}/CKAN.dmg"
   name "Comprehensive Kerbal Archive Network"
@@ -15,6 +15,7 @@ cask "ckan-app" do
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
   depends_on cask: "mono-mdk"
+  depends_on :macos
 
   app "CKAN.app"
 

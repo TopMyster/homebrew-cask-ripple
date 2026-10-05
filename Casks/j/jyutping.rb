@@ -1,9 +1,8 @@
 cask "jyutping" do
-  version "0.68.0"
-  sha256 "7bfa9721792dcda09a331f19c1b43909b82bf1c7c51621a8a8362be1a373763a"
+  version "0.83.0"
+  sha256 "ca1cb74e9e7f354ebaf79de5eb3a8de3c10aae67d1615668ddffa307a849d74d"
 
-  url "https://github.com/yuetyam/jyutping/releases/download/#{version}/Jyutping-v#{version}-Mac.pkg",
-      verified: "github.com/yuetyam/jyutping/"
+  url "https://github.com/yuetyam/jyutping/releases/download/#{version}/Jyutping-v#{version}-Mac.pkg"
   name "Jyutping"
   desc "Cantonese Jyutping Input Method"
   homepage "https://jyutping.app/"
@@ -14,7 +13,7 @@ cask "jyutping" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   pkg "Jyutping-v#{version}-Mac.pkg"
 

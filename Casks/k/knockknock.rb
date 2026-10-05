@@ -1,9 +1,8 @@
 cask "knockknock" do
-  version "4.0.3"
-  sha256 "1e1371ff6eb62e0866266a0744e90aa3bdc6b22cca0599afbd330ddf52663c69"
+  version "4.1.0"
+  sha256 "98eae6cda5a7e122e6c7e68622617c00d6533a909f505f002c93dd90941a3f9e"
 
-  url "https://github.com/objective-see/KnockKnock/releases/download/v#{version}/KnockKnock_#{version}.zip",
-      verified: "github.com/objective-see/KnockKnock/"
+  url "https://github.com/objective-see/KnockKnock/releases/download/v#{version}/KnockKnock_#{version}.zip"
   name "KnockKnock"
   desc "Tool to show what is persistently installed on the computer"
   homepage "https://objective-see.org/products/knockknock.html"
@@ -12,6 +11,8 @@ cask "knockknock" do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "KnockKnock.app"
 

@@ -1,17 +1,18 @@
 cask "quakenotch" do
-  version "2.1.1"
-  sha256 "65d962ddd9c66f440004ea0f92191e76d9b1e4ccf26aec28fd2cb94a427b7659"
+  version "4.0"
+  sha256 "166a337a591c756a6647687354c45110f8a8e84f87d37b1a22f85b50992ef765"
 
-  url "https://github.com/rohanrhu/QuakeNotch/releases/download/v#{version}/QuakeNotch.zip",
-      verified: "github.com/rohanrhu/QuakeNotch/"
+  url "https://github.com/rohanrhu/QuakeNotch/releases/download/v#{version}/QuakeNotch.zip"
   name "QuakeNotch"
   desc "MacBook Notch utility"
   homepage "https://quakenotch.com/"
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "QuakeNotch.app"
+
+  uninstall quit: "com.apple.Music"
 
   zap trash: [
     "~/Library/Application Support/MeowingCat.QuakeNotch",

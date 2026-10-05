@@ -1,12 +1,11 @@
 cask "hbuilderx" do
   arch arm: ".arm64"
 
-  version "4.87.2025121004"
-  sha256 arm:   "1d9134effc3f87551b46fae9a45a3f2deb8842f507e497de4bed617a1689c993",
-         intel: "9c769a6048b8934740e767bb51574553f64f8a598a1e30f324faa56a7506eca7"
+  version "5.26.2026091802"
+  sha256 arm:   "6126e03dfa1801e65368275e3681651d7bad1f835b68ded9aef782750897a968",
+         intel: "725a5a10dc7e47ace660cfa7672098e94afc8b10c0e7aa7cb424b3d78ccf6065"
 
-  url "https://download1.dcloud.net.cn/download/HBuilderX.#{version}#{arch}.dmg",
-      verified: "download1.dcloud.net.cn/download/"
+  url "https://download1.dcloud.net.cn/download/HBuilderX.#{version}#{arch}.dmg"
   name "HBuilderX"
   desc "HTML editor"
   homepage "https://www.dcloud.io/hbuilderx.html"
@@ -18,9 +17,14 @@ cask "hbuilderx" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "HBuilderX.app"
 
-  zap trash: "~/Library/Application Support/HBuilder X"
+  uninstall quit: "io.dcloud.HBuilderX"
+
+  zap trash: [
+    "~/Library/Application Support/HBuilder X",
+    "~/Library/Preferences/io.dcloud.HBuilderX.plist",
+  ]
 end

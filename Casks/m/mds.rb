@@ -2,8 +2,7 @@ cask "mds" do
   version "4.0,40106"
   sha256 "29e53a23bb97cb260290c868dc92a31cdba359f98cbf6643742d367204c207f2"
 
-  url "https://twocanoes-software-updates.s3.amazonaws.com/MDS_Build-#{version.csv.second}_Version-#{version.csv.first}.dmg",
-      verified: "twocanoes-software-updates.s3.amazonaws.com/"
+  url "https://twocanoes-software-updates.s3.amazonaws.com/MDS_Build-#{version.csv.second}_Version-#{version.csv.first}.dmg"
   name "MDS"
   desc "Deploy Intel and Apple Silicon Macs in Seconds"
   homepage "https://twocanoes.com/products/mac/mds/"
@@ -19,6 +18,8 @@ cask "mds" do
     end
   end
 
+  depends_on :macos
+
   pkg "MDS.pkg"
 
   uninstall launchctl: "com.mds-micromdm",
@@ -31,6 +32,5 @@ cask "mds" do
     "~/Library/Application Support/com.twocanoes.mds.sync",
     "~/Library/Application Support/MDS",
     "~/Library/Logs/com.twocanoes.mds.log",
-    "~/Library/Preferences/com.apple.imdsmsrecordstore.plist",
   ]
 end

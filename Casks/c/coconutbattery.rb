@@ -1,6 +1,6 @@
 cask "coconutbattery" do
-  version "4.2.0,192"
-  sha256 "0c1279b0d7a8a12c9a5aef2c8b809d92c1d9d92495e85dd1a2c20f4fd63abbc6"
+  version "4.4.0,265"
+  sha256 "ac7bb9a5f02af6f1b7f3107ae3fb62268ec41e8d853a3df5ecee58bf0a51db4d"
 
   url "https://www.coconut-flavour.com/downloads/coconutBattery_#{version.csv.first.no_dots}_#{version.csv.second}.zip"
   name "coconutBattery"
@@ -15,7 +15,7 @@ cask "coconutbattery" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "coconutBattery.app"
 
@@ -23,11 +23,14 @@ cask "coconutbattery" do
             quit:      "com.coconut-flavour.coconutBattery-Menu"
 
   zap trash: [
+    "~/Library/Application Scripts/R5SC3K86L5.com.coconut-flavour.coconutBattery",
     "~/Library/Application Support/coconutBattery",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.coconut-flavour.coconutbattery.sfl*",
     "~/Library/Caches/com.coconut-flavour.coconutBattery*",
     "~/Library/Group Containers/*.coconut-flavour.coconutBattery",
     "~/Library/Preferences/com.coconut-flavour.coconutBattery-Menu.plist",
     "~/Library/Preferences/com.coconut-flavour.coconutBattery.plist",
     "~/Library/Saved Application State/com.coconut-flavour.coconutBattery.savedState",
+    "~/Library/WebKit/com.coconut-flavour.coconutBattery",
   ]
 end

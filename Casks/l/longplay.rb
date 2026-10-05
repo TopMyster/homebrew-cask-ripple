@@ -1,9 +1,8 @@
 cask "longplay" do
-  version "1.1.6"
-  sha256 "f24ee83ae8118e6f75fcd5c19b49b4d899048e595d13ed190b1040afa69d51db"
+  version "1.1.10"
+  sha256 "0ebaa13e994155b849e6a8c21a119a296ac16ceb3453db82774014eb3ecce6bb"
 
-  url "https://download.longplay.app/mac/Longplay-#{version.csv.first}#{"-#{version.csv.second}" if version.csv.second}.dmg",
-      verified: "download.longplay.app/"
+  url "https://download.longplay.app/mac/Longplay-#{version.csv.first}#{"-#{version.csv.second}" if version.csv.second}.dmg"
   name "Longplay"
   desc "Album-focused music player"
   homepage "https://longplay.rocks/"
@@ -20,9 +19,11 @@ cask "longplay" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Longplay.app"
+
+  uninstall quit: "app.longplay.Longplay-Mac"
 
   zap trash: [
     "~/Library/Application Scripts/app.longplay.Longplay-Mac",

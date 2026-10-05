@@ -1,11 +1,31 @@
 cask "osu" do
   arch arm: "Apple.Silicon", intel: "Intel"
+  os macos: "app.#{arch}.zip", linux: "AppImage"
 
-  version "2026.102.1-lazer"
-  sha256 arm:   "08132ca0af540d09bb80f6525553d17f92736c4cb3a5f0879266ddeddec8db0f",
-         intel: "6524178688ee0ce39aeda8dec361d8e80a0b3f739e8db67037d3a29a07eb1a89"
+  version "2026.1005.0-lazer"
+  sha256 arm:          "ee9c2c3224253f7cd23d280fe8bf3d9ba1e16189f627fa21f26c9fbf78aa716c",
+         intel:        "d27186e978f53d0d7a1ee7bb488f892efc193a8b297aba9a484eb6178c62d04e",
+         x86_64_linux: "284108e65373a8339beeca40e2c14b1528c177bd6ce1eb21407639f8e508da2e"
 
-  url "https://github.com/ppy/osu/releases/download/#{version}/osu.app.#{arch}.zip"
+  on_macos do
+    app "osu!.app"
+
+    uninstall quit: "sh.ppy.osu.lazer"
+
+    zap trash: [
+      "~/.local/share/osu",
+      "~/Library/Saved Application State/sh.ppy.osu.lazer.savedState",
+    ]
+  end
+  on_linux do
+    depends_on arch: :x86_64
+
+    app_image "osu.AppImage"
+
+    zap trash: "~/.local/share/osu"
+  end
+
+  url "https://github.com/ppy/osu/releases/download/#{version}/osu.#{os}"
   name "osu!"
   desc "Rhythm game"
   homepage "https://github.com/ppy/osu/"
@@ -18,11 +38,4 @@ cask "osu" do
 
   auto_updates true
   conflicts_with cask: "osu@tachyon"
-
-  app "osu!.app"
-
-  zap trash: [
-    "~/.local/share/osu",
-    "~/Library/Saved Application State/sh.ppy.osu.lazer.savedState",
-  ]
 end

@@ -1,9 +1,9 @@
 cask "siyuan" do
   arch arm: "-arm64"
 
-  version "3.5.3"
-  sha256 arm:   "6e38eb79aa4e937841c7e85be7b881a05ad9c9682de704d405ebf39f9fa3f9eb",
-         intel: "434e60d7ee0bbcab1cea3510f72c5ab74e4b5810975f0434fad50276b05ec94a"
+  version "3.8.6"
+  sha256 arm:   "35ebb716c549001bb4dd3c048a3fa6b966b5993e5b14af61b5266877b9e62d7d",
+         intel: "9945cee25c29d4875b2fc0af99ba79c67b8433ff6e56be8ef21f71f270dc7820"
 
   url "https://github.com/siyuan-note/siyuan/releases/download/v#{version}/siyuan-#{version}-mac#{arch}.dmg"
   name "SiYuan"
@@ -11,9 +11,10 @@ cask "siyuan" do
   homepage "https://github.com/siyuan-note/siyuan"
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "SiYuan.app"
+  binary "#{appdir}/SiYuan.app/Contents/Resources/kernel/SiYuan-Kernel", target: "siyuan"
 
   zap trash: [
     "~/.siyuan",

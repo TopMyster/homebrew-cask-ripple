@@ -1,30 +1,36 @@
 cask "marked-app" do
-  version "2.6.46,1071"
-  sha256 "9d67af603347b00f6c4b2b40eea6c0aef7f3b4c88abc3c77453a7d836f050626"
+  version "3.2.17,1235"
+  sha256 "4faa50da94deec5a89cf897d2f6e293c7407b8d7d23638c85437884114b32e8a"
 
-  url "https://updates.marked2app.com/Marked#{version.delete(",")}.dmg"
+  url "https://updates.markedapp.com/updates/Marked%20#{version.csv.first}-#{version.csv.second}.zip"
   name "Marked"
   desc "Previewer for Markdown, MultiMarkdown and other text markup languages"
-  homepage "https://marked2app.com/"
+  homepage "https://markedapp.com/"
 
   livecheck do
-    url "https://updates.marked2app.com/marked.xml"
+    url "https://updates.markedapp.com/updates/marked3.xml"
     strategy :sparkle
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
-  app "Marked #{version.major}.app"
+  app "Marked.app"
 
-  uninstall quit: "com.brettterpstra.marked#{version.major}"
+  uninstall quit: "com.brettterpstra.marked"
 
   zap trash: [
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.brettterpstra.marked#{version.major}.sfl*",
-    "~/Library/Application Support/Marked #{version.major}",
-    "~/Library/Caches/com.brettterpstra.marked#{version.major}",
-    "~/Library/Caches/Marked #{version.major}",
-    "~/Library/Logs/Marked #{version.major}",
-    "~/Library/Preferences/com.brettterpstra.marked#{version.major}.plist",
-    "~/Library/Saved Application State/com.brettterpstra.marked#{version.major}.savedState",
+    "~/Library/Application Scripts/com.brettterpstra.marked.Share",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.brettterpstra.marked.sfl*",
+    "~/Library/Application Support/com.brettterpstra.marked",
+    "~/Library/Application Support/Marked",
+    "~/Library/Caches/com.brettterpstra.marked",
+    "~/Library/Caches/Marked",
+    "~/Library/Containers/com.brettterpstra.marked.Share",
+    "~/Library/HTTPStorages/com.brettterpstra.marked",
+    "~/Library/Logs/Marked",
+    "~/Library/Preferences/com.brettterpstra.marked.plist",
+    "~/Library/Saved Application State/com.brettterpstra.marked.savedState",
+    "~/Library/WebKit/com.brettterpstra.marked",
   ]
 end

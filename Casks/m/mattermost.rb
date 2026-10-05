@@ -1,23 +1,29 @@
 cask "mattermost" do
-  arch arm: "m1", intel: "x64"
+  arch arm: "arm64", intel: "x64"
 
-  version "6.0.3"
-  sha256 arm:   "61a4ab91f87a2a1a0515b74fce7b08f4261f53ddceeaed0c39fdc6aab0c4e4e3",
-         intel: "c4adb1577812ac12fe7477f4eee660315cc4501a577a40a5fa6b7e8e34487b33"
+  version "6.3.0"
+  sha256 arm:   "b6d22403e8a96cf54ba3a9ecf7267a5c7bb7ce225249ce12d53a60c8b4db5bfd",
+         intel: "9d7d9bed269c079a6bbe9e35b8275b03caeb85843b2d1aab3612e1063f9e4c0d"
 
   url "https://releases.mattermost.com/desktop/#{version}/mattermost-desktop-#{version}-mac-#{arch}.zip"
   name "Mattermost"
   desc "Open-source, self-hosted Slack-alternative"
   homepage "https://mattermost.com/"
 
+  # The electron-builder `latest-mac.yml` file can include unstable versions.
+  # The upstream website points to the GitHub releases as the place to find
+  # download URLs (linked in the release body text), so we check the latest
+  # GitHub release instead.
   livecheck do
-    url "https://releases.mattermost.com/desktop/latest-mac.yml"
-    strategy :electron_builder
+    url "https://github.com/mattermost/desktop/"
+    strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Mattermost.app"
+
+  uninstall quit: "Mattermost.Desktop"
 
   zap trash: [
     "~/Library/Application Support/Mattermost",

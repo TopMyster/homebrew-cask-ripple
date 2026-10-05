@@ -1,5 +1,5 @@
 cask "music-remote" do
-  version "1.6"
+  version "1.7.1"
   sha256 :no_check
 
   url "https://marioaguzman.github.io/musicremote/updater/Music%20Remote.dmg"
@@ -13,7 +13,7 @@ cask "music-remote" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Music Remote.app"
 

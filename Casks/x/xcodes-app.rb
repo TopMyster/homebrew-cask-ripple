@@ -1,6 +1,6 @@
 cask "xcodes-app" do
-  version "3.0.2b34"
-  sha256 "96a8c1dc04021813edd725997b22d664c8842af07e727c72f3183decf3d5c62b"
+  version "4.1.1b41"
+  sha256 "65dc424dd06f92db1e192ac97db97861392cfe8568b72f89d7cc8836a7328c9c"
 
   url "https://github.com/XcodesOrg/XcodesApp/releases/download/v#{version}/Xcodes.zip"
   name "Xcodes"
@@ -16,7 +16,7 @@ cask "xcodes-app" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Xcodes.app"
 

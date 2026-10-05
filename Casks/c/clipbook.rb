@@ -1,30 +1,27 @@
 cask "clipbook" do
-  arch arm: "arm64", intel: "x64"
+  version "2.3.1"
+  sha256 "55ca804adc60aec8810920bce24b85e1fb95203ab1c5db7f5663c159fc37e57b"
 
-  version "1.32.0"
-  sha256 arm:   "b81d8533f1a8f85f9c7cdb75eaad39e6d6bfab400feab759182056c603b33cce",
-         intel: "aa758cbc922c055570702641649d4e4a4fe61d75664077d60688a436b7fd6a57"
-
-  url "https://f005.backblazeb2.com/file/clipbook/ClipBook-#{version}-#{arch}.dmg",
-      verified: "f005.backblazeb2.com/file/clipbook/"
+  url "https://f005.backblazeb2.com/file/clipbook/ClipBook-#{version}.dmg"
   name "ClipBook"
   desc "Clipboard history app"
   homepage "https://clipbook.app/"
 
   livecheck do
-    url "https://clipbook.app/downloads/mac/#{arch}/appcast.xml"
+    url "https://clipbook.app/downloads/mac/appcast.xml"
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :monterey"
+  auto_updates true
+  depends_on macos: :ventura
 
   app "ClipBook.app"
 
   zap trash: [
-    "~/Library/Application Support/ClipBook",
-    "~/Library/Caches/ClipBook",
-    "~/Library/HTTPStorages/com.ikryanov.clipbook",
-    "~/Library/Preferences/com.ikryanov.clipbook.plist",
-    "~/Library/Saved Application State/com.ikryanov.clipbook.savedState",
+    "~/Library/Application Support/ClipBook*",
+    "~/Library/Caches/ClipBook*",
+    "~/Library/HTTPStorages/com.ikryanov.clipbook*",
+    "~/Library/Preferences/com.ikryanov.clipbook*.plist",
+    "~/Library/Saved Application State/com.ikryanov.clipbook*.savedState",
   ]
 end

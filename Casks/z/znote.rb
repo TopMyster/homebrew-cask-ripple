@@ -1,12 +1,11 @@
 cask "znote" do
   arch arm: "-arm64"
 
-  version "3.5.6"
-  sha256 arm:   "670dc124a87b09dea727a3913860413da54c8378640d49fde5636740db7d28aa",
-         intel: "057f85444ab181145b881ae37ec9cf7f6a52248eaea3699177f061868e7e7142"
+  version "4.9.3"
+  sha256 arm:   "8350661896479e58303f3296ad2681cf7339074b82b606ef984ab9c49bda4122",
+         intel: "e7a099b4c393653b6d98bb4aa07a6ef366ea9fb50713220949380c28b3ae1026"
 
-  url "https://github.com/alagrede/znote-app/releases/download/v#{version}/znote-#{version}#{arch}.dmg",
-      verified: "github.com/alagrede/znote-app/"
+  url "https://github.com/alagrede/znote-app/releases/download/v#{version}/znote-#{version}#{arch}.dmg"
   name "Znote"
   desc "Notes-taking app"
   homepage "https://znote.io/"
@@ -16,7 +15,7 @@ cask "znote" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "znote.app"
 

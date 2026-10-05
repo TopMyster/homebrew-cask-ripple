@@ -1,6 +1,6 @@
 cask "airparrot" do
-  version "3.1.7"
-  sha256 "acb42bb53c1dfde1fec6835fd8fd89a278b215a97f1e08545e45780cebb19409"
+  version "3.1.9"
+  sha256 "82c840d7535649acc696767f89e13b21589bab063934c6f7a3a4703f15c624c1"
 
   url "https://download.airsquirrels.com/AirParrot#{version.major}/Mac/AirParrot-#{version}.dmg"
   name "AirParrot"
@@ -13,6 +13,7 @@ cask "airparrot" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "AirParrot #{version.major}.app"
 

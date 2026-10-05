@@ -1,9 +1,8 @@
 cask "carbon-copy-cloner" do
-  version "7.1.4,8266"
-  sha256 "64a54054e53edb603109296bb69ee9f0462ba1843f4162fbd410a3fa7d8dad48"
+  version "7.2.1,8415"
+  sha256 "0c71ade4f34a37a94b7a1920047cac49f1a0c61c10931585ee6926c28352fc6e"
 
-  url "https://bombich.scdn1.secure.raxcdn.com/software/files/ccc-#{version.csv.first}.#{version.csv.second}.zip",
-      verified: "bombich.scdn1.secure.raxcdn.com/software/files/"
+  url "https://files.bombich.com/ccc-#{version.csv.first}.#{version.csv.second}.zip"
   name "Carbon Copy Cloner"
   desc "Hard disk backup and cloning utility"
   homepage "https://bombich.com/"
@@ -28,11 +27,8 @@ cask "carbon-copy-cloner" do
   end
 
   auto_updates true
-  conflicts_with cask: [
-    "carbon-copy-cloner@5",
-    "carbon-copy-cloner@6",
-  ]
-  depends_on macos: ">= :ventura"
+  conflicts_with cask: "carbon-copy-cloner@6"
+  depends_on macos: :ventura
 
   app "Carbon Copy Cloner.app"
 
@@ -46,6 +42,7 @@ cask "carbon-copy-cloner" do
     "/Library/LaunchDaemons/com.bombich.ccchelper.plist",
     "~/Library/Application Support/com.bombich.ccc",
     "~/Library/Caches/com.bombich.ccc",
+    "~/Library/HTTPStorages/com.bombich.ccc",
     "~/Library/Preferences/com.bombich.ccc.plist",
     "~/Library/Preferences/com.bombich.cccuseragent.plist",
     "~/Library/Saved Application State/com.bombich.ccc.savedState",

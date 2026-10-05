@@ -1,9 +1,8 @@
 cask "sqlpro-for-sqlite" do
-  version "2025.59"
-  sha256 "ea945c93daa442feb0fe46c498a668b2f2753870efbc22303f1f796bb6fd095c"
+  version "2026.247"
+  sha256 "f23651b10654d4cb5f053df877f372ffed509cbfffb1f515c32a6579edfabfd7"
 
-  url "https://d3fwkemdw8spx3.cloudfront.net/sqlite/SQLProSQLite.#{version}.app.zip",
-      verified: "d3fwkemdw8spx3.cloudfront.net/sqlite/"
+  url "https://d3fwkemdw8spx3.cloudfront.net/sqlite/SQLProSQLite.#{version}.app.zip"
   name "SQLPro for SQLite"
   desc "Advanced sqlite editor"
   homepage "https://www.sqlitepro.com/"
@@ -13,7 +12,7 @@ cask "sqlpro-for-sqlite" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "SQLPro for SQLite.app"
 

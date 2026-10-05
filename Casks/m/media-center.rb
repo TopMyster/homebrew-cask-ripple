@@ -1,9 +1,8 @@
 cask "media-center" do
-  version "35.00.24"
-  sha256 "1a2a47b4cc10b5e7eee9eeda48bac6b00f76f11b4c2ecd4008650c5dfdc268d8"
+  version "36.00.35"
+  sha256 "d78bf0daf75ca7872181855009751594e22a2c33b18f41f44d90b66ebb4ce3ca"
 
-  url "https://files.jriver-cdn.com/mediacenter/channels/v#{version.major}/stable/MediaCenter#{version.no_dots}-Universal.dmg",
-      verified: "files.jriver-cdn.com/mediacenter/"
+  url "https://files.jriver-cdn.com/mediacenter/channels/v#{version.major}/stable/MediaCenter#{version.no_dots}-Universal.dmg"
   name "JRiver Media Center"
   desc "Media manager and player"
   homepage "https://www.jriver.com/index.html"
@@ -17,11 +16,14 @@ cask "media-center" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Media Center #{version.major}.app"
 
+  uninstall quit: "com.jriver.MediaCenter#{version.major}"
+
   zap trash: [
-    "~/Documents/JRiver/",
+    "~/Documents/JRiver",
     "~/Library/Application Support/J River",
     "~/Library/Caches/com.jriver.MediaCenter#{version.major}",
     "~/Library/Cookies/com.jriver.MediaCenter#{version.major}*",

@@ -1,28 +1,29 @@
 cask "decrediton" do
   arch arm: "arm64", intel: "amd64"
+  os macos: "darwin", linux: "linux"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  on_arm do
-    version "2.1.1"
-    sha256 "5c347a2ce2cbee4b6bc94c680cbf73c7ac8a0d021806a379d55d60d662f1607c"
+  version "2.1.6"
+  sha256 arm:          "1d9daf9a0ec5df743b516738c7a8842cbc79724be595e4ba0f97bbfd7d5365b5",
+         intel:        "d0e6bd5aa874d74e2d607e52ae29c12a2f525a68ca37e7616336e0d14b33a6e6",
+         x86_64_linux: "326efece642afca2a2ce9803d0493141e5e80096c00b68a6219fabdd79b6476f"
+
+  on_macos do
+    app "Decrediton.app"
+
+    zap trash: [
+      "~/Library/Application Support/decrediton",
+      "~/Library/Preferences/com.Electron.Decrediton.plist",
+    ]
   end
-  # missing amd64 build for 2.1.0,2.1.1 release
-  # bug report, https://github.com/decred/decred-binaries/issues/163
-  on_intel do
-    version "2.0.6"
-    sha256 "84a274f8139cf852762adc06ac9d0ed143eabdcf3316035ed1bc7ccf1af58efd"
+  on_linux do
+    depends_on arch: :x86_64
+
+    app_image "decrediton-linux-amd64-v#{version}.AppImage", target: "Decrediton.AppImage"
   end
 
-  url "https://github.com/decred/decred-binaries/releases/download/v#{version}/decrediton-darwin-#{arch}-v#{version}.dmg"
+  url "https://github.com/decred/decred-binaries/releases/download/v#{version}/decrediton-#{os}-#{arch}-v#{version}.#{url_end}"
   name "Decrediton"
   desc "GUI for the Decred wallet"
   homepage "https://github.com/decred/decrediton"
-
-  depends_on macos: ">= :big_sur"
-
-  app "decrediton.app"
-
-  zap trash: [
-    "~/Library/Application Support/decrediton",
-    "~/Library/Preferences/com.Electron.Decrediton.plist",
-  ]
 end

@@ -1,9 +1,9 @@
 cask "tableau-public" do
   arch arm: "-arm64"
 
-  version "2025.3.1"
-  sha256 arm:   "754cd8dd398e497102d9c2c80bbfe743828cf877ca8c78a464ddd45e6457cb47",
-         intel: "4e4f3a0d2c9719ed37c8c32142358170870f0a58988bb18d098928f4f884884f"
+  version "2026.2.3"
+  sha256 arm:   "420d8ebffa015e534523ccbbceb49a5055772f6b4bb6d0728abde48ebf30f29d",
+         intel: "a47c2011be8cf1225ae6b3a4c61bc8b9df5886ce554fc76c0c2a16c2ee9bc993"
 
   url "https://downloads.tableau.com/esdalt/#{version}/TableauPublic-#{version.dots_to_hyphens}#{arch}.pkg",
       user_agent: :curl
@@ -14,6 +14,8 @@ cask "tableau-public" do
   livecheck do
     cask "tableau"
   end
+
+  depends_on macos: :ventura
 
   pkg "TableauPublic-#{version.dots_to_hyphens}#{arch}.pkg"
 

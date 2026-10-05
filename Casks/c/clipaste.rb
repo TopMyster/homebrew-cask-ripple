@@ -1,6 +1,6 @@
 cask "clipaste" do
-  version "1.0.1"
-  sha256 "9f4106c8ddd27fa34cc9e4533262798d5f44282d13a7dfc965bbeb8944f9f885"
+  version "1.0.5"
+  sha256 "89daed9982e60c560730e3c2edbffc0098c6aebdca208c23563f17e355e88ee8"
 
   url "https://www.ntwind.com/files/Clipaste_#{version}-mac.dmg"
   name "Clipaste"
@@ -13,7 +13,7 @@ cask "clipaste" do
     regex(/Clipaste[._-]v?(\d+(?:\.\d+)+)[._-]mac\.dmg/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Clipaste.app"
 

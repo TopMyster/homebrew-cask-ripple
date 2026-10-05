@@ -1,9 +1,8 @@
 cask "slicer" do
-  version "5.10.0,6911c75fac7b1c95e7934d1b"
-  sha256 "91c80bfe50486dbd03e3c169d0f225d1b70329bc18067481cf32d238a44d51e2"
+  version "5.12.4,6aa2063bce9de556d30132d8"
+  sha256 "a15ea10dc67db53c477fc7cb80b2c64a2cfb2516a9a67056a6432c5272c223e4"
 
-  url "https://slicer-packages.kitware.com/api/v1/item/#{version.csv.second}/download",
-      verified: "slicer-packages.kitware.com/"
+  url "https://slicer-packages.kitware.com/api/v1/item/#{version.csv.second}/download"
   name "3D Slicer"
   desc "Medical image processing and visualization system"
   homepage "https://www.slicer.org/"
@@ -20,7 +19,7 @@ cask "slicer" do
   end
 
   conflicts_with cask: "slicer@preview"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Slicer.app"
 

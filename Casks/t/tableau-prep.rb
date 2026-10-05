@@ -1,9 +1,9 @@
 cask "tableau-prep" do
   arch arm: "-arm64"
 
-  version "2025.3.1"
-  sha256 arm:   "0c10a9af589d829521c7b8194baa361436c51406a4c48a247707593517a060c4",
-         intel: "465445bf3fcd866afca3470e2de8ff8d23b4a3a4b717c79b5c3e7dd03bd04c0d"
+  version "2026.2.3"
+  sha256 arm:   "e3a3c0b00094e2a4582a8a1d5465163ba96c70be650c922fde520200436bc61f",
+         intel: "b8b7609e1924df453e971c702c72d3ff77b35d4a191452b975c04b0559b5fb0f"
 
   url "https://downloads.tableau.com/esdalt/tableau_prep/#{version}/TableauPrep-#{version.dots_to_hyphens}#{arch}.dmg",
       user_agent: :curl
@@ -15,6 +15,8 @@ cask "tableau-prep" do
   livecheck do
     cask "tableau"
   end
+
+  depends_on macos: :ventura
 
   pkg "Tableau Prep Builder.pkg"
 

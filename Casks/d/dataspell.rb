@@ -1,9 +1,9 @@
 cask "dataspell" do
   arch arm: "-aarch64"
 
-  version "2025.3.1,253.29346.157"
-  sha256 arm:   "fe0d8ef15e6e36af0ea4361bd474f204ee5c307ef90af8ec833976a1dae5a5a3",
-         intel: "388d956dd6243697a162c062c76b2fee4098f4f3405badb07a69ce6df7de6017"
+  version "2026.1.3,261.26222.84"
+  sha256 arm:   "105919466b6fb1d241f103f8867ea652b493c8d0482bb514927e0dde6d231ad6",
+         intel: "683f80483ed69333226f94e287c331b59cdbb6a4c10567126eeefbde51ad70a9"
 
   url "https://download.jetbrains.com/python/dataspell-#{version.csv.first}#{arch}.dmg"
   name "DataSpell"
@@ -23,19 +23,16 @@ cask "dataspell" do
     end
   end
 
+  # see https://blog.jetbrains.com/dataspell/2026/05/the-upcoming-sunset-of-dataspell/
+  deprecate! date: "2026-06-02", because: :discontinued, replacement_cask: "pycharm"
+  disable! date: "2026-09-01", because: :discontinued, replacement_cask: "pycharm"
+
   auto_updates true
+  depends_on :macos
 
   app "DataSpell.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/dataspell.wrapper.sh"
-  binary shimscript, target: "dataspell"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/DataSpell.app/Contents/MacOS/dataspell' "$@"
-    EOS
-  end
+  command_wrapper "dataspell",
+                  executable: "#{appdir}/DataSpell.app/Contents/MacOS/dataspell"
 
   zap trash: [
     "~/Library/Application Support/DataSpell*",

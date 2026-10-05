@@ -1,14 +1,13 @@
 cask "launchie" do
-  version "1.3.0"
-  sha256 "e84d5f0ffe36730c28683b4a6a4e2c235270a51f1b218da1b47ca76a33cbe11d"
+  version "1.6.3"
+  sha256 "dc29aadd8a3e8dcbafdd7d91b6fa0610339b165088ba2a969bb65e97f5ce632a"
 
-  url "https://github.com/nick-friedrich/launchie-launchpad-replacement-mac-os/releases/download/#{version}/Launchie_#{version}.dmg",
-      verified: "github.com/nick-friedrich/launchie-launchpad-replacement-mac-os/"
+  url "https://github.com/nick-friedrich/launchie-launchpad-replacement-mac-os/releases/download/#{version}/Launchie_#{version}.dmg"
   name "Launchie"
   desc "Launchpad replacement"
   homepage "https://www.launchie.app/"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "Launchie.app"
 

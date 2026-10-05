@@ -1,9 +1,8 @@
 cask "foxit-pdf-editor" do
-  version "14.0.2.69164"
-  sha256 "6d8ae92e1cdf33a95e0fbcead714d3fa4d6df9fe55de4f7edf99d86182648520"
+  version "14.0.8.69494"
+  sha256 "0116ae809d3d85f2ce2b8b6f043897136f02cb4da07008f6215ee031c35288b1"
 
-  url "https://cdn01.foxitsoftware.com/pub/foxit/phantomPDF/desktop/mac/#{version.major}.x/#{version.major_minor_patch}/FoxitPDFEditor#{version.major_minor_patch.no_dots}.L10N.Setup.pkg",
-      verified: "cdn01.foxitsoftware.com/pub/foxit/phantomPDF/desktop/mac/"
+  url "https://cdn01.foxitsoftware.com/pub/foxit/editor/desktop/mac/#{version.major_minor_patch}/FoxitPDFEditor#{version.major_minor_patch.no_dots}.L10N.Setup.pkg"
   name "Foxit PDF Editor"
   desc "PDF Editor"
   homepage "https://www.foxit.com/pdf-editor/"
@@ -14,6 +13,8 @@ cask "foxit-pdf-editor" do
       json.dig("package_info", "version")
     end
   end
+
+  depends_on :macos
 
   pkg "FoxitPDFEditor#{version.major_minor_patch.no_dots}.L10N.Setup.pkg"
 

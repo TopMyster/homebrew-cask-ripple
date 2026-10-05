@@ -1,6 +1,6 @@
 cask "soundsource@test" do
-  version "6.0.3,3,20260116,1910,6037003"
-  sha256 "df117233ac17b8666851b646aa26f3ff60f5d445a6e0c5b38681f940a2839d7f"
+  version "6.1.5,3,20261001,1704,6157003"
+  sha256 "64818586e89e16163895f9edd41cb82b45477637ef7bd44b7ad86baea3d4f183"
 
   url "https://download.rogueamoeba.com/builds/SoundSource/SoundSource_#{version.csv.fifth}_#{version.csv.third}_#{version.csv.fourth}.zip"
   name "SoundSource"
@@ -21,7 +21,7 @@ cask "soundsource@test" do
 
   auto_updates true
   conflicts_with cask: "soundsource"
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "SoundSource.app"
 

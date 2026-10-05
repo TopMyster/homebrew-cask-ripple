@@ -1,9 +1,8 @@
 cask "dropbox-dash" do
-  version "3.110.6"
-  sha256 "57590ffc4155e6b5334d0c815ff6a0db0d5b7cdfec7fe58e39c4198bf9e58ecb"
+  version "3.181.38"
+  sha256 "3daeaa93f30307af1c2d8c3a563fe9e8ce226c9dcc4d56e598c9aea6c0dd96bb"
 
-  url "https://edge.dropboxstatic.com/dbx-releng/products/dash-tesla/#{version}/mac.x86_64/Dropbox%20Dash-#{version}.dmg",
-      verified: "edge.dropboxstatic.com/dbx-releng/products/dash-tesla/"
+  url "https://edge.dropboxstatic.com/dbx-releng/products/dash-tesla/#{version}/mac.x86_64/Dropbox%20Dash-#{version}.dmg"
   name "Dropbox Dash"
   desc "Universal search tool"
   homepage "https://www.dropbox.com/dash"
@@ -14,11 +13,16 @@ cask "dropbox-dash" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Dropbox Dash.app"
 
-  uninstall quit: "io.hypertools.Dropbox-Dash"
+  uninstall launchctl: [
+              "com.dropbox.dropboxmacupdate.agent",
+              "com.dropbox.dropboxmacupdate.xpcservice",
+              "com.dropbox.DropboxUpdater.wake",
+            ],
+            quit:      "io.hypertools.Dropbox-Dash"
 
   zap trash: [
     "~/Library/Application Support/Dropbox Dash",

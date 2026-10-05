@@ -1,9 +1,8 @@
 cask "kindle-previewer" do
-  version "3.101.0"
+  version "4.0.1"
   sha256 :no_check
 
-  url "https://d2bzeorukaqrvt.cloudfront.net/KindlePreviewerInstaller.pkg",
-      verified: "d2bzeorukaqrvt.cloudfront.net/"
+  url "https://d2bzeorukaqrvt.cloudfront.net/KPR#{version.major}/KindlePreviewer#{version.major}.pkg"
   name "Kindle Previewer"
   desc "Preview and audit Kindle eBooks"
   homepage "https://kdp.amazon.com/en_US/help/topic/G202131170"
@@ -13,11 +12,19 @@ cask "kindle-previewer" do
     regex(/Kindle\sPreviewer\sv?(\d+(?:\.\d+)+)/i)
   end
 
-  pkg "KindlePreviewerInstaller.pkg"
+  depends_on macos: :monterey
 
-  uninstall launchctl: "com.amazon.KindlePreviewerUpdater",
-            pkgutil:   "Amazon.Kindle.Previewer.pkg",
-            delete:    "/Library/LaunchDaemons/com.amazon.KindlePreviewerUpdater.plist"
+  pkg "KindlePreviewer#{version.major}.pkg"
 
-  zap trash: "~/.kindle"
+  uninstall pkgutil: "com.amazon.kpr#{version.major}"
+
+  zap trash: [
+    "~/Library/Application Support/bugsnag-shared-com.amazon.kpr#{version.major}",
+    "~/Library/Application Support/com.amazon.kpr#{version.major}",
+    "~/Library/Application Support/Kindle Previewer #{version.major}",
+    "~/Library/Caches/bugsnag-shared-com.amazon.kpr#{version.major}",
+    "~/Library/Caches/com.amazon.kpr#{version.major}",
+    "~/Library/HTTPStorages/com.amazon.kpr#{version.major}",
+    "~/Library/Preferences/com.amazon.kpr#{version.major}.plist",
+  ]
 end

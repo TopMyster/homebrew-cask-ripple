@@ -1,9 +1,8 @@
 cask "herd" do
-  version "1.24.2"
-  sha256 "f82a20d0bb59c473f6c815c8375fd008696a0c9bde1f3a117c7493357568e5bd"
+  version "1.30.1"
+  sha256 "eff7d322597e0128a9f7f120a7f89a00adcfb950f0fb3cddc76fe4a54681990b"
 
-  url "https://download.herdphp.com/app_versions/Herd_#{version}.dmg",
-      verified: "download.herdphp.com/app_versions/"
+  url "https://download.herdphp.com/app_versions/Herd_#{version}.dmg"
   name "Laravel Herd"
   desc "Laravel and PHP development environment manager"
   homepage "https://herd.laravel.com/"
@@ -14,7 +13,7 @@ cask "herd" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Herd.app"
 

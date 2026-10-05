@@ -1,10 +1,10 @@
 cask "monal" do
-  version "1072"
-  sha256 "e1c1e9715592ef76f8d309402d2ed896ecbb02123099c0ee93eca980fd61dfc7"
+  version "1094"
+  sha256 "1508c1e1a280fe5829016bbfe2750a32d3c143b8a58e168db0190591a590b22f"
 
   url "https://downloads.monal-im.org/monal-im/stable/macOS/Monal-#{version}.zip"
   name "Monal"
-  desc "Tool to securely connect to chat servers"
+  desc "XMPP chat client"
   homepage "https://monal-im.org/"
 
   livecheck do
@@ -13,9 +13,11 @@ cask "monal" do
   end
 
   conflicts_with cask: "monal@beta"
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Monal.app"
+
+  uninstall quit: "org.monal-im.prod.catalyst.monal"
 
   zap trash: "~/Library/Group Containers/group.monal"
 end

@@ -1,6 +1,6 @@
 cask "dnclient" do
-  version "0.9.0,c7546109"
-  sha256 "c9f372af6741eaf9c53c1ab94e9829ddd1bdacfc8ed2fbae8024f76a1d638c31"
+  version "0.9.9,8c94ab95"
+  sha256 "792afaf9b477a9385353568263a28c06ab5009c3569b3e7fcecb0f18b6a747c8"
 
   url "https://dl.defined.net/#{version.csv.second}/v#{version.csv.first}/macos/DNClient-Desktop.dmg"
   name "DNClient"
@@ -20,7 +20,7 @@ cask "dnclient" do
     end
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "DNClient Desktop.app"
 

@@ -1,10 +1,9 @@
 cask "wiso-steuer-2026" do
   # NOTE: "2026" is not a version number, but an intrinsic part of the product name
-  version "33.02.2760-RC1,33.02.2760"
-  sha256 "56148ef9c3f29edd6076352fef7c2e4354c9718da32c01308ce4f59e4f2958e9"
+  version "33.10.3740-HF1,33.10.3740"
+  sha256 "32749983564825d51c399c4630b8cfa43bc0e8751f773e93d50f10582ab9229e"
 
-  url "https://update.buhl-data.com/Updates/Steuer/2026/Mac/Files/#{version.csv.first}/SteuerMac2026-#{version.csv.second || version.csv.first.split("-").first}.dmg",
-      verified: "update.buhl-data.com/Updates/Steuer/"
+  url "https://update.buhl-data.com/Updates/Steuer/2026/Mac/Files/#{version.csv.first}/SteuerMac2026-#{version.csv.second || version.csv.first.split("-").first}.dmg"
   name "WISO Steuer 2026"
   desc "Tax declaration for the fiscal year 2025"
   homepage "https://www.buhl.de/download/wiso-steuer-2026/"
@@ -20,7 +19,12 @@ cask "wiso-steuer-2026" do
     end
   end
 
+  auto_updates true
+  depends_on :macos
+
   app "SteuerMac 2026.app", target: "WISO Steuer 2026.app"
+
+  uninstall quit: "com.BuhlData.WISOsteuerMac2026"
 
   zap trash: [
     "~/Library/Application Support/BuhlData.com/WISOsteuerMac2026",

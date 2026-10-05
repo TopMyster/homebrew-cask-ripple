@@ -1,26 +1,30 @@
 cask "jamovi" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.7.17.0"
-  sha256 arm:   "22a55e3d9becd5cd8cca0d302689df848f579fc052a49cfc77385848f95b9e72",
-         intel: "cc8301aa3f8017d4d951ff0af729fbab141f4749db011fd7955f9b3127146b82"
+  version "28.7.0.0"
+  sha256 arm:   "b21580ab5ffd78d069296949a82fda64a04c2a0ee71cfc5807547d763a66c0a5",
+         intel: "a7e6c9936ea3556d2e6720cb1615c643e3dda98a06759af928f02421feb3d845"
 
-  url "https://www.jamovi.org/downloads/jamovi-#{version}-macos-#{arch}.dmg"
+  url "https://www.jamovi.org/downloads/jamovi-#{version}-macos-#{arch}.dmg",
+      referer: "https://www.jamovi.org/download.html"
   name "jamovi"
   desc "Statistical software"
   homepage "https://www.jamovi.org/"
 
+  # The download page will redirect to the homepage unless a `referer` is used.
   livecheck do
-    url "https://www.jamovi.org/download.html"
+    url "https://www.jamovi.org/download.html",
+        referer: "https://www.jamovi.org/"
     regex(/href=.*?jamovi[._-]v?(\d+(?:\.\d+)+)[._-]macos[._-]#{arch}\.dmg/i)
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "jamovi.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.jamovi.jamovi.sfl*",
     "~/Library/Application Support/jamovi",
     "~/Library/Logs/jamovi",
     "~/Library/Preferences/org.jamovi.jamovi.plist",

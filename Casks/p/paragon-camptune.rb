@@ -9,12 +9,13 @@ cask "paragon-camptune" do
 
   livecheck do
     url :url
-    strategy :extract_plist do |versions|
-      versions.values.filter_map(&:short_version).first
+    strategy :extract_plist do |items|
+      items["com.paragon-software.camptunex"]&.short_version
     end
   end
 
   depends_on arch: :x86_64
+  depends_on :macos
 
   app "Paragon CampTune.app"
 

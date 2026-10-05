@@ -1,12 +1,11 @@
 cask "glide-browser" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.1.57a"
-  sha256 arm:   "05d2c47cfb4ef98d6bc33a39de3b0cc81226f13dbad36a0d226fb99a80e90f1d",
-         intel: "8e3a87d2bef82d86ab67b083415bfcc4d7e6d44a01d7f05c76a661794e93e77f"
+  version "0.1.64a"
+  sha256 arm:   "966d7f5db31d130cccde23109725ea83b9006c08313dcc10c1c0bf6833e082a6",
+         intel: "acbaee1be598e97c83afcb7b82146951b429d31948897b9aff74d395f2f94eb4"
 
-  url "https://github.com/glide-browser/glide/releases/download/#{version}/glide.macos-#{arch}.dmg",
-      verified: "github.com/glide-browser/glide/"
+  url "https://github.com/glide-browser/glide/releases/download/#{version}/glide.macos-#{arch}.dmg"
   name "Glide Browser"
   desc "Extensible, firefox-based web browser"
   homepage "https://glide-browser.app/"
@@ -19,13 +18,16 @@ cask "glide-browser" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Glide.app"
   binary "#{appdir}/Glide.app/Contents/MacOS/glide"
 
   zap trash: [
         "~/Library/Application Support/Glide Browser",
+        "~/Library/Application Support/glide",
         "~/Library/Caches/Glide Browser",
+        "~/Library/Caches/glide",
         "~/Library/Caches/Mozilla/updates/Applications/Glide Browser",
         "~/Library/Caches/Mozilla/updates/Applications/Glide",
         "~/Library/Preferences/app.glide-browser.glide.plist",

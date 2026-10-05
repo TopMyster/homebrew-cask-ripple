@@ -1,9 +1,9 @@
 cask "eclipse-jee" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "4.38,2025-12"
-  sha256 arm:   "182b0bb6d4f004f4c6366a53aa142a4d34b0bbc3a0d2a013e82b2d0d1c4394e2",
-         intel: "205a66ec6b14bda942c8d84f19b14c38a4918633c00b514b322e7d15755dd384"
+  version "4.41,2026-09"
+  sha256 arm:   "22de8232c406639290353f42c1dd91710598e8d528008a61f99734ff30d6372a",
+         intel: "b0a68fea4bd0d5070aa2632ada5d91c3ba01722ade7a15ec26676e1c35815aaa"
 
   url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-jee-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&mirror_id=1"
   name "Eclipse IDE for Java EE Developers"
@@ -14,10 +14,12 @@ cask "eclipse-jee" do
     cask "eclipse-ide"
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   # Renamed to avoid conflict with other Eclipse.
   app "Eclipse.app", target: "Eclipse JEE.app"
+
+  uninstall quit: "epp.package.jee"
 
   zap trash: [
     "~/Library/Caches/org.eclipse.platform.ide",

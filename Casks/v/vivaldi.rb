@@ -1,6 +1,6 @@
 cask "vivaldi" do
-  version "7.7.3851.67"
-  sha256 "dcb8176b418eaef2798860282f2e6c0eb4e749afa2be5485b8e6207c1b890a2e"
+  version "8.2.4133.83"
+  sha256 "702f1c85573b3ce6827ade62db705fcdbe8a8020d8e5a66532693fa99a81a720"
 
   url "https://downloads.vivaldi.com/stable-auto/Vivaldi.#{version}.universal.tar.xz"
   name "Vivaldi"
@@ -13,7 +13,7 @@ cask "vivaldi" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "Vivaldi.app"
 

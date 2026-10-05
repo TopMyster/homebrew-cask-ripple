@@ -1,6 +1,6 @@
 cask "surge" do
-  version "6.4.3,10320,a70a06382543d5a6ae0c0296e4148569"
-  sha256 "164ed394314dd21e12496715732d515b9187306a79928df743c899ef47ee59cd"
+  version "6.9.1,12290,fb384eba25d82267269116bf821f4643"
+  sha256 "0b99014d5137b814ecec94479af42f4f1fe1f958151cf54a9215fe73829627dd"
 
   url "https://dl.nssurge.com/mac/v#{version.major}/Surge-#{version.tr(",", "-")}.zip"
   name "Surge"
@@ -21,7 +21,7 @@ cask "surge" do
 
   auto_updates true
   conflicts_with cask: "surge@4"
-  depends_on macos: ">= :monterey" # Confirmed by LSMinimumSystemVersion "12.0"
+  depends_on macos: :monterey # Confirmed by LSMinimumSystemVersion "12.0"
 
   app "Surge.app"
   binary "#{appdir}/Surge.app/Contents/Applications/Surge Dashboard.app", target: "#{appdir}/Surge Dashboard.app"
@@ -31,7 +31,7 @@ cask "surge" do
   uninstall launchctl: "com.nssurge.surge-mac.helper",
             delete:    "/Library/PrivilegedHelperTools/com.nssurge.surge-mac.helper"
 
-  zap delete: [
+  zap trash: [
     "~/Library/Application Support/bugsnag-shared-com.nssurge.surge-mac",
     "~/Library/Application Support/com.bugsnag.Bugsnag/com.nssurge.surge-mac",
     "~/Library/Application Support/com.nssurge.surge-mac",

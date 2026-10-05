@@ -1,6 +1,6 @@
 cask "topaz-video" do
-  version "1.1.1"
-  sha256 "075dbfa3948855d48a0303e3cae3d627c6824d70a3d871142a949d2fcdec537c"
+  version "1.7.1"
+  sha256 "9e3541a59a578edeaae41d65327e2c29c58ab64c43d375cc35a072ac4b043ed4"
 
   url "https://downloads.topazlabs.com/deploy/TopazVideoStudio/#{version}/TopazVideo-#{version}.pkg"
   name "Topaz Video"
@@ -13,8 +13,8 @@ cask "topaz-video" do
   end
 
   auto_updates true
-  depends_on arch:  :arm64,
-             macos: ">= :big_sur"
+  depends_on arch: :arm64
+  depends_on :macos
 
   pkg "TopazVideo-#{version}.pkg"
 
@@ -23,17 +23,19 @@ cask "topaz-video" do
   # options for the user to manually install the plugins post-installation. Until this is resolved
   # by the vendor, trigger the plugin installation scripts here so the end state is a ready-to-use
   # installation as per the previous version users are likely to be transitioning from.
-  postflight do
-    system "sudo", "bash", "#{appdir}/Topaz Video.app/Contents/Resources/ae_inst.sh"
-    system "sudo", "bash", "#{appdir}/Topaz Video.app/Contents/Resources/ofx_inst.sh"
+  postflight_steps do
+    run "/bin/bash", args: ["{{appdir}}/Topaz Video.app/Contents/Resources/ae_inst.sh"], sudo: true
+    run "/bin/bash", args: ["{{appdir}}/Topaz Video.app/Contents/Resources/ofx_inst.sh"], sudo: true
   end
 
-  uninstall pkgutil: [
+  uninstall launchctl: "com.topazlabs.veai.nukepath",
+            pkgutil:   [
               "com.topazlabs.aeplugin",
+              "com.topazlabs.fcpplugin",
               "com.topazlabs.ofxplugin",
               "com.topazlabs.VStudioPackage",
             ],
-            delete:  [
+            delete:    [
               "/Applications/Adobe After Effects 2020/Plug-ins/Topaz Video AI Frame Interpolation.plugin",
               "/Applications/Adobe After Effects 2020/Plug-ins/Topaz Video AI.plugin",
               "/Applications/Adobe After Effects 2021/Plug-ins/Topaz Video AI Frame Interpolation.plugin",

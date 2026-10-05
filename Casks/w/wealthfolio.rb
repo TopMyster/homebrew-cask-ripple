@@ -1,12 +1,11 @@
 cask "wealthfolio" do
   arch arm: "aarch64", intel: "x64"
 
-  version "2.1.0"
-  sha256 arm:   "1d267da755e260a0c98d9b38f7bdd5e8ce67f7508e2d89871eed18f9b2b6e0e0",
-         intel: "5d11ba2fcdff4979507c44e35dcfc20cbb597d5a91886950fea709b6ad38de9a"
+  version "3.9.1"
+  sha256 arm:   "9165c02d127ff07b439b0fac19628735b0502cab08e0c0267ca0c39bfc1edca2",
+         intel: "3f334947527ae4d77dc926dda5c222328a1e208a2105e8c76789f511971e9989"
 
-  url "https://github.com/afadil/wealthfolio/releases/download/v#{version}/Wealthfolio_#{version}_#{arch}.dmg",
-      verified: "github.com/afadil/wealthfolio/"
+  url "https://github.com/afadil/wealthfolio/releases/download/v#{version}/Wealthfolio_#{version}_#{arch}.dmg"
   name "Wealthfolio"
   desc "Investment portfolio tracker"
   homepage "https://wealthfolio.app/"
@@ -19,6 +18,7 @@ cask "wealthfolio" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "Wealthfolio.app"
 

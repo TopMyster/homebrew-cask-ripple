@@ -1,22 +1,19 @@
 cask "huly" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.7.344"
-  sha256 arm:   "1b49e717de52c56daa10f50837bb27df42559e0357a963f1b5c45c4c43172fb8",
-         intel: "1e6734ef3b574817935e9f013c0209065981d6b0d3cc0fefc1880f04f869da26"
+  version "0.7.426"
+  sha256 arm:   "1965a7f09dff166586f3675aded9a9b53e1733096beacbc87967ab3b4f82a926",
+         intel: "24d31c6491364963e3f3bf086878a7012d7a2b2cbc6e15401e4c0712a24bb7e4"
 
   url "https://dist.huly.io/Huly-macos-#{version}-#{arch}.zip"
   name "Huly"
   desc "All-in-One Project Management Platform"
   homepage "https://huly.io/"
 
-  livecheck do
-    url "https://dist.huly.io/huly-mac.yml"
-    strategy :electron_builder
-  end
+  disable! date: "2026-10-03", because: :no_longer_available
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Huly.app"
 

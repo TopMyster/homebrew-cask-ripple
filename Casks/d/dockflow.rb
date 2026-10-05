@@ -1,9 +1,8 @@
 cask "dockflow" do
-  version "1.61"
-  sha256 "e8b04bc9e5922904574c05eac35f6760fd504637fb6ecedf94803039862cb35e"
+  version "1.85"
+  sha256 "c45e7c451cf9e6fd5fbcee7071c58e0f2c60afaad3e10874a2d43f247e713537"
 
-  url "https://github.com/AppitStudio/dock-flow-updates/releases/download/v#{version}/DockFlow.dmg",
-      verified: "github.com/AppitStudio/"
+  url "https://github.com/AppitStudio/dock-flow-updates/releases/download/v#{version}/DockFlow.dmg"
   name "DockFlow"
   desc "Manage Dock presets and switch between them instantly"
   homepage "https://dockflow.appitstudio.com/"
@@ -14,12 +13,15 @@ cask "dockflow" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "DockFlow.app"
 
+  uninstall quit: "com.appit.DockFlow"
+
   zap trash: [
     "~/Library/Application Support/DockFlow",
+    "~/Library/Caches/com.appit.DockFlow",
     "~/Library/Group Containers/com.appit.DockFlowGroup",
     "~/Library/Preferences/com.appit.DockFlow.plist",
     "~/Library/Preferences/com.appit.DockFlowHelper.plist",

@@ -3,16 +3,15 @@ cask "zspace" do
   folder = on_arch_conditional arm: "ARM"
 
   on_arm do
-    version "2.36.2025123002,1767957142,123017"
-    sha256 "9a36358786b63b115d34b41d87c342d2f3e26546a2d2d586295bdcbc8f545bf9"
+    version "2.45.2026082601,1789110817,082619"
+    sha256 "580b02464a898ad966acf54e8c812902cf7ff89966a55667541c3f5a3b1c7ed9"
   end
   on_intel do
-    version "2.36.2025123002,1767957414,123017"
-    sha256 "c0c2c7f59b02870e747f731ff0c7b6b4002f4e6ef6b202bc7eec5aff0eba46e1"
+    version "2.45.2026082601,1789110734,082620"
+    sha256 "b46e4f248eeff87ac9f9929cc5028f8180150b90bd18d37970a824c2b70b97da"
   end
 
-  url "https://update.zenithspace.net/app/APP_ZSPACE_DESKTOP_MAC#{folder}/V#{version.csv.first}/zspace/#{version.csv.second}/zspace_mac_#{arch}_#{version.csv.first}_#{version.csv.third}.dmg",
-      verified: "update.zenithspace.net/app/"
+  url "https://update.zenithspace.net/app/APP_ZSPACE_DESKTOP_MAC#{folder}/V#{version.csv.first}/zspace/#{version.csv.second}/zspace_mac_#{arch}_#{version.csv.first}_#{version.csv.third}.dmg"
   name "zspace"
   name "极空间"
   desc "NAS Client"
@@ -27,6 +26,7 @@ cask "zspace" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "极空间.app"
 

@@ -19,13 +19,14 @@ cask "surge@4" do
 
   auto_updates true
   conflicts_with cask: "surge"
+  depends_on :macos
 
   app "Surge.app"
 
   uninstall launchctl: "com.nssurge.surge-mac.helper",
             delete:    "/Library/PrivilegedHelperTools/com.nssurge.surge-mac.helper"
 
-  zap delete: [
+  zap trash: [
     "~/Library/Application Support/com.nssurge.surge-mac",
     "~/Library/Caches/com.nssurge.surge-mac",
     "~/Library/Caches/com.nssurge.surge-mac.plist",

@@ -16,36 +16,47 @@ cask "betterdisplay" do
     end
   end
   on_ventura :or_newer do
-    version "4.1.1"
-    sha256 "115c293acb7a761fe8cdcc89eaafa97e5071378ad5d1a1b756b4b367e0c27cd2"
+    on_sequoia :or_older do
+      version "4.3.7"
+      sha256 "be3ce2d57702156e1263e320a1868e6313818a78aa1b0b9ad4aee26d6e999928"
+
+      livecheck do
+        url "https://betterdisplay.pro/betterdisplay/sparkle/appcast.xml"
+        strategy :sparkle do |items|
+          items.filter_map do |item|
+            next unless item.channel.nil?
+            next unless item.minimum_system_version
+            next if item.minimum_system_version > :sequoia
+
+            item.short_version
+          end
+        end
+      end
+    end
+  end
+  on_tahoe :or_newer do
+    version "5.0.6"
+    sha256 "a266c9f88244edb4895d98e0c75900cd57a0d47088f962a3d9bf5c14c5197d50"
 
     livecheck do
       url "https://betterdisplay.pro/betterdisplay/sparkle/appcast.xml"
       strategy :sparkle do |items|
-        items.find { |item| item.channel.nil? }&.short_version
+        items.filter_map { |item| item.channel.nil? && item.short_version }
       end
     end
   end
 
-  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg",
-      verified: "github.com/waydabber/BetterDisplay/"
+  url "https://github.com/waydabber/BetterDisplay/releases/download/v#{version}/BetterDisplay-v#{version}.dmg"
   name "BetterDisplay"
   desc "Display management tool"
   homepage "https://betterdisplay.pro/"
 
   auto_updates true
+  depends_on :macos
 
   app "BetterDisplay.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/betterdisplay.wrapper.sh"
-  binary shimscript, target: "betterdisplaycli"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/bash
-      exec '#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay' "$@"
-    EOS
-  end
+  command_wrapper "betterdisplaycli",
+                  executable: "#{appdir}/BetterDisplay.app/Contents/MacOS/BetterDisplay"
 
   uninstall quit:       "pro.betterdisplay.BetterDisplay",
             login_item: "BetterDisplay"

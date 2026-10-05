@@ -2,11 +2,11 @@ cask "awesun" do
   arch arm: "arm64", intel: "x86_64"
   livecheck_id = on_arch_conditional arm: "_ARM"
 
-  version "16.2.0.27059"
-  sha256 arm:   "eb7e8e36338dcd8109056f2547d3d3f32d42fde169ead276d8c74c456942fd9e",
-         intel: "30627f95c8cf16446f873ebf168f3ade4d3f90a703590bf4c644e17f71635f74"
+  version "16.6.0.32198"
+  sha256 arm:   "77620f879d6b1b325d75afac647cb94dc0b74d6b0f4d1348794e1a27875c7c2b",
+         intel: "a51362ff9791e0542dccd75de917e85ce5ac6a77dcf2d89a74aa38797c578f75"
 
-  url "https://dw.oray.com/sl/mac/AweSun_#{version}_#{arch}.dmg"
+  url "https://d-cdn.oray.com/sl/mac/AweSun_#{version}_#{arch}.dmg"
   name "Sunlogin Client"
   name "向日葵个人版"
   desc "Remote desktop control and monitoring tool"
@@ -19,15 +19,22 @@ cask "awesun" do
     end
   end
 
+  depends_on :macos
+
   pkg "AweSun.pkg"
 
-  postflight do
+  postflight_steps do
     # The postinstall script automatically opens the app. Therefore, we must
     # suppress this behavior to make the cask installation non-interactive.
-    retries ||= 3
-    ohai "The AweSun package postinstall script launches the app" if retries >= 3
-    ohai "Attempting to close AweSun to avoid unwanted user intervention" if retries >= 3
-    return unless system_command "/usr/bin/pkill", args: ["-f", "/Applications/AweSun.app"]
+    terminate_process(
+      "/Applications/AweSun.app",
+      match:        :full,
+      must_succeed: true,
+      notices:      [
+        "The AweSun package postinstall script launches the app",
+        "Attempting to close AweSun to avoid unwanted user intervention",
+      ],
+    )
   end
 
   uninstall launchctl: [
@@ -39,12 +46,13 @@ cask "awesun" do
             ],
             quit:      "com.oray.sunlogin.macclient",
             pkgutil:   [
+              "com.oray.awesun.macclient",
               "com.oray.sunlogin.macclient",
               "com.oray.sunlogin.MacVirtualAudioDevice",
             ],
             delete:    "/Applications/AweSun.app"
 
-  zap delete: "/private/var/log/AweSun/",
+  zap delete: "/private/var/log/AweSun",
       trash:  [
         "/Library/Application Support/Oray/AweSun",
         "/Library/LaunchDaemons/com.oray.awesun.helper.plist",

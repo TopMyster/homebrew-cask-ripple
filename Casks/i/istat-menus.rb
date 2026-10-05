@@ -1,20 +1,19 @@
 cask "istat-menus" do
-  version "7.20"
+  version "7.50.1"
   sha256 :no_check # required as upstream package is updated in-place
 
-  url "https://cdn.istatmenus.app/files/istatmenus#{version.major}/versions/iStatMenus#{version}.zip",
-      verified: "cdn.istatmenus.app/"
+  url "https://cdn.istatmenus.app/files/istatmenus#{version.major}/versions/iStatMenus#{version}.zip"
   name "iStats Menus"
   desc "System monitoring app"
   homepage "https://bjango.com/mac/istatmenus/"
 
   livecheck do
-    url "https://download.bjango.com/istatmenus#{version.major}/"
+    url "https://download.istatmenus.app/istatmenus#{version.major}/download/"
     strategy :header_match
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "iStat Menus.app"
 
@@ -46,7 +45,7 @@ cask "istat-menus" do
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bjango.istatmenus.agent.sfl*",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bjango.istatmenus.status.sfl*",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/y93tk974at.com.bjango.istatmenus.agent.mas.sfl*",
-    "~/Library/Application Support/iStat Menus",
+    "~/Library/Application Support/iStat Menus*",
     "~/Library/Caches/com.bjango.istatmenus",
     "~/Library/Caches/com.bjango.istatmenus.agent",
     "~/Library/Caches/com.bjango.istatmenus.status",
@@ -66,6 +65,7 @@ cask "istat-menus" do
     "~/Library/Preferences/com.bjango.istatmenus.plist",
     "~/Library/Preferences/com.bjango.istatmenus.status.plist",
     "~/Library/WebKit/com.bjango.istatmenus",
+    "~/Library/WebKit/com.bjango.istatmenus.agent",
     "~/Library/WebKit/com.bjango.istatmenus.updater",
   ]
 end

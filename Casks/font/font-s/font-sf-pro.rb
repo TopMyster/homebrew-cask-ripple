@@ -7,7 +7,9 @@ cask "font-sf-pro" do
   name "SF Pro"
   homepage "https://developer.apple.com/fonts/"
 
-  pkg "SF Pro Fonts.pkg"
+  depends_on :macos
+
+  pkg "SFProFonts.pkg"
 
   uninstall pkgutil: "com.apple.pkg.SFProFonts"
 

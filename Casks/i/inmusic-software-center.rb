@@ -1,9 +1,8 @@
 cask "inmusic-software-center" do
-  version "1.35.0"
-  sha256 "bd6a26741dfbc5430ca0800c18c052ba551f58d41b7a3a9d5f633a282edec508"
+  version "1.39.2"
+  sha256 "373bb1ab5a67f97ed2723460d69d74848cf616926d8900de1abc7640f13042c6"
 
-  url "https://cdn.inmusicbrands.com/Software/SI04/inMusic%20Software%20Center-darwin-universal-#{version}.zip",
-      verified: "cdn.inmusicbrands.com/Software/SI04/"
+  url "https://cdn.inmusicbrands.com/Software/SI04/inMusic%20Software%20Center-darwin-universal-#{version}.zip"
   name "inMusic Software Center"
   desc "Administration tool for inMusic brand creative software"
   homepage "https://www.airmusictech.com/downloads/"
@@ -14,7 +13,7 @@ cask "inmusic-software-center" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "inMusic Software Center.app"
 

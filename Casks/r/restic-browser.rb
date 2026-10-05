@@ -13,6 +13,7 @@ cask "restic-browser" do
   end
 
   depends_on formula: "restic"
+  depends_on :macos
 
   app "Restic-Browser.app"
 

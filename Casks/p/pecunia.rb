@@ -1,6 +1,6 @@
 cask "pecunia" do
-  version "2.2.1"
-  sha256 "4164eb25c3e28e2abd4f4a13169afd767f528510fd7262ae0c7b4e05aadd1286"
+  version "2.2.3"
+  sha256 "4f3bda657fcc3be192cd4fc384c13fad46f63cca44bf2b78771d9b29e941df93"
 
   url "https://pecuniabanking.de/downloads/#{version}/Pecunia.zip"
   name "Pecunia"
@@ -12,7 +12,11 @@ cask "pecunia" do
     regex(%r{href=.*?downloads/v?(\d+(?:\.\d+)+)/Pecunia\.zip}i)
   end
 
+  depends_on :macos
+
   app "Pecunia.app"
+
+  uninstall quit: "de.pecuniabanking.pecunia"
 
   zap trash: [
     "~/Library/Application Scripts/de.pecuniabanking.pecunia",

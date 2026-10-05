@@ -1,16 +1,7 @@
 cask "visual-studio-code" do
   arch arm: "darwin-arm64", intel: "darwin"
 
-  on_catalina :or_older do
-    version "1.97.2"
-    sha256 arm:   "567ba4fae5545586a0bff02eea263d59873fcf488368a9a9ccf3d4c22dfa8ebc",
-           intel: "cfe48cf7bce34830cb7a20ee7b5e8fbe575fe95a47ef49f62dce8ccf3087dd89"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_big_sur do
+  on_big_sur :or_older do
     version "1.106.3"
     sha256 arm:   "35dd438808dde1dd1f65490ffe7713ed64102324c0809efbec0b4eb2809b218b",
            intel: "c41872149a205f3a3be3e5d3a8f04920407a0762531e607f78dc93f4d4813cda"
@@ -20,9 +11,9 @@ cask "visual-studio-code" do
     end
   end
   on_monterey :or_newer do
-    version "1.108.1"
-    sha256 arm:   "617993ce9b114b076d6e6a102c345c27985c0d44599eb921e69f1ef2b6270346",
-           intel: "cf0bddaecb60e94b681bc104f3b5578c33914f7cc46db28215d00fd303ec0fdb"
+    version "1.140.0"
+    sha256 arm:   "86a64f1cc9f4e0b5fc44969530994742f4bd61e7b98d9637238c5e24b26593b0",
+           intel: "5f56ee60956865d79711dd8a1ceef7d94b72ba2c5539a1e46642db07a3d256d2"
 
     livecheck do
       url "https://update.code.visualstudio.com/api/update/#{arch}/stable/latest"
@@ -39,6 +30,7 @@ cask "visual-studio-code" do
   homepage "https://code.visualstudio.com/"
 
   auto_updates true
+  depends_on :macos
 
   app "Visual Studio Code.app"
   binary "#{appdir}/Visual Studio Code.app/Contents/Resources/app/bin/code"

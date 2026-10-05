@@ -1,6 +1,6 @@
 cask "parallels" do
-  version "26.2.1-57371"
-  sha256 "9a666c68b61a03d3a36307d9ef905ee7d9fc55ed838dd1ba7c6aa0c7c36974b2"
+  version "27.0.2-58673"
+  sha256 "fdbb8fbaf6b6afd7714a92dd348f5083f61393463cd9747016dd97845db8c21d"
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsDesktop-#{version}.dmg"
   name "Parallels Desktop"
@@ -21,33 +21,26 @@ cask "parallels" do
 
   auto_updates true
   conflicts_with cask: [
-    "parallels@14",
-    "parallels@15",
-    "parallels@16",
-    "parallels@17",
     "parallels@18",
     "parallels@19",
     "parallels@20",
   ]
-  depends_on macos: ">= :ventura"
+  depends_on arch: :arm64
+  depends_on macos: :sonoma
 
   app "Parallels Desktop.app"
 
-  preflight do
-    system_command "chflags",
-                   args: ["nohidden", "#{staged_path}/Parallels Desktop.app"]
-    system_command "xattr",
-                   args: ["-d", "com.apple.FinderInfo", "#{staged_path}/Parallels Desktop.app"]
+  preflight_steps do
+    run "chflags", args: ["nohidden", "{{staged_path}}/Parallels Desktop.app"]
+    run "xattr", args: ["-d", "com.apple.FinderInfo", "{{staged_path}}/Parallels Desktop.app"]
   end
 
-  postflight do
-    system_command "#{appdir}/Parallels Desktop.app/Contents/MacOS/inittool",
-                   args: ["init"],
-                   sudo: true
+  postflight_steps do
+    run "Parallels Desktop.app/Contents/MacOS/inittool", args: ["init"], base: :appdir, sudo: true
   end
 
-  uninstall_preflight do
-    set_ownership "#{appdir}/Parallels Desktop.app"
+  uninstall_preflight_steps do
+    set_ownership "Parallels Desktop.app", base: :appdir
   end
 
   uninstall signal: ["TERM", "com.parallels.desktop.console"],
@@ -59,17 +52,18 @@ cask "parallels" do
               must_succeed: false,
             },
             delete: [
-              "/Library/Preferences/Parallels",
               "/usr/local/bin/prl_convert",
               "/usr/local/bin/prl_disk_tool",
               "/usr/local/bin/prl_perf_ctl",
+              "/usr/local/bin/prlcopy",
               "/usr/local/bin/prlcore2dmp",
               "/usr/local/bin/prlctl",
               "/usr/local/bin/prlexec",
               "/usr/local/bin/prlsrvctl",
             ]
 
-  zap trash: [
+  zap delete: "/Library/Preferences/Parallels",
+      trash:  [
         "~/.parallels_settings",
         "~/Applications (Parallels)",
         "~/Library/Application Scripts/*.com.parallels.Desktop",
@@ -94,7 +88,7 @@ cask "parallels" do
         "~/Library/Preferences/Parallels",
         "~/Library/Saved Application State/com.parallels.desktop.console.savedState",
       ],
-      rmdir: [
+      rmdir:  [
         "/Users/Shared/Parallels",
         "~/Library/Caches/Parallels Software",
         "~/Library/Parallels",

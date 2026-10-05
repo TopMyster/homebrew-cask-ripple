@@ -1,20 +1,19 @@
 cask "mountmate" do
-  version "5.0"
-  sha256 "217a0b1786265b42d0b1527227ffd0340a579156e6d0f7e403a1d43a2f6ffabc"
+  version "5.19"
+  sha256 "e8b835600522be82f5c19e86458e4fb399e25eade548922baa1acaa7eda6d28b"
 
-  url "https://github.com/homielab/mountmate/releases/download/v#{version}/MountMate_#{version}.dmg",
-      verified: "github.com/homielab/mountmate/"
+  url "https://github.com/homielab/mountmate/releases/download/v#{version}/MountMate_#{version}.dmg"
   name "MountMate"
   desc "Menubar app to easily manage external drives"
-  homepage "https://homielab.com/page/mountmate"
+  homepage "https://homielab.com/en/page/mountmate"
 
   livecheck do
-    url "https://homielab.github.io/mountmate/appcast.xml"
+    url "https://mountmate.homielab.com/appcast.xml"
     strategy :sparkle, &:title
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "MountMate.app"
 

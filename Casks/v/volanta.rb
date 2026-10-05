@@ -1,6 +1,6 @@
 cask "volanta" do
-  version "1.15.0,1240645b"
-  sha256 "2ccc4d596b6f9d19cab06b2b02fc0b8afac1b3b8f03a467f9515a57427617419"
+  version "1.19.2,edd889be"
+  sha256 "0a8d405c43f7b16ba57a079b54fc905aba2ceac4b02348521fea7a8811dc0cf4"
 
   url "https://cdn.volanta.app/software/volanta-app/#{version.csv.first}-#{version.csv.second}/volanta-#{version.csv.first}.dmg"
   name "Volanta"
@@ -20,11 +20,12 @@ cask "volanta" do
     end
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Volanta.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/orbx.volanta.sfl*",
     "~/Library/Application Support/Volanta",
     "~/Library/Logs/Volanta",
     "~/Library/Preferences/orbx.volanta.plist",

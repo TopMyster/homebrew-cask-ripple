@@ -1,6 +1,6 @@
 cask "flashspace" do
-  version "4.12.65"
-  sha256 "30ba4c4b20c890691a3f25a2b3f1f73b777e9089ad0883fbe9ae4dbe176ef7e2"
+  version "4.18.79"
+  sha256 "83d7e120009f805150d9fef765662467feeeff31062f34b1e7a14f13317128ea"
 
   url "https://github.com/wojciech-kulik/FlashSpace/releases/download/v#{version}/FlashSpace.app.zip"
   name "FlashSpace"
@@ -8,7 +8,7 @@ cask "flashspace" do
   homepage "https://github.com/wojciech-kulik/FlashSpace"
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "FlashSpace.app"
   binary "#{appdir}/FlashSpace.app/Contents/Resources/flashspace"

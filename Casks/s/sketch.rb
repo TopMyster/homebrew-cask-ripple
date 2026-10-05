@@ -1,5 +1,5 @@
 cask "sketch" do
-  on_ventura :or_older do
+  on_sonoma :or_older do
     on_big_sur :or_older do
       version "96.3,167315"
       sha256 "3ba2c147aab6b2fcb4b5cc3e3ee7fce3f63551e6ef743a7afe459bd0a87bb4a6"
@@ -12,13 +12,17 @@ cask "sketch" do
       version "101.9,182113"
       sha256 "e6de9d00399f4511711f895c74b909496f690d4f0f4ba66340b158106262e873"
     end
+    on_sonoma do
+      version "2026.2.1,231087"
+      sha256 "97a0b99a69b562747c9b6c2bd6acc15815ff9297144204816344bece13cd4544"
+    end
     livecheck do
       skip "Legacy version"
     end
   end
-  on_sonoma :or_newer do
-    version "2025.3.3,221254"
-    sha256 "24093bf6b9b66a7d0efb7013426b8eff036d0476be51966ed23d0f561769d666"
+  on_sequoia :or_newer do
+    version "2026.3.1,234013"
+    sha256 "03abbfd6b3594ed6929b53c5e296aed59543f3864fbfbda7c9cf5c43473587cc"
 
     # Older versions may have a more recent `pubDate` than newer versions, so
     # we have to check all of the items in the appcast.
@@ -36,7 +40,7 @@ cask "sketch" do
   homepage "https://www.sketch.com/"
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Sketch.app"
 

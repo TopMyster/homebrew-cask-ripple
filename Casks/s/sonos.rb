@@ -1,27 +1,39 @@
 cask "sonos" do
-  version "90.0-67171,ZethjbGivZ"
-  sha256 "248703bb6ec9ad4753363a6d3b7bd1145184af42d1e4ade62d213a4ffed21942"
+  version "90.0-81181,7GphjB3HVD"
+  sha256 "f4c49635cb06cf615c2b3bebd35fbf3e3abeb7a38dbc4c5519784070c0dcdc3b"
 
   url "https://update-software.sonos.com/software/#{version.csv.second}/Sonos_#{version.csv.first}.dmg"
   name "Sonos S2"
   desc "Control your Sonos system"
-  homepage "https://www.sonos.com/"
+  homepage "https://www.sonos.com/", browsed: "2026-09-04"
 
   livecheck do
-    url "https://www.sonos.com/redir/controller_software_mac2"
-    regex(%r{software/(\w+)/Sonos[._-]v?(\d+(?:[.-]\d+)+)\.dmg}i)
-    strategy :header_match do |headers, regex|
-      headers["location"]&.scan(regex)&.map { |match| "#{match[1]},#{match[0]}" }
+    url "https://update.sonos.com/firmware/swgen/2/latest/update.upm?sonosid=Anonymous&householdid=nohhid&cmaj=81&cmin=0&cbld=52"
+    regex(%r{-([^-/]+)-[A-Z]{2}-\d+/}i)
+    strategy :xml do |xml, regex|
+      xml.get_elements("//image[@model='4' and not(@submodel_min) and not(@fromver_min)]").filter_map do |item|
+        version = item.attributes["version"]
+        token = item.text&.[](regex, 1)
+        next if version.blank? || token.blank?
+
+        "#{version},#{token}"
+      end
     end
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Sonos.app"
 
-  zap trash: "~/Library/Application Support/SonosV2"
+  uninstall quit: "com.sonos.macController2"
 
-  caveats do
-    requires_rosetta
-  end
+  zap trash: [
+    "~/Library/Application Support/CrashReporter/Sonos_*.plist",
+    "~/Library/Application Support/SonosV2",
+    "~/Library/Caches/com.sonos.macController2",
+    "~/Library/HTTPStorages/com.sonos.macController2",
+    "~/Library/Logs/Sonos*",
+    "~/Library/Preferences/com.sonos.macController2.plist",
+  ]
 end

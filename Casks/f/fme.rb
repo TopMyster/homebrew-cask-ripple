@@ -2,9 +2,9 @@ cask "fme" do
   arch arm: "aarch64", intel: "x64"
   folder = on_arch_conditional arm: "-aarch64"
 
-  version "2024.1,24612"
-  sha256 arm:   "a5a46f0a8a8785792bb2254f541e4f7dc008087c258395d5ff00d6bdedc99a2e",
-         intel: "0b4e24f3bc61d2919bccc2982f209fffbb3a459cd99cd54a5d922e80f1ffed0e"
+  version "2026.3,26589"
+  sha256 arm:   "f9847086a1a54ed231a479fe28268c153e9ed2bde68b13264b15179444ab9a8f",
+         intel: "d6cbc9cdb0048fd65aa245bb37984daa57295ca4492eb1d517eea79fa76e7322"
 
   url "https://downloads.safe.com/fme/#{version.major}/macos#{folder}/fme-form-#{version.csv.first}-b#{version.csv.second}-macosx-#{arch}.pkg"
   name "FME Form"
@@ -12,17 +12,14 @@ cask "fme" do
   homepage "https://www.safe.com/"
 
   livecheck do
-    url "https://engage.safe.com/api/downloads/"
+    url "https://fme.safe.com/downloads/"
     regex(/fme[._-]form[._-]v?(\d+(?:\.\d+)+)[._-]b(\d+)[._-]macosx[._-]#{arch}\.pkg/i)
-    strategy :json do |json, regex|
-      json.dig("official", "desktop", "mac")&.map do |item|
-        match = item["url"]&.match(regex)
-        next if match.blank?
-
-        "#{match[1]},#{match[2]}"
-      end
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end
   end
+
+  depends_on :macos
 
   pkg "fme-form-#{version.csv.first}-b#{version.csv.second}-macosx-#{arch}.pkg"
 

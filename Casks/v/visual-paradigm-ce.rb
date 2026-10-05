@@ -1,11 +1,11 @@
 cask "visual-paradigm-ce" do
   arch arm: "AArch64", intel: "WithJRE"
 
-  version "17.3,20260101"
-  sha256 arm:   "3080f6cf0a81efcb758782c72dcc618de609f410383e174f756f6e3bd8ce2c78",
-         intel: "7d1aa83e16b2d9752f6b1cfd81ef79a4cead3d1da646f93ed944af50d86d37a0"
+  version "18.1,20260914"
+  sha256 arm:   "b93c12e0efbb8463c40bb32cae5a5b579bedf6ebdf949fcd86d4a7273dad9933",
+         intel: "95c2acba9920061d92851dfb56f795d81014b9b27b95a9e7e0d1cf49b8da44c1"
 
-  url "https://www.visual-paradigm.com/downloads/vpce/Visual_Paradigm_CE_#{version.csv.first.dots_to_underscores}_#{version.csv.second}_OSX_#{arch}.dmg"
+  url "https://eu8.dl.visual-paradigm.com/visual-paradigm/vpce#{version.csv.first}/#{version.csv.second}/Visual_Paradigm_CE_#{version.csv.first.dots_to_underscores}_#{version.csv.second}_OSX_#{arch}.dmg"
   name "Visual Paradigm Community Edition"
   desc "UML, SysML, BPMN modelling platform"
   homepage "https://www.visual-paradigm.com/"
@@ -21,7 +21,7 @@ cask "visual-paradigm-ce" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  depends_on :macos
 
   # Renamed to avoid conflict with visual-paradigm.
   app "Visual Paradigm.app", target: "Visual Paradigm CE.app"

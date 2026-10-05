@@ -1,23 +1,23 @@
 cask "teleport-suite" do
-  version "18.6.3"
-  sha256 "dba35e7ac0c79ae880efd1366aee2b5be8b827070bb7a6b9eb6d801851d8eb7c"
+  version "18.11.3"
+  sha256 "b7c6ff1f9971420adf2042710344f708e2512078084b887757d1eb6aa52b9abd"
 
-  url "https://cdn.teleport.dev/teleport-#{version}.pkg",
-      verified: "cdn.teleport.dev/"
+  url "https://cdn.teleport.dev/teleport-#{version}.pkg"
   name "Teleport"
   desc "Modern SSH server for teams managing distributed infrastructure"
   homepage "https://goteleport.com/"
 
   livecheck do
-    url "https://goteleport.com/download/",
+    url "https://goteleport.com/download/all-downloads/",
         user_agent: :browser
     regex(/teleport[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
   conflicts_with cask: [
-    "teleport-suite@16",
+    "teleport-suite@17",
     "tsh",
   ]
+  depends_on :macos
 
   pkg "teleport-#{version}.pkg"
 

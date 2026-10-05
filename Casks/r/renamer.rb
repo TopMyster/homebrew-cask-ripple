@@ -1,26 +1,18 @@
 cask "renamer" do
-  version "7.1.7"
-  sha256 "36e28d9c94fde776f5e1c2540a9fa0af317345693399ddc4446a10ce09b03199"
+  version "7.3.3"
+  sha256 "0a831dd865b662e94b55a5408643942f9017f6fb5b1a7d6d569f402933c528ef"
 
-  url "https://incredible-bee-honeycomb.fra1.digitaloceanspaces.com/apps/Renamer-#{version.major}/Renamer.zip",
-      verified: "incredible-bee-honeycomb.fra1.digitaloceanspaces.com/"
+  url "https://github.com/incbee/renamer-#{version.major}-releases/releases/download/v#{version}/Renamer-#{version}-universal-mac.zip"
   name "Renamer"
   desc "Batch file renamer application"
   homepage "https://renamer.com/"
 
-  # The app checks a `latest-mac.yml` file that was previously published as
-  # part of GitHub releases but the related repository has been removed. The
-  # first-party website doesn't provide any up to date version information (only
-  # older versions), so there doesn't appear to be any available version
-  # information unless/until upstream modifies the app to check a new location.
   livecheck do
-    url :url
-    strategy :extract_plist do |items|
-      items["com.incrediblebee.Renamer"]&.short_version
-    end
+    url "https://github.com/incbee/renamer-#{version.major}-releases/releases/latest/download/latest-mac.yml"
+    strategy :electron_builder
   end
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Renamer.app"
 

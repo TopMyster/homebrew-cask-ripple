@@ -1,6 +1,6 @@
 cask "retrospective" do
-  version "7.1.0"
-  sha256 "ca73643fb5ca3e426124c2cad47d67eae3b037d81ebfb0f801aee6603851d992"
+  version "7.3.0"
+  sha256 "5c30c1f3baf1fc29b5c7330fb3955b13675ace6ec198edd310d8a3c6cea8fbf0"
 
   url "https://resources.centeractive.com/software/#{version}/retrospective-#{version.dots_to_underscores}-macos-jre.dmg"
   name "Retrospective"
@@ -13,9 +13,11 @@ cask "retrospective" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Retrospective.app"
+
+  uninstall quit: "com.retrospective.product"
 
   zap trash: "~/.Retrospective"
 end

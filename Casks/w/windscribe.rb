@@ -1,9 +1,8 @@
 cask "windscribe" do
-  version "2.19.7"
-  sha256 "d9d9b9a393de2ce136b66cee1ddd5f1ce83deedd581a01b2f2df8abbc0f87879"
+  version "2.24.12"
+  sha256 "0a5624463d1ad4959181d7317658b7afd3121802c3a2e83e653d7eb85d1534a9"
 
-  url "https://deploy.totallyacdn.com/desktop-apps/#{version}/Windscribe_#{version}_universal.dmg",
-      verified: "deploy.totallyacdn.com/desktop-apps/"
+  url "https://deploy.totallyacdn.com/desktop-apps/#{version}/Windscribe_#{version}_universal.dmg"
   name "Windscribe"
   desc "VPN client for secure internet access and private browsing"
   homepage "https://windscribe.com/"
@@ -14,6 +13,7 @@ cask "windscribe" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer manual: "WindscribeInstaller.app"
 

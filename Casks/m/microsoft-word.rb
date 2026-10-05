@@ -1,10 +1,6 @@
 cask "microsoft-word" do
   on_ventura :or_older do
-    on_catalina :or_older do
-      version "16.66.22101101"
-      sha256 "5a6a75d9a5b46cceeff5a1b7925c0eab6e4976cba529149b7b291a0355e7a7c9"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "16.77.23091703"
       sha256 "10c8db978206275a557faf3650763a656b1f7170c9b2a65fa6fdce220bd23066"
     end
@@ -22,8 +18,8 @@ cask "microsoft-word" do
     end
   end
   on_sonoma :or_newer do
-    version "16.105.26011018"
-    sha256 "ceae56a1772b4e314470edc3d17edd7692a403d40663acc25b2f5b3f5a9f13a7"
+    version "16.113.26092714"
+    sha256 "39daf8780d4a73950beb357e1631a7a8022092f6e8bd35f857b08707f1c39f3e"
 
     livecheck do
       url "https://go.microsoft.com/fwlink/p/?linkid=525134"
@@ -31,7 +27,7 @@ cask "microsoft-word" do
     end
   end
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_#{version}_Installer.pkg"
+  url "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Word_#{version}_Installer.pkg"
   name "Microsoft Word"
   desc "Word processor"
   homepage "https://www.microsoft.com/en-US/microsoft-365/word"
@@ -41,6 +37,7 @@ cask "microsoft-word" do
     "microsoft-office",
     "microsoft-office-businesspro",
   ]
+  depends_on :macos
 
   pkg "Microsoft_Word_#{version}_Installer.pkg",
       choices: [

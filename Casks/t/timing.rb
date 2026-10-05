@@ -1,6 +1,6 @@
 cask "timing" do
-  version "2026.1"
-  sha256 "bacca7726491c30932ca1d6de724c1517c6316db577d5bbcbe7daeba5f142b2e"
+  version "2026.5"
+  sha256 "95759fb839f63063b4ae4b268dd03ef86732d9958338112022e520175e5f5be3"
 
   url "https://updates.timingapp.com/download/Timing-#{version}.dmg"
   name "Timing"
@@ -19,10 +19,11 @@ cask "timing" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "Timing.app"
 
+  uninstall quit: "info.eurocomp.TimingHelper"
   uninstall login_item: "TimingHelper"
 
   zap trash: [

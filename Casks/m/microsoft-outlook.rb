@@ -1,10 +1,6 @@
 cask "microsoft-outlook" do
   on_ventura :or_older do
-    on_catalina :or_older do
-      version "16.66.22102801"
-      sha256 "bddede85956713be21fdb5ab72be07ecefd05552752e8e60c649e6a15fd0a2c2"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "16.77.23091703"
       sha256 "becfe797d1c799a4366385f449e42f7377bd3d6de5d4db20e37bd36ba2f24ef5"
     end
@@ -22,18 +18,16 @@ cask "microsoft-outlook" do
     end
   end
   on_sonoma :or_newer do
-    version "16.105.26011018"
-    sha256 "c1c4df00a51e60ab5ae016a064ce54b04cf34bdd8fc445501975a9553aed3655"
+    version "16.113.26091740"
+    sha256 "c8ce6b36b6c2f4b5bf1b907e006376b12a18e6bdebcbf5178334733db95fc5d7"
 
     livecheck do
-      url "https://officecdn.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/0409OPIM2019.xml"
-      strategy :xml do |xml|
-        xml.get_elements("//key[text()='Update Version']").map { |item| item.next_element&.text&.strip }
-      end
+      url "https://go.microsoft.com/fwlink/p/?linkid=525137"
+      strategy :header_match
     end
   end
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_#{version}_Installer.pkg"
+  url "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_Outlook_#{version}_Installer.pkg"
   name "Microsoft Outlook"
   desc "Email client"
   homepage "https://www.microsoft.com/en-us/microsoft-365/outlook/outlook-for-business"
@@ -43,6 +37,7 @@ cask "microsoft-outlook" do
     "microsoft-office",
     "microsoft-office-businesspro",
   ]
+  depends_on :macos
 
   pkg "Microsoft_Outlook_#{version}_Installer.pkg",
       choices: [

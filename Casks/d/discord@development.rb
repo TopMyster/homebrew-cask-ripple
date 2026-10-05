@@ -1,9 +1,8 @@
 cask "discord@development" do
-  version "0.0.107"
-  sha256 "075fffccc953bf6f915877d665269a53cb9b54ec16a1bf8462335db454709608"
+  version "1.0.1023"
+  sha256 "5714dd576ba3dd82bef3d6bc81f174e6bcf244bd45670e3e4c8a7a3f60aa1d58"
 
-  url "https://dl-development.discordapp.net/apps/osx/#{version}/DiscordDevelopment.dmg",
-      verified: "dl-development.discordapp.net/"
+  url "https://dl-development.discordapp.net/apps/osx/#{version}/DiscordDevelopment.dmg"
   name "Discord Development"
   desc "Voice and text chat software"
   homepage "https://discord.com/"
@@ -14,11 +13,12 @@ cask "discord@development" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Discord Development.app"
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.hnc.discorddevelopment.sfl*",
     "~/Library/Application Support/discorddevelopment",
     "~/Library/Caches/com.hnc.DiscordDevelopment",
     "~/Library/Caches/com.hnc.DiscordDevelopment.ShipIt",

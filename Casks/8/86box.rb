@@ -1,9 +1,8 @@
 cask "86box" do
-  version "5.3,8200"
-  sha256 "a4b718446f6064b541384490308cb76d0e7cf401a1f78d4d8d22372f96e04af1"
+  version "6.0,9001"
+  sha256 "fc66fc97225012af20145ae04193911bbf689fc75f89590774a904483140a5a9"
 
-  url "https://github.com/86Box/86Box/releases/download/v#{version.csv.first}/86Box-macOS-x86_64+arm64-b#{version.csv.second}.zip",
-      verified: "github.com/86Box/86Box/"
+  url "https://github.com/86Box/86Box/releases/download/v#{version.csv.first}/86Box-macOS-x86_64+arm64-b#{version.csv.second}.zip"
   name "86Box"
   desc "Emulator of x86-based machines based on PCem"
   homepage "https://86box.net/"
@@ -21,14 +20,14 @@ cask "86box" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "86Box.app"
 
   roms_dir = Pathname("~/Library/Application Support/net.86box.86Box/roms")
 
-  preflight do
-    roms_dir.expand_path.mkpath
+  preflight_steps do
+    mkdir_p "Library/Application Support/net.86box.86Box/roms", base: :home
   end
 
   uninstall trash: "#{appdir}/86box"

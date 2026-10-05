@@ -1,12 +1,11 @@
 cask "ticktick" do
-  version "8.0.02,458"
-  sha256 "02d98ddc354855b035730c5f488edf8df4d908765dd5ad6568ccdd933b352a50"
+  version "8.2.30,923"
+  sha256 "ec85088f04791f8476b0b0438a5e5e72937687c3af24cc48f9d480231d049386"
 
-  url "https://ticktick-download-mac.s3.amazonaws.com/download/mac/TickTick_#{version.csv.first}_#{version.csv.second}.dmg",
-      verified: "ticktick-download-mac.s3.amazonaws.com/download/mac/"
+  url "https://download.ticktick.app/download/mac/TickTick_#{version.csv.first}_#{version.csv.second}.dmg"
   name "TickTick"
   desc "To-do & task list manager"
-  homepage "https://www.ticktick.com/home"
+  homepage "https://www.ticktick.com/"
 
   livecheck do
     url "https://pull.ticktick.com/mac/release_note/mac_appcast.xml"
@@ -14,16 +13,21 @@ cask "ticktick" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "TickTick.app"
 
   zap trash: [
+    "~/Library/Application Scripts/75TY9UT8AY.com.TickTick.task.mac",
     "~/Library/Application Scripts/com.TickTick.task.mac.*",
+    "~/Library/Application Support/bugsnag-shared-com.TickTick.task.mac",
     "~/Library/Application Support/com.TickTick.task.mac",
+    "~/Library/Caches/bugsnag-shared-com.TickTick.task.mac",
     "~/Library/Caches/com.TickTick.task.mac",
     "~/Library/Caches/TickTick",
     "~/Library/Containers/com.TickTick.task.mac.*",
     "~/Library/Group Containers/75TY9UT8AY.com.TickTick.task.mac",
+    "~/Library/HTTPStorages/com.TickTick.task.mac*",
     "~/Library/Preferences/com.TickTick.task.mac.plist",
     "~/Library/Saved Application State/com.TickTick.task.mac.savedState",
   ]

@@ -1,9 +1,8 @@
 cask "vassal" do
-  version "3.7.19"
-  sha256 "c323476b442829188aea767091132dd4bac8eb1b610304aea868d405633ddd31"
+  version "3.7.26"
+  sha256 "e46f0957b820bc284bb79de5a325448dbf5c47e0fdebaa2aecff165f9cb7e3e0"
 
-  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos-universal.dmg",
-      verified: "github.com/vassalengine/vassal/"
+  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos-universal.dmg"
   name "VASSAL"
   desc "Board game engine"
   homepage "https://www.vassalengine.org/"
@@ -15,7 +14,11 @@ cask "vassal" do
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
+  depends_on :macos
+
   app "VASSAL.app"
+
+  uninstall quit: "org.vassalengine.vassal"
 
   zap trash: "~/Library/Application Support/VASSAL"
 end

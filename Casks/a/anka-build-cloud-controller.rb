@@ -1,9 +1,9 @@
 cask "anka-build-cloud-controller" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.49.0-7d53dd9f"
-  sha256 arm:   "c76b47bccca920aab7d0c7f82ecac2c26cc519055806227a726f0c2c838f3f09",
-         intel: "912d9b57428aba7573f80531827adc3329407c16ca6972eb6a435b5a0db22275"
+  version "1.51.2-184ce875"
+  sha256 arm:   "f6eed8560b5c89b35f3c4e16b7f624fa0ff0c304a41f0450990ea36567ffde7e",
+         intel: "bf3da8c53c4161b02f5a61e2bbc60123abdf047b7a50f7bc21c6c98dfa1040d3"
 
   url "https://downloads.veertu.com/anka/anka-controller-#{arch}-#{version}.pkg"
   name "Anka Build Cloud Controller"
@@ -15,6 +15,8 @@ cask "anka-build-cloud-controller" do
     regex(/anka-controller-#{arch}[._-]?v?(\d+(?:\.\d+)*[._-]\h+)\.pkg/i)
     strategy :header_match
   end
+
+  depends_on :macos
 
   pkg "anka-controller-#{arch}-#{version}.pkg"
 

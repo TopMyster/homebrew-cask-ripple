@@ -1,9 +1,11 @@
 cask "daedalus-mainnet" do
-  version "7.2.0,77924,1458fc3a2"
-  sha256 "8667b4f740ee689952461fa03195b4133f0c613bec444510b37814590031f918"
+  arch arm: "aarch64", intel: "x86_64"
 
-  url "https://update-cardano-mainnet.iohk.io/daedalus-#{version.csv.first}-#{version.csv.second}-mainnet-#{version.csv.third}-x86_64-darwin.pkg",
-      verified: "update-cardano-mainnet.iohk.io/"
+  version "11.4.0,87230,9be560111"
+  sha256 arm:   "c6c0ccfaac71651d61c962084dbeb613134769f382438927407869e6e184c1a8",
+         intel: "83ef6ed4d17ad212c4332e9f420af58cfb0b7e4ed0c6b7f3ab02579f34619c67"
+
+  url "https://update-cardano-mainnet.iohk.io/daedalus-#{version.csv.first}-#{version.csv.second}-mainnet-#{version.csv.third}-#{arch}-darwin.pkg"
   name "Daedalus Mainnet"
   desc "Cryptocurrency wallet for ada on the Cardano blockchain"
   homepage "https://daedaluswallet.io/"
@@ -20,8 +22,9 @@ cask "daedalus-mainnet" do
   end
 
   auto_updates true
+  depends_on :macos
 
-  pkg "daedalus-#{version.csv.first}-#{version.csv.second}-mainnet-#{version.csv.third}-x86_64-darwin.pkg"
+  pkg "daedalus-#{version.csv.first}-#{version.csv.second}-mainnet-#{version.csv.third}-#{arch}-darwin.pkg"
 
   uninstall pkgutil: "org.Daedalusmainnet.pkg"
 
@@ -30,8 +33,4 @@ cask "daedalus-mainnet" do
     "~/Library/Preferences/com.electron.daedalus-mainnet.plist",
     "~/Library/Saved Application State/com.electron.daedalus-mainnet.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

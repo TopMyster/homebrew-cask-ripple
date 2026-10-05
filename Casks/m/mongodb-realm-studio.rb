@@ -2,8 +2,7 @@ cask "mongodb-realm-studio" do
   version "15.2.1"
   sha256 "cdc7af2ccd8de7055f3a7fef59db8a0bc7154eed7ddb2a3a70dc60231b7b7a58"
 
-  url "https://github.com/realm/realm-studio/releases/download/v#{version}/Realm.Studio-#{version}.dmg",
-      verified: "github.com/realm/realm-studio/"
+  url "https://github.com/realm/realm-studio/releases/download/v#{version}/Realm.Studio-#{version}.dmg"
   name "Realm Studio"
   desc "Tool for the Realm Database and Realm Platform"
   homepage "https://realm.io/products/realm-studio/"
@@ -14,10 +13,11 @@ cask "mongodb-realm-studio" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Realm Studio.app"
 
-  zap delete: [
+  zap trash: [
     "~/Library/Application Support/Realm Studio",
     "~/Library/Caches/io.realm.realm-studio",
     "~/Library/Caches/io.realm.realm-studio.ShipIt",

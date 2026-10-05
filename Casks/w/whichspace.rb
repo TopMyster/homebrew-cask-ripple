@@ -1,21 +1,23 @@
 cask "whichspace" do
-  version "0.14.0"
-  sha256 "a6859471e3837ebe0516b77210e223e2c55f7b4a1dea8d660ef6bcfff3381a66"
+  version "1.4.0"
+  sha256 "984e066fe432c189ad60af05319137a9b1901b465756673a24d9470168b13c92"
 
   url "https://github.com/gechr/WhichSpace/releases/download/v#{version}/WhichSpace.zip"
   name "WhichSpace"
-  desc "Active space menu bar icon"
+  desc "Menu bar utility for viewing and switching Spaces"
   homepage "https://github.com/gechr/WhichSpace"
 
+  # The Sparkle feed can contain items on the "nightly" channel, so we restrict
+  # matching to the default channel.
   livecheck do
     url "https://raw.githubusercontent.com/gechr/WhichSpace/updates/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.nice_version
+    end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
-
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "WhichSpace.app"
 
@@ -24,6 +26,7 @@ cask "whichspace" do
   zap trash: [
     "~/Library/Caches/io.gechr.WhichSpace",
     "~/Library/Cookies/io.gechr.WhichSpace.binarycookies",
+    "~/Library/HTTPStorages/io.gechr.WhichSpace",
     "~/Library/Preferences/io.gechr.WhichSpace.plist",
     "~/Library/Saved Application State/io.gechr.WhichSpace.savedState",
   ]

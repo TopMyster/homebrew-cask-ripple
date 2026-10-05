@@ -1,14 +1,15 @@
 cask "vnote" do
-  version "3.20.1"
-  sha256 "f72d19f4c9a4b8c1f145949665e0dde47ad31883abbb0c8139ed7791a34846e2"
+  version "4.5.0"
+  sha256 "56cdc30ee70f79fe504e49cdd31b5975083072e3c8c446c6bc04735dfc973ca8"
 
-  url "https://github.com/vnotex/vnote/releases/download/v#{version}/VNote-#{version}-mac-universal.zip",
-      verified: "github.com/vnotex/vnote/"
+  url "https://github.com/vnotex/vnote/releases/download/v#{version}/VNote-#{version}-mac-universal.dmg"
   name "VNote"
   desc "Note-taking platform"
-  homepage "https://vnotex.github.io/vnote/"
+  homepage "https://docs.vnote.fun/"
 
-  depends_on macos: ">= :monterey"
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on macos: :monterey
 
   app "VNote.app"
 

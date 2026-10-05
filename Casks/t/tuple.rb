@@ -1,9 +1,8 @@
 cask "tuple" do
-  version "2.2.1,2026-01-14,efab546bf"
-  sha256 "4a24efaeabea2b6a3840e6760d664d1d050a31a384eb9a196932d86fb3b89a63"
+  version "3.3.8,2026-10-02,ea022a88e2"
+  sha256 "cc5682e846073b58924c07e9b0f7dc0a2f53dfdd076265dd4bcd093f41d0914f"
 
-  url "https://d32ifkf9k9ezcg.cloudfront.net/production/sparkle/tuple-#{version.tr(",", "-")}.zip",
-      verified: "d32ifkf9k9ezcg.cloudfront.net/"
+  url "https://d32ifkf9k9ezcg.cloudfront.net/production/sparkle/tuple-#{version.tr(",", "-")}.zip"
   name "Tuple"
   desc "Remote pair programming app"
   homepage "https://tuple.app/"
@@ -20,7 +19,7 @@ cask "tuple" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sequoia
 
   app "Tuple.app"
 

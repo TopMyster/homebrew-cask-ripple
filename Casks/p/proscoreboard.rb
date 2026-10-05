@@ -1,6 +1,6 @@
 cask "proscoreboard" do
-  version "7.0,117440531"
-  sha256 "6d529a6dde34b1211f78640674eb186c4e119547648450bda3964af8cb9f8063"
+  version "8.0,134217732"
+  sha256 "46a9c37b38242910b71207cfd7e57557525594fbdb0295422049fd91a918847a"
 
   url "https://renewedvision.com/downloads/ProScoreboard_#{version.csv.first}_#{version.csv.second}.zip"
   name "ProScoreboard"
@@ -8,14 +8,16 @@ cask "proscoreboard" do
   homepage "https://renewedvision.com/proscoreboard/"
 
   livecheck do
-   url "https://www.renewedvision.com/update/scoreboard.php"
-   strategy :sparkle
+    url "https://www.renewedvision.com/update/scoreboard.php"
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "ProScoreboard.app"
+
+  uninstall quit: "com.renewedvision.Scoreboard"
 
   zap trash: [
     "~/Library/Application Support/bugsnag-shared-com.renewedvision.Scoreboard",

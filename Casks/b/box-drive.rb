@@ -1,9 +1,8 @@
 cask "box-drive" do
-  version "2.49.255"
-  sha256 "3307d8af418e52fab82613d2a0ffc9a85152a8bfe67ba25c5fbf59ef1ad0a7c1"
+  version "2.54.172"
+  sha256 "06d4fd378b5afe3f6184d6e9bfc69cb1f2b6eb9044b0a936377fd64b40dd6d73"
 
-  url "https://e3.boxcdn.net/desktop/releases/mac/BoxDrive-#{version}.pkg",
-      verified: "e3.boxcdn.net/desktop/releases/mac/"
+  url "https://e3.boxcdn.net/desktop/releases/mac/BoxDrive-#{version}.pkg"
   name "Box Drive"
   desc "Client for the Box cloud storage service"
   homepage "https://www.box.com/drive"
@@ -16,7 +15,7 @@ cask "box-drive" do
   end
 
   auto_updates true
-  conflicts_with cask: "box-sync"
+  depends_on macos: :ventura
 
   pkg "BoxDrive-#{version}.pkg"
 

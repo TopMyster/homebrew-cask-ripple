@@ -1,9 +1,9 @@
 cask "eclipse-php" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "4.38,2025-12"
-  sha256 arm:   "263f0fc89dcb9328856d558b07649e58a80f3dffbf58e6ef1ab8826f43e21ca8",
-         intel: "0a8adee34b688336da2fe43096934158cf9e8c6617953d552027d6a24e200056"
+  version "4.41,2026-09"
+  sha256 arm:   "520a459e34a3d3e811d9b0bfd300b3bab617884d0744d9b9adc0124f5d094334",
+         intel: "7e14b1989284679874abcf4c45cbab3332deed3442e901c106d63a6458e21f8b"
 
   url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-php-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse IDE for PHP Developers"
@@ -14,7 +14,7 @@ cask "eclipse-php" do
     cask "eclipse-ide"
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   # Renamed to avoid conflict with other Eclipse.
   app "Eclipse.app", target: "Eclipse PHP.app"

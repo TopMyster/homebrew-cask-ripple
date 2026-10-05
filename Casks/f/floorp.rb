@@ -1,9 +1,8 @@
 cask "floorp" do
-  version "12.10.2"
-  sha256 "d225e9f6f1d81c6049905699ff08a64fb67496a16c31a2634af4c4f2e96f7a6d"
+  version "12.19.0"
+  sha256 "76507232633c6bf35fedb7e006458e26a1ca4e22e8ce1c4d795665c669e711a0"
 
-  url "https://github.com/Floorp-Projects/Floorp/releases/download/v#{version}/floorp-macOS-universal.dmg",
-      verified: "github.com/Floorp-Projects/Floorp/"
+  url "https://github.com/Floorp-Projects/Floorp/releases/download/v#{version}/floorp-macOS-universal.dmg"
   name "Floorp browser"
   desc "Privacy-focused Firefox-based browser"
   homepage "https://floorp.app/"
@@ -14,6 +13,7 @@ cask "floorp" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Floorp.app"
 

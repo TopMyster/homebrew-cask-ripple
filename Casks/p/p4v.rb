@@ -1,6 +1,6 @@
 cask "p4v" do
-  version "2025.4,2871449"
-  sha256 "539ad5f2fe36d9a164507fbe4d98dfa1c20118d58487a99440ce48dd849c2fea"
+  version "2026.3,3076493"
+  sha256 "a074cdcf2a5db5c1334fbb18188693a1328bb142aa40eae8c6b07d8eb7de3d06"
 
   url "https://filehost.perforce.com/perforce/r#{version.major[-2..]}.#{version.minor}/bin.macosx12u/P4V.dmg"
   name "Perforce Helix Visual Client"
@@ -17,30 +17,23 @@ cask "p4v" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "p4v.app"
   app "p4admin.app"
   app "p4merge.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  p4_wrapper = "#{staged_path}/p4.wrapper.sh"
   binary "p4vc"
-  binary p4_wrapper, target: "p4v"
-  binary p4_wrapper, target: "p4admin"
-  binary p4_wrapper, target: "p4merge"
+  command_wrapper "p4v",
+                  executable: "#{appdir}/p4v.app/Contents/MacOS/p4v"
+  command_wrapper "p4admin",
+                  executable: "#{appdir}/p4admin.app/Contents/MacOS/p4admin"
+  command_wrapper "p4merge",
+                  executable: "#{appdir}/p4merge.app/Contents/Resources/launchp4merge"
 
-  preflight do
-    File.write p4_wrapper, <<~EOS
-      #!/bin/bash
-      set -euo pipefail
-      COMMAND=$(basename "$0")
-      if [[ "$COMMAND" == "p4merge" ]]; then
-        exec "#{appdir}/${COMMAND}.app/Contents/Resources/launch${COMMAND}" "$@" 2> /dev/null
-      else
-        exec "#{appdir}/${COMMAND}.app/Contents/MacOS/${COMMAND}" "$@" 2> /dev/null
-      fi
-    EOS
-  end
+  uninstall quit: [
+    "com.perforce.p4admin",
+    "com.perforce.p4v",
+  ]
 
   zap trash: [
     "~/Library/Preferences/com.perforce.p4v",

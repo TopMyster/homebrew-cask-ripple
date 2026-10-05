@@ -1,12 +1,11 @@
 cask "langflow" do
   arch arm: "aarch64", intel: "universal"
 
-  version "1.7.1"
-  sha256 arm:   "fcc2d0294a2846525845b62ddda486ff6b71c062b7ef085b8334e0ccc2b5c8e1",
-         intel: "56bef66ed4bcfe66f8b032ed4bd4ed1cf174453af94122884a1b9b84da332cf5"
+  version "1.12.0,v1.12.0"
+  sha256 arm:   "da1a7275dd19105d2d3ddae304370db65f8303eb80387ef0e6cb11b72da472d3",
+         intel: "4e1985253b1a71654d52bd59f2cb82403c0368e2296aa941ce0e9b3a65659749"
 
-  url "https://github.com/langflow-ai/langflow/releases/download/#{version.csv.second || version}/Langflow_#{version.csv.first}_#{arch}.dmg",
-      verified: "github.com/langflow-ai/langflow/"
+  url "https://github.com/langflow-ai/langflow/releases/download/#{version.csv.second || version}/Langflow_#{version.csv.first}_#{arch}.dmg"
   name "Langflow Desktop"
   desc "Low-code AI-workflow building tool"
   homepage "https://www.langflow.org/desktop"
@@ -30,7 +29,7 @@ cask "langflow" do
     end
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Langflow .app"
 

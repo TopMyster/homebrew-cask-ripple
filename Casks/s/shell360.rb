@@ -1,9 +1,9 @@
 cask "shell360" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.1.16"
-  sha256 arm:   "8a7958f261f83d3e4f53554b467f5d89fb7e1824d08fee5c3b79cdd2f92dffe1",
-         intel: "cc13c5000a4c847ac372e85b77926d71f8dc5883fbd50e23b9ad788549355838"
+  version "0.2.7"
+  sha256 arm:   "f86d16b35d8e41ca34365d65fa93989bee86ce98e37c2c136d7529f482ec91d0",
+         intel: "41b119d80a078d51625232955069b26fa8141449ee6d9f263636b1ba4e5f603a"
 
   url "https://github.com/nashaofu/shell360/releases/download/v#{version}/Shell360_#{version}_#{arch}.dmg"
   name "Shell360"
@@ -16,6 +16,7 @@ cask "shell360" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Shell360.app"
 

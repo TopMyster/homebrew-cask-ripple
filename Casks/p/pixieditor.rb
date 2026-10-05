@@ -1,9 +1,8 @@
 cask "pixieditor" do
-  version "2.0.1.19"
-  sha256 "3ff0362a057877036df537768176f5628598faa285a3512b412ad30059be9c9f"
+  version "2.1.2.4"
+  sha256 "6040e0c08270e357a06cd8942c50a1286edde72965e4043007fb5e540a5d66a8"
 
-  url "https://github.com/PixiEditor/PixiEditor/releases/download/#{version}/PixiEditor-#{version}-universal-macos.dmg",
-      verified: "github.com/PixiEditor/PixiEditor/"
+  url "https://github.com/PixiEditor/PixiEditor/releases/download/#{version}/PixiEditor-#{version}-universal-macos.dmg"
   name "PixiEditor"
   desc "Open Source Universal 2D Graphics Editor"
   homepage "https://pixieditor.net/"
@@ -13,9 +12,11 @@ cask "pixieditor" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "PixiEditor.app"
+
+  uninstall quit: "com.pixieditor"
 
   zap trash: [
     "~/Library/Application Support/PixiEditor",

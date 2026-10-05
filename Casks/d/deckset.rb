@@ -1,6 +1,6 @@
 cask "deckset" do
-  version "2.0.45,2775"
-  sha256 "cd23ed29dac92f2b676e8f1eb846e3d9eeaa0f150f86531aef58383db8d47288"
+  version "2.1.0,2823"
+  sha256 "8e61cedaf9b3ad15c218f2142282f64785c9ba5932faf7fbeabadef25097e292"
 
   url "https://dl.decksetapp.com/Deckset+#{version.csv.first}+(#{version.csv.second}).dmg"
   name "Deckset"
@@ -13,8 +13,11 @@ cask "deckset" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Deckset.app"
+
+  uninstall quit: "com.unsignedinteger.Deckset-Paddle"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.unsignedinteger.deckset-paddle.sfl*",

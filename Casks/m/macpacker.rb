@@ -1,20 +1,21 @@
 cask "macpacker" do
-  version "0.13"
-  sha256 "ca7e1263791fd45437bc2df77f68e9f944a1f65041cc7cb37cc3ec0c532299b8"
+  version "1.0.0"
+  sha256 "f2335aaeb761725e237bdcbf331f3c8068a322cb0594746ed6291dc0c2c07852"
 
-  url "https://macpacker-releases.s3.amazonaws.com/MacPacker_v#{version}.zip",
-      verified: "macpacker-releases.s3.amazonaws.com/"
+  url "https://macpacker-releases.s3.amazonaws.com/MacPacker_v#{version}.zip"
   name "MacPacker"
   desc "Archive manager"
   homepage "https://macpacker.app/"
 
   livecheck do
     url "https://macpacker-releases.s3.amazonaws.com/appcast.xml"
-    strategy :sparkle, &:short_version
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "MacPacker.app"
 

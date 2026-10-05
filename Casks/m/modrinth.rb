@@ -1,6 +1,6 @@
 cask "modrinth" do
-  version "0.10.26"
-  sha256 "cf33fae41db1c434ae3433a11dc9be381a1f092cd6b9f256e9c636918f6b39ca"
+  version "0.21.6"
+  sha256 "9ef151eed55aafc3e15afe19d4a5eaa376b8f6fd539131dcb04e00db63e68ac7"
 
   url "https://launcher-files.modrinth.com/versions/#{version}/macos/Modrinth%20App_#{version}_universal.dmg"
   name "Modrinth App"
@@ -15,6 +15,7 @@ cask "modrinth" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Modrinth App.app"
 
@@ -22,8 +23,12 @@ cask "modrinth" do
 
   zap trash: [
     "~/Library/Application Support/com.modrinth.theseus",
+    "~/Library/Application Support/ModrinthApp",
     "~/Library/Caches/com.modrinth.theseus",
+    "~/Library/Caches/ModrinthApp",
+    "~/Library/HTTPStorages/ModrinthApp.binarycookies",
     "~/Library/Saved Application State/com.modrinth.theseus.savedState",
     "~/Library/WebKit/com.modrinth.theseus",
+    "~/Library/WebKit/ModrinthApp",
   ]
 end

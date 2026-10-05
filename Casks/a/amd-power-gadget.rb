@@ -7,7 +7,10 @@ cask "amd-power-gadget" do
   desc "Power management, monitoring and VirtualSMC plugin for AMD processors"
   homepage "https://github.com/trulyspinach/SMCAMDProcessor"
 
+  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
   depends_on arch: :x86_64
+  depends_on :macos
 
   app "AMD Power Gadget.app"
 end

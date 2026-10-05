@@ -1,11 +1,11 @@
 cask "kdrive" do
-  version "3.8.1.4"
-  sha256 "ad7d188488f41d131de061f9fff9d79ea15d85dc83a47b9f1c218ab9b49bee97"
+  version "3.8.7.1"
+  sha256 "e0b6c4076e6a87aa514e56a1af429e7a2dd76070d7f6b725d1a5407703672532"
 
   url "https://download.storage.infomaniak.com/drive/desktopclient/kDrive-#{version}.pkg"
   name "kDrive"
   desc "Client for the kDrive collaborative cloud storage service"
-  homepage "https://www.infomaniak.com/kdrive"
+  homepage "https://www.infomaniak.com/en/ksuite/kdrive"
 
   livecheck do
     url "https://www.infomaniak.com/drive/latest"
@@ -15,6 +15,7 @@ cask "kdrive" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "kDrive-#{version}.pkg"
 

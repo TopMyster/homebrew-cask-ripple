@@ -1,18 +1,17 @@
 cask "anytype" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.53.1"
-  sha256 arm:   "cfc005e9fc5196f4bd4710f92e269c4fede954accba6f449e977563184c4896c",
-         intel: "20274e7e47596c5affcbe079bc99d2befea752dc5c9ba52a4cea6cbe56b4ffce"
+  version "0.57.4"
+  sha256 arm:   "e64d7303a6cf67807f14978e7fb84db1b08aa37efe5e9b4d29b95b78dc6ced3b",
+         intel: "aefe061b8b45a86b0ac1c83cacc5ef7b9fcc6f32fb20a2aca85a5855281ab087"
 
-  url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/Anytype-#{version}-mac-#{arch}.dmg",
-      verified: "anytype-release.fra1.cdn.digitaloceanspaces.com/"
+  url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/Anytype-#{version}-mac-#{arch}.dmg"
   name "Anytype"
   desc "Local-first and end-to-end encrypted notes app"
   homepage "https://anytype.io/"
 
   livecheck do
-    url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/latest-mac.yml?v=#{Time.new.to_i}"
+    url "https://anytype-release.fra1.cdn.digitaloceanspaces.com/latest-mac.yml?v=#{Time.now.to_i}"
     strategy :electron_builder
   end
 
@@ -21,7 +20,7 @@ cask "anytype" do
     "anytype@alpha",
     "anytype@beta",
   ]
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Anytype.app"
 

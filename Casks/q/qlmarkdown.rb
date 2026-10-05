@@ -1,6 +1,6 @@
 cask "qlmarkdown" do
-  version "1.0.24"
-  sha256 "e7340e4ca56b943547d3a901e4114237f229222efaf05461dc532758ad0e078a"
+  version "1.5.7"
+  sha256 "96cc95553ee63557f7ec58f41a568ff1fe5bca95b6bcd3883709fa8337c685d4"
 
   url "https://github.com/sbarex/QLMarkdown/releases/download/#{version}/QLMarkdown.zip"
   name "sbarex QLMarkdown"
@@ -18,22 +18,28 @@ cask "qlmarkdown" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
-
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "QLMarkdown.app"
   binary "#{appdir}/QLMarkdown.app/Contents/Resources/qlmarkdown_cli"
 
+  uninstall quit: "org.sbarex.QLMarkdown"
+
   zap trash: [
+    "~/Library/Application Scripts/group.org.sbarex.qlmarkdown",
     "~/Library/Application Scripts/org.sbarex.QLMarkdown",
     "~/Library/Application Scripts/org.sbarex.QLMarkdown.QLExtension",
+    "~/Library/Application Scripts/org.sbarex.QLMarkdown.Shortcut-Extension",
+    "~/Library/Application Support/QLMarkdown",
     "~/Library/Containers/org.sbarex.QLMarkdown",
     "~/Library/Containers/org.sbarex.QLMarkdown.QLExtension",
-    "~/Library/Group Containers/org.sbarex.qlmarkdown",
+    "~/Library/Containers/org.sbarex.QLMarkdown.Shortcut-Extension",
+    "~/Library/Group Containers/group.org.sbarex.qlmarkdown",
     "~/Library/Group Containers/org.sbarex.QLMarkdown",
+    "~/Library/Group Containers/org.sbarex.qlmarkdown",
     "~/Library/Preferences/org.sbarex.QLMarkdown.plist",
+    "~/Library/Preferences/org.sbarex.QLMarkdownXPCHelper.plist",
     "~/Library/QuickLook/QLMarkdown.qlgenerator",
   ]
 end

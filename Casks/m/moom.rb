@@ -1,6 +1,6 @@
 cask "moom" do
-  version "4.4.1"
-  sha256 "a5b3d2ea55f4c52ddbbc49f8a64104c3dadaab2cd9edd638a9e8d1b1e9bef525"
+  version "4.6.0"
+  sha256 "45217254124fce56c48c84687c9abf78507e84e2df4a860ad3801433357b87e9"
 
   url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.no_dots}.dmg"
   name "Moom"
@@ -35,6 +35,7 @@ cask "moom" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Moom.app"
 

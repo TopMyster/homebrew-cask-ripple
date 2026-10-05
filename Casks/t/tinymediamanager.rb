@@ -1,9 +1,9 @@
 cask "tinymediamanager" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "5.2.5"
-  sha256 arm:   "cadb91cced939396c0db20cdc8af4f2383dc6cecc254751f580d2a1486a8378a",
-         intel: "8434b4890e81b13eb3a3526249e55db80e883421ec61539c4eecf2625a569847"
+  version "5.3.4"
+  sha256 arm:   "886f6e826b5d877edde7d84bceb41078674ca6823a1a140ad9053959ad44267a",
+         intel: "548e89fd929499a1affac5173fd072b7e166b7d434f9f01ac236646b1ecaf23b"
 
   url "https://release.tinymediamanager.org/v#{version.major}/dist/tinyMediaManager-#{version}-macos-#{arch}.dmg"
   name "tinyMediaManager"
@@ -16,12 +16,14 @@ cask "tinymediamanager" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "tinyMediaManager.app"
 
+  uninstall quit: "org.tinyMediaManager.tinymediamanager"
+
   zap trash: [
     "~/Library/Application Support/tinyMediaManager",
-    "~/Library/Saved Application State/org.tinyMediaManager.tinymediamanager.savedState",
+    "~/Library/Preferences/org.tinyMediaManager.tinymediamanager.plist",
   ]
 end

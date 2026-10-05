@@ -1,16 +1,18 @@
 cask "cisco-jabber" do
-  version "20251118100311"
-  sha256 "02a836c3cced02f2780f980bad48edcf27d62dbd69a00d53d25911d2b7158c7f"
+  version "20260917083054"
+  sha256 "4324d47203e6c4375c9f22b9513248ff60d862bfcc0de146368b5920b2e95732"
 
   url "https://binaries.webex.com/jabberclientmac/#{version}/Install_Cisco-Jabber-Mac.pkg"
   name "Cisco Jabber"
   desc "Jabber client from Cisco"
-  homepage "https://www.webex.com/downloads/jabber.html"
+  homepage "https://www.webex.com/downloads/jabber.html", browsed: "2026-08-05"
 
   livecheck do
     url :homepage, user_agent: :browser
     regex(%r{jabberAppUrl =.*?(\d+)/Install[._-]Cisco[._-]Jabber[._-]Mac\.pkg}i)
   end
+
+  depends_on :macos
 
   pkg "Install_Cisco-Jabber-Mac.pkg"
 

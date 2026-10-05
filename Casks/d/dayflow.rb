@@ -1,6 +1,6 @@
 cask "dayflow" do
-  version "1.5.4"
-  sha256 "63f4561121e769a4268fa4528ac7c58aa5f886ff5beae7fcc68310c4174db784"
+  version "2.6.0"
+  sha256 "ec7ff77127eb5cd6bd6507b2f2889acd5710eaf4bfb41e0c613a1d9ff735e73c"
 
   url "https://github.com/JerryZLiu/Dayflow/releases/download/v#{version}/Dayflow.dmg"
   name "Dayflow"
@@ -8,14 +8,17 @@ cask "dayflow" do
   homepage "https://github.com/JerryZLiu/Dayflow"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://jerryzliu.github.io/Dayflow/appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Dayflow.app"
+  binary "#{appdir}/Dayflow.app/Contents/Helpers/dayflow"
+
+  uninstall quit: "teleportlabs.com.Dayflow"
 
   zap trash: [
     "~/Library/Application Scripts/teleportlabs.com.Dayflow",

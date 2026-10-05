@@ -1,6 +1,6 @@
 cask "camerabag-photo" do
-  version "2026.0.0"
-  sha256 "9f307274e60a7a23a523ea836dfa5aff2ceabf4fd069a4bef77cd0dee19859e8"
+  version "2026.2.0"
+  sha256 "9e4a957218b3c6d19554aa17c971c2f4a714ee4685552748dd1838c2fe4b1cc8"
 
   url "https://nevercenter.com/camerabag/download/filearchive/Install_CameraBag_Photo_#{version.dots_to_underscores}_mac.dmg"
   name "CameraBag"
@@ -15,7 +15,11 @@ cask "camerabag-photo" do
     end
   end
 
+  depends_on :macos
+
   app "CameraBag Photo.app"
+
+  uninstall quit: "com.nevercenter.camerabagphoto"
 
   zap trash: "~/Library/Saved Application State/com.nevercenter.camerabagphoto.savedState"
 end

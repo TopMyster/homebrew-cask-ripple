@@ -1,9 +1,8 @@
 cask "brightvpn" do
-  version "1.597.201"
-  sha256 "4ff70660e4570e990b36ab5c59fb191c461ad88b4fdef819f77b2e8887702837"
+  version "1.605.415"
+  sha256 "797ca04856ae4a281bf91b623b21e7974bfff086c1bea0727313ab7b6799f64c"
 
-  url "https://brightdata.com/static/BrightVPN-#{version}.dmg",
-      verified: "brightdata.com/static/"
+  url "https://brightdata.com/static/BrightVPN-#{version}.dmg"
   name "Bright VPN"
   desc "VPN service"
   homepage "https://brightvpn.com/"
@@ -15,7 +14,7 @@ cask "brightvpn" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "BrightVPN.app"
 

@@ -1,12 +1,6 @@
 cask "omnifocus" do
   on_ventura :or_older do
-    on_catalina :or_older do
-      version "3.11.7"
-      sha256 "21c0a63b6bd8c8ff3e5067f4ccd0ab16c9fd65815a7305e184ed27723bd0aa15"
-
-      url "https://downloads.omnigroup.com/software/MacOSX/10.14/OmniFocus-#{version}.dmg"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "3.15.8"
       sha256 "f0fe7bf0fafc35d50a23fe0d614b9403b58de9439704a2e3d93fbdc602aab661"
 
@@ -29,11 +23,21 @@ cask "omnifocus" do
       skip "Legacy version"
     end
   end
-  on_sonoma :or_newer do
-    version "4.8.6"
-    sha256 "99a84f133565dc310669479b3ee0ea9680c951aef19ec1bc0e3457f8ad316f34"
+  on_sonoma do
+    version "4.8.13"
+    sha256 "bc547b38e18d34409603666dc467ef3b83de615f728b53554003ac7d88c44ea7"
 
     url "https://downloads.omnigroup.com/software/macOS/14/OmniFocus-#{version}.dmg"
+
+    livecheck do
+      skip "Legacy version"
+    end
+  end
+  on_sequoia :or_newer do
+    version "4.9.2"
+    sha256 "3574f794b608f7cc9a4a504b09888be920419655514ed77af195738206030680"
+
+    url "https://downloads.omnigroup.com/software/macOS/15/OmniFocus-#{version}.dmg"
 
     livecheck do
       url "https://www.omnigroup.com/download/latest/omnifocus/"
@@ -46,6 +50,7 @@ cask "omnifocus" do
   homepage "https://www.omnigroup.com/omnifocus/"
 
   auto_updates true
+  depends_on :macos
 
   app "OmniFocus.app"
 

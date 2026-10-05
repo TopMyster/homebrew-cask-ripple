@@ -1,18 +1,20 @@
 cask "pcoipclient" do
-  version "25.10.2"
-  sha256 "426238ead62e5a125d68b09dac687b07603dd38700a591d5e7632d92e8ab2f48"
+  version "26.05.5"
+  sha256 "b27ab94ec26c3bb54f48caf1e695264ce80a042f0c7b75b9cd06b4d21feb7bad"
 
-  url "https://dl.anyware.hp.com/DeAdBCiUYInHcSTy/pcoip-client/raw/names/pcoip-client-dmg/versions/#{version}/pcoip-client_#{version}.dmg"
+  url "https://dl.anyware.hp.com/pcoip-client/raw/names/pcoip-client-dmg/versions/#{version}/pcoip-client_#{version}.dmg"
   name "Teradici PCoIP Software Client for macOS"
   desc "Client for VM agents and remote workstation cards"
   homepage "https://anyware.hp.com/find/product/hp-anyware"
 
   livecheck do
-    url "https://dl.anyware.hp.com/DeAdBCiUYInHcSTy/pcoip-client/raw/names/pcoip-client-dmg/versions/latest/pcoip-client_latest.dmg"
-    strategy :header_match
+    url "https://dl.anyware.hp.com/ztqM7i47Dt06ETYM/pcoip-client/raw/names/pcoip-client-info/versions/dmg/pcoip-client-dmg-info.json"
+    strategy :json do |json|
+      json.first&.dig("currentVersion")
+    end
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "PCoIPClient.app"
 

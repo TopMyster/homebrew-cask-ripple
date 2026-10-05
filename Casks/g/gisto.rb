@@ -1,12 +1,11 @@
 cask "gisto" do
   arch arm: "aarch64", intel: "x64"
 
-  version "2.4.2"
-  sha256 arm:   "f72e26e8e6798c16b593dfe8c81d9ebfe16e8c0018c915e43dc419fdcc8e6f1f",
-         intel: "171778855edb3080a83eace5f95009963eec89eb54bb15d6b1e486fa4b78d92a"
+  version "2.15.0"
+  sha256 arm:   "4d4a7749a0171e20a5ec5666edd80364755e18dc41636c2a3ba0edbd065dc4c2",
+         intel: "95fbef51b6d4fb216787ccb112df3c1d0f6ba9f2506f9857257e82eb6345c5dd"
 
-  url "https://github.com/Gisto/Gisto/releases/download/v#{version}/Gisto_#{version}_#{arch}.dmg",
-      verified: "github.com/Gisto/Gisto/"
+  url "https://github.com/Gisto/Gisto/releases/download/v#{version}/Gisto_#{version}_#{arch}.dmg"
   name "Gisto"
   desc "Snippets management desktop application"
   homepage "https://www.gisto.org/"
@@ -17,6 +16,8 @@ cask "gisto" do
   end
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Gisto.app"
 

@@ -1,8 +1,8 @@
 cask "hiddenbar" do
-  version "1.9"
-  sha256 "3f54b024f5c1c40bc18aebe39014710289b47e147e71561fae22a661cab26d02"
+  version "1.11.1"
+  sha256 "2f1082bf55f8a3a4cd132617cf68c054da95c58983966fed0728e4a1dc19327b"
 
-  url "https://github.com/dwarvesf/hidden/releases/download/v#{version}/Hidden.Bar.#{version}.dmg"
+  url "https://github.com/dwarvesf/hidden/releases/download/v#{version}/Hidden-Bar-v#{version}-macos.zip"
   name "Hidden Bar"
   desc "Utility to hide menu bar items"
   homepage "https://github.com/dwarvesf/hidden/"
@@ -11,6 +11,8 @@ cask "hiddenbar" do
     url :url
     strategy :github_latest
   end
+
+  depends_on macos: :ventura
 
   app "Hidden Bar.app"
 

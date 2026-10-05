@@ -13,13 +13,13 @@ cask "orka-desktop" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Orka Desktop.app"
 
   zap trash: [
     "~/.local/state/orka",
-    "~/Library/Caches/com.macstadium.OrkaDesktop/",
+    "~/Library/Caches/com.macstadium.OrkaDesktop",
     "~/Library/HTTPStorages/com.macstadium.OrkaDesktop",
     "~/Library/Preferences/com.macstadium.OrkaDesktop.plist",
     "~/orka-toolkit",

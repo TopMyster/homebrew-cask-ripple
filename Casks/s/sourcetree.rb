@@ -1,9 +1,8 @@
 cask "sourcetree" do
-  version "4.2.16,307"
-  sha256 "de80f562fa5fa0f3000e11f11db08d3a1ecb086c659d87a8df3b1c29737664a8"
+  version "4.2.19,317"
+  sha256 "f9d6c65ba0b9d774add4977ad0482acde72ce91221e20f3136c009dccdf713bf"
 
-  url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.csv.first}_#{version.csv.second}.zip",
-      verified: "product-downloads.atlassian.com/software/sourcetree/ga/"
+  url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version.csv.first}_#{version.csv.second}.zip"
   name "Atlassian SourceTree"
   desc "Graphical client for Git version control"
   homepage "https://www.sourcetreeapp.com/"
@@ -14,6 +13,7 @@ cask "sourcetree" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Sourcetree.app"
   binary "#{appdir}/Sourcetree.app/Contents/Resources/stree"

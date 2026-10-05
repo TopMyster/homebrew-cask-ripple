@@ -1,12 +1,6 @@
 cask "omnioutliner" do
   on_sonoma :or_older do
-    on_catalina :or_older do
-      version "5.8.5"
-      sha256 "4439e6f700e71e3ec182fd16be9eca3de3afa3db4c4894c396297ba59b0f6b10"
-
-      url "https://downloads.omnigroup.com/software/MacOSX/10.14/OmniOutliner-#{version}.dmg"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "5.12"
       sha256 "1f417470258c3505cc2226689a814f5a4b1fde78f268ba4a151aae923cbe694c"
 
@@ -24,8 +18,8 @@ cask "omnioutliner" do
     end
   end
   on_sequoia :or_newer do
-    version "6.0.1"
-    sha256 "47c888186688a4986dd344827b0a3bd9c8ce692e16a2faabbddadef3b0b5b050"
+    version "6.3"
+    sha256 "d66b4a6cc78d33698c50a3a6fd71ffcf90038a0e6f4cd7574cc9d27413cbee5b"
 
     url "https://downloads.omnigroup.com/software/macOS/15/OmniOutliner-#{version}.dmg"
 
@@ -40,12 +34,14 @@ cask "omnioutliner" do
   homepage "https://www.omnigroup.com/omnioutliner/"
 
   auto_updates true
+  depends_on :macos
 
   app "OmniOutliner.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.omnigroup.OmniOutliner#{version.major}",
     "~/Library/Application Scripts/com.omnigroup.OmniOutliner#{version.major}.Thumbnails",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.omnigroup.omnioutliner*.sfl*",
     "~/Library/Containers/com.omnigroup.OmniOutliner#{version.major}",
     "~/Library/Containers/com.omnigroup.OmniOutliner#{version.major}.Thumbnails",
   ]

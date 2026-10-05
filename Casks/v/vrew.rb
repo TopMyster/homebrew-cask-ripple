@@ -1,6 +1,6 @@
 cask "vrew" do
-  version "3.5.4"
-  sha256 "d6c075c7bfa07b10699e1104cf3c840f1a669b56608894bf41a9d06f9e0bf48e"
+  version "4.6.3"
+  sha256 "bc4c7452cfb8026ef10095d1658b25e23f26c1b9940304b1df19f8e1779594d2"
 
   url "https://vrew-files.voyagerx.com/Vrew-#{version}.dmg"
   name "Vrew"
@@ -13,9 +13,11 @@ cask "vrew" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Vrew.app"
+
+  uninstall quit: "com.voyagerx.vrew"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.voyagerx.vrew.sfl*",

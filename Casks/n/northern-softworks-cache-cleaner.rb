@@ -1,5 +1,5 @@
 cask "northern-softworks-cache-cleaner" do
-  version "26.2"
+  version "27.0.1"
   sha256 :no_check
 
   # Homepage, livecheck regex, and app change with major macOS releases
@@ -7,18 +7,23 @@ cask "northern-softworks-cache-cleaner" do
   url "https://www.northernsoftworks.com/downloads/nscc.dmg"
   name "Northern Softworks Cache Cleaner"
   desc "General purpose system maintenance tool"
-  homepage "https://www.northernsoftworks.com/tahoecachecleaner.html"
+  homepage "https://www.northernsoftworks.com/goldengatecachecleaner.html"
 
   livecheck do
     url :homepage
-    regex(/Download\s*Tahoe\s*Cache\s*Cleaner\s*v?(\d+(?:\.\d+)+)/i)
+    regex(/Download\s*Golden\s*Gate\s*Cache\s*Cleaner\s*v?(\d+(?:\.\d+)+)/i)
   end
 
-  app "Tahoe Cache Cleaner.app"
+  depends_on :macos
+
+  app "Golden Gate Cache Cleaner.app"
+
+  uninstall quit: "com.northernsw.nswCacheCleaner"
 
   zap trash: [
     "~/Library/Application Support/com.northernsw.nswCacheCleaner",
     "~/Library/Preferences/Sonoma Cache Cleaner Preferences",
+    "~/Library/Preferences/Tahoe Cache Cleaner Preferences",
     "~/Library/Preferences/Ventura Cache Cleaner Preferences",
     "~/Library/Saved Application State/com.northernsw.nswCacheCleaner.savedState",
   ]

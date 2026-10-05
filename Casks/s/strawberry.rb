@@ -1,9 +1,8 @@
 cask "strawberry" do
-  version "0.0.76"
-  sha256 "d8dfeca2f18cf379b2ac2af494d061d9e640332772714bfa1463ecb16b76d5d6"
+  version "0.1.60"
+  sha256 "995db64f02c9056b60a541bfe9939d48729df53f049431c94b7861b43600a81a"
 
-  url "https://strawberrybucket.com/strawberry-#{version}.dmg",
-      verified: "strawberrybucket.com/"
+  url "https://strawberrybucket.com/strawberry-#{version}.dmg"
   name "Strawberry"
   desc "AI-powered web browser"
   homepage "https://strawberrybrowser.com/"
@@ -14,9 +13,13 @@ cask "strawberry" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "Strawberry.app"
 
-  zap trash: "~/Library/Application Support/strawberry"
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mirror-browser.sfl*",
+    "~/Library/Application Support/strawberry",
+    "~/Library/Preferences/com.mirror-browser.plist",
+  ]
 end

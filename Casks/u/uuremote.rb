@@ -1,9 +1,8 @@
 cask "uuremote" do
-  version "4.13.0"
-  sha256 "dc0615329c604fd99ef18d4d3cc891def0ffc7ee085d921ac7764727af8d6be6"
+  version "4.42.0"
+  sha256 "42f8fe6b1c89dec253070737e10b2601cb26a2aff67633a05e1eb4a40491b652"
 
-  url "https://a56.gdl.netease.com/uuyc_#{version}.pkg",
-      verified: "a56.gdl.netease.com/"
+  url "https://a56.gdl.netease.com/uuyc_#{version}.pkg"
   name "UU Remote"
   name "网易UU远程"
   desc "NetEase UU remote desktop access and control tool"
@@ -15,19 +14,24 @@ cask "uuremote" do
     strategy :header_match
   end
 
+  depends_on :macos
+
   pkg "uuyc_#{version}.pkg"
 
-  postflight do
+  postflight_steps do
     # The postinstall script automatically opens the app. Therefore, we must
     # suppress this behavior to make the cask installation non-interactive.
-    retries ||= 3
-    ohai "The UU Remote package postinstall script launches the app" if retries >= 3
-    ohai "Attempting to close UU Remote to avoid unwanted user intervention" if retries >= 3
-    return unless system_command "/usr/bin/pkill", args: ["-f", "/Applications/UURemote.app"]
-  rescue RuntimeError
-    sleep 1
-    retry unless (retries -= 1).zero?
-    opoo "Unable to forcibly close UU Remote"
+    terminate_process(
+      "/Applications/UURemote.app",
+      match:           :full,
+      attempts:        3,
+      must_succeed:    false,
+      notices:         [
+        "The UU Remote package postinstall script launches the app",
+        "Attempting to close UU Remote to avoid unwanted user intervention",
+      ],
+      failure_message: "Unable to forcibly close UU Remote",
+    )
   end
 
   uninstall launchctl: [
@@ -52,5 +56,6 @@ cask "uuremote" do
     "~/Library/HTTPStorages/com.netease.uuremote.server",
     "~/Library/Preferences/com.netease.uuremote.plist",
     "~/Library/Preferences/com.netease.uuremote.server.plist",
+    "~/Library/WebKit/com.netease.uuremote",
   ]
 end

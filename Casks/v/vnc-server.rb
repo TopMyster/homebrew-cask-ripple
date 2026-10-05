@@ -1,6 +1,6 @@
 cask "vnc-server" do
-  version "7.15.0"
-  sha256 "6b3fa8c2c76cff04cbd4b29fefa2e3e2daa7bcca3aea917e2a13e3e83b5368dc"
+  version "7.18.0"
+  sha256 "e75c633fb63f58bcf032e0a1b2a6b8aa293c308b7d0bee7c5b4092a4961f8d27"
 
   url "https://downloads.realvnc.com/download/file/vnc.files/VNC-Server-#{version}-MacOSX-universal.pkg"
   name "Real VNC Server"
@@ -14,11 +14,15 @@ cask "vnc-server" do
     skip "Cannot be fetched due to Cloudflare protections"
   end
 
+  depends_on :macos
+
   pkg "VNC-Server-#{version}-MacOSX-universal.pkg"
 
-  uninstall_preflight do
-    file = "/Applications/RealVNC/Uninstall VNC Server.app/Contents/Resources/uninstaller.sh"
-    system_command file, print_stderr: false, sudo: true if File.exist?(file)
+  uninstall_preflight_steps do
+    if_path_exists "/Applications/RealVNC/Uninstall VNC Server.app/Contents/Resources/uninstaller.sh" do
+      run "/Applications/RealVNC/Uninstall VNC Server.app/Contents/Resources/uninstaller.sh",
+          print_stderr: false, sudo: true
+    end
   end
 
   uninstall launchctl: [

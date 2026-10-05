@@ -1,12 +1,11 @@
 cask "bettershot" do
-  arch arm: "aarch64", intel: "x64"
+  arch arm: "arm64", intel: "x86_64"
 
-  version "0.2.4"
-  sha256 arm:   "c224c544f29d1dcf3d84f5ac930c54597c085102d5ce6ccbe13977eeff18d0eb",
-         intel: "c0c9f324e2df9f40999d810555a448bf1cc01ea99efaea63591ee65710f9b1e1"
+  version "0.5.8"
+  sha256 arm:   "6cf2f94a7bb09461ca1d091f6ff7804f5c4d4116abf89fa7bf7be81182be0ac4",
+         intel: "eb67643590b80b25819376d125ac0336d6270f0bb0b5b9e3f5c05fe67d867696"
 
-  url "https://github.com/KartikLabhshetwar/better-shot/releases/download/v#{version}/bettershot_#{version}_#{arch}.dmg",
-      verified: "github.com/KartikLabhshetwar/better-shot/"
+  url "https://github.com/KartikLabhshetwar/better-shot/releases/download/v#{version}/BetterShot-#{version}_#{arch}.dmg"
   name "Better Shot"
   desc "Screen capturing and editing tool"
   homepage "https://bettershot.site/"
@@ -17,8 +16,9 @@ cask "bettershot" do
   end
 
   auto_updates true
+  depends_on macos: :tahoe
 
-  app "bettershot.app"
+  app "BetterShot.app"
 
   zap trash: [
     "~/Library/Application Support/com.kartiklabhshetwar.bettershot",

@@ -1,9 +1,8 @@
 cask "yandex-cloud-cli" do
-  version "0.186.0"
+  version "1.40.0"
   sha256 :no_check
 
-  url "https://storage.yandexcloud.net/yandexcloud-yc/install.sh",
-      verified: "yandexcloud.net/yandexcloud-yc/"
+  url "https://storage.yandexcloud.net/yandexcloud-yc/install.sh"
   name "Yandex Cloud CLI"
   desc "CLI for Yandex Cloud"
   homepage "https://cloud.yandex.com/docs/cli/"

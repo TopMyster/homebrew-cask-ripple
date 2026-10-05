@@ -1,9 +1,12 @@
 cask "sqlpro-studio" do
-  version "2025.78"
-  sha256 "96b94a4bc18eb8d3d8bd4df0b9cf38f3315aa7a27f20d414da48f2b8a1997c42"
+  version "2026.238"
+  sha256 "59f808e0ce1943d8720dea2aaa43d40b9a7989b910b984ce2b85dcc11337db27"
 
-  url "https://d3fwkemdw8spx3.cloudfront.net/studio/SQLProStudio.#{version}.app.zip",
-      verified: "d3fwkemdw8spx3.cloudfront.net/studio/"
+  on_sequoia :or_older do
+    disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  end
+
+  url "https://d3fwkemdw8spx3.cloudfront.net/studio/SQLProStudio.#{version}.app.zip"
   name "SQLPro Studio"
   desc "Database management tool"
   homepage "https://www.sqlprostudio.com/"
@@ -13,7 +16,7 @@ cask "sqlpro-studio" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "SQLPro Studio.app"
 

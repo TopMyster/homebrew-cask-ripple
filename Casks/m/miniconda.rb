@@ -2,8 +2,8 @@ cask "miniconda" do
   arch arm: "arm64", intel: "x86_64"
 
   on_arm do
-    version "py313_25.11.1-1"
-    sha256 "9f84ad10ea513fb59bb714933bc8dc092bd25fdb03c236868f5d5af3c26a1fd4"
+    version "py314_26.7.1-1"
+    sha256 "9bdf85d31ea3b4b85ef26b2762d68e2d849fdd38b608fb5272127acef802ff75"
 
     livecheck do
       url "https://repo.anaconda.com/miniconda/"
@@ -31,6 +31,7 @@ cask "miniconda" do
 
   auto_updates true
   conflicts_with cask: "miniforge"
+  depends_on :macos
   container type: :naked
 
   installer script: {
@@ -39,16 +40,16 @@ cask "miniconda" do
   }
   binary "#{caskroom_path}/base/condabin/conda"
 
-  postflight do
-    if Dir.exist? "#{HOMEBREW_TEMP}/#{token}-envs"
-      FileUtils.rm_r "#{caskroom_path}/base/envs"
-      FileUtils.mv "#{HOMEBREW_TEMP}/#{token}-envs", "#{caskroom_path}/base/envs"
+  postflight_steps do
+    if_path_exists "{{temp}}/{{token}}-envs" do
+      remove "base/envs", base: :caskroom_path, recursive: true
+      move "{{temp}}/{{token}}-envs", "base/envs", target_base: :caskroom_path
     end
   end
 
-  uninstall_preflight do
-    if Dir.exist? "#{caskroom_path}/base/envs"
-      FileUtils.mv "#{caskroom_path}/base/envs", "#{HOMEBREW_TEMP}/#{token}-envs"
+  uninstall_preflight_steps do
+    if_path_exists "{{caskroom_path}}/base/envs" do
+      move "base/envs", "{{temp}}/{{token}}-envs", source_base: :caskroom_path
     end
   end
 

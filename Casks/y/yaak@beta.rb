@@ -1,12 +1,33 @@
 cask "yaak@beta" do
-  arch arm: "aarch64", intel: "x64"
+  arch arm: "aarch64", intel: on_system_conditional(macos: "x64", linux: "amd64")
+  os macos: "Yaak", linux: "yaak"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  version "2025.10.0-beta.15"
-  sha256 arm:   "c53b009b9bfa824311521414ed68205f2789b8591313cabcd9aa9275c26c36ed",
-         intel: "ca43d25570084a12d75ad8df20ebb5dbc3fb347e2b3ea522052adcbf8182a075"
+  version "2026.9.0-beta.3"
+  sha256 arm:          "037f4063877e3755591f100d90eb83f1ff574caecf5895d6785d77dbf855d47e",
+         intel:        "d299e85d33eb44ac0c2d2639921e0afb88d0e0bce7eb841601420552738039bb",
+         arm64_linux:  "273cbdc00c777ad6687f171792baa9efa441a6d14c44c34a20345525d72359e6",
+         x86_64_linux: "7f63422b4918cf57e95d357adf8a73124155e826281535be6e28d994bbca55d0"
 
-  url "https://github.com/mountain-loop/yaak/releases/download/v#{version}/Yaak_#{version}_#{arch}.dmg",
-      verified: "github.com/mountain-loop/yaak/"
+  on_macos do
+    auto_updates true
+    depends_on macos: :ventura
+
+    app "Yaak.app"
+
+    zap trash: [
+      "~/Library/Application Support/app.yaak.desktop",
+      "~/Library/Caches/app.yaak.desktop",
+      "~/Library/Logs/app.yaak.desktop",
+      "~/Library/Saved Application State/app.yaak.desktop.savedState",
+      "~/Library/Webkit/app.yaak.desktop",
+    ]
+  end
+  on_linux do
+    app_image "yaak_#{version}_#{arch}.AppImage", target: "Yaak.AppImage"
+  end
+
+  url "https://github.com/mountain-loop/yaak/releases/download/v#{version}/#{os}_#{version}_#{arch}.#{url_end}"
   name "Yaak Beta"
   desc "REST, GraphQL and gRPC client"
   homepage "https://yaak.app/"
@@ -31,17 +52,5 @@ cask "yaak@beta" do
     end
   end
 
-  auto_updates true
   conflicts_with cask: "yaak"
-  depends_on macos: ">= :ventura"
-
-  app "yaak.app"
-
-  zap trash: [
-    "~/Library/Application Support/app.yaak.desktop",
-    "~/Library/Caches/app.yaak.desktop",
-    "~/Library/Logs/app.yaak.desktop",
-    "~/Library/Saved Application State/app.yaak.desktop.savedState",
-    "~/Library/Webkit/app.yaak.desktop",
-  ]
 end

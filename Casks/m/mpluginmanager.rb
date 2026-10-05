@@ -1,9 +1,8 @@
 cask "mpluginmanager" do
-  version "02.16"
-  sha256 "073b8d3037f31957f615d7d2bb63bd4e3bce6902403d2c666a74b8affd940fc0"
+  version "02.30"
+  sha256 "f56876618fa59dde4b977711c517ccd09ee2d0013fd92936b2053b31f434a352"
 
-  url "https://meldaproduction.b-cdn.net/download/mpluginmanager/MPluginManager_#{version.dots_to_underscores}_setupmac.zip",
-      verified: "meldaproduction.b-cdn.net/download/mpluginmanager/"
+  url "https://meldaproduction.b-cdn.net/download/mpluginmanager/MPluginManager_#{version.dots_to_underscores}_setupmac.zip"
   name "MPluginManager"
   desc "Installer for MeldaProduction audio plugins"
   homepage "https://www.meldaproduction.com/downloads"
@@ -17,6 +16,7 @@ cask "mpluginmanager" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "MPluginManager_#{version.dots_to_underscores}_setupmac.pkg"
 

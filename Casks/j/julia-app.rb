@@ -2,16 +2,9 @@ cask "julia-app" do
   arch arm: "aarch64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "aarch64", intel: "x86_64"
 
-  version "1.12.4"
-  sha256 arm:   "69df6d591592bf44af434be77d514d252aa315c89b312e8b5251a6a3313827a8",
-         intel: "47058f83ed84868ea83c1b716a88331a8b2f3e1414c4b04602761eb8ab627790"
-
-  on_arm do
-    depends_on macos: ">= :ventura"
-  end
-  on_intel do
-    depends_on macos: ">= :sequoia"
-  end
+  version "1.13.1"
+  sha256 arm:   "2c3500df52946e3f372ebc4b343085fad77672f62ab634856c4ca988f8f91a26",
+         intel: "4d13c255466d97f5636e6432f64872fe45d7149ba1f8b6b5ebf9634e63b4a5c7"
 
   url "https://julialang-s3.julialang.org/bin/mac/#{arch}/#{version.major_minor}/julia-#{version}-mac#{arch.delete_prefix("x")}.dmg"
   name "Julia"
@@ -29,6 +22,8 @@ cask "julia-app" do
       end
     end
   end
+
+  depends_on macos: :golden_gate
 
   app "Julia-#{version.major_minor}.app"
   binary "#{appdir}/Julia-#{version.major_minor}.app/Contents/Resources/julia/bin/julia"

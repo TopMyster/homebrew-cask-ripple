@@ -1,9 +1,8 @@
 cask "launchos" do
-  version "1.3.0,130"
-  sha256 "39c05f1b807c519c7f179308f1789dea76b651c8ba19ed444500c945fcf47418"
+  version "2.4.0,485"
+  sha256 "4dc1c21d2404813d5b677e6bc819f9e5cdb0cc7816da5dad2509672ca2dd587d"
 
-  url "https://static.remixdesign.app/launchos/LaunchOS-#{version.csv.first}-#{version.csv.second}.dmg",
-      verified: "static.remixdesign.app/launchos/"
+  url "https://static.remixdesign.app/launchos/LaunchOS-#{version.csv.first}-#{version.csv.second}.dmg"
   name "LaunchOS"
   desc "Launchpad alternative"
   homepage "https://launchosapp.com/"
@@ -14,7 +13,7 @@ cask "launchos" do
   end
 
   auto_updates true
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "LaunchOS.app"
 

@@ -1,9 +1,8 @@
 cask "weiyun" do
-  version "5.2.1545"
-  sha256 "924a5091449f17c80b960790b62717c638a4ba820abbd586c03569bc05077ab2"
+  version "5.2.1611"
+  sha256 "7c1cc9e0c4563aee070f00ba06309cecf1b57f6e35500cc4d4cb0638b2b6dd83"
 
-  url "https://dldir1.qq.com/weiyun/electron-update/release/#{version}/Weiyun-mac-x64-#{version}.dmg",
-      verified: "dldir1.qq.com/weiyun/"
+  url "https://dldir1.qq.com/weiyun/electron-update/release/#{version}/Weiyun-mac-x64-#{version}.dmg"
   name "Weiyun"
   desc "Document backup and online management"
   homepage "https://www.weiyun.com/"
@@ -14,6 +13,8 @@ cask "weiyun" do
       json.dig("electron_mac", "version")
     end
   end
+
+  depends_on :macos
 
   app "Weiyun.app"
 

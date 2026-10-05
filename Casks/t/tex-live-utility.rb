@@ -1,6 +1,6 @@
 cask "tex-live-utility" do
-  version "1.54"
-  sha256 "983178326b457b77324151c304269ecaf7ae93aec62e8509c0badf52c718995e"
+  version "1.58"
+  sha256 "ddc70b940298ffcb919ce6f2c1467c5b17d2f54de62f143535441f93dd5a6e35"
 
   url "https://github.com/amaxwell/tlutility/releases/download/#{version}/TeX.Live.Utility.app-#{version}.zip"
   name "TeX Live Utility"
@@ -13,8 +13,11 @@ cask "tex-live-utility" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "TeX Live Utility.app"
+
+  uninstall quit: "com.googlecode.mactlmgr.tlu"
 
   zap trash: [
     "~/Library/Application Support/TeX Live Utility",

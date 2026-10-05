@@ -1,11 +1,11 @@
 cask "advanced-renamer" do
   arch arm: "arm", intel: "intel"
 
-  version "4.19"
-  sha256 arm:   "57291e6362306d907c30863d6e8b9cbcbcdfea16c9cb2cf628876d39a1b90e0c",
-         intel: "d0a240dc11876f83d7058794ad68ed314e08828e2150e17d00c9f71c4771a7e8"
+  version "4.27"
+  sha256 arm:   "b330ccd310d0be91bea7c80c5b4c6e1920c17275e84c542af9f9d54748727e81",
+         intel: "2dffd085dfcde131359a597d2670cec5987c511489ee4ccc7849668f61eff76c"
 
-  url "https://www.advancedrenamer.com/down/macos/#{arch}/AdvancedRenamer_#{version.tr(".", "_")}.dmg"
+  url "https://www.advancedrenamer.com/down/macos/#{arch}/AdvancedRenamer_#{version.dots_to_underscores}.dmg"
   name "Advanced Renamer"
   desc "Batch file renaming utility"
   homepage "https://www.advancedrenamer.com/"
@@ -21,11 +21,14 @@ cask "advanced-renamer" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Advanced Renamer.app"
 
+  uninstall quit: "com.HulubuluSoftware.AdvancedRenamer"
+
   zap trash: [
+    "~/Library/Application Support/Advanced Renamer",
     "~/Library/Caches/com.HulubuluSoftware.AdvancedRenamer",
     "~/Library/HTTPStorages/com.HulubuluSoftware.AdvancedRenamer",
     "~/Library/Saved Application State/com.HulubuluSoftware.AdvancedRenamer.savedState",

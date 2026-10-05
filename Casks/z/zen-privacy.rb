@@ -1,12 +1,11 @@
 cask "zen-privacy" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.16.0"
-  sha256 arm:   "84a5545f63ddbc8993847b639f5cadce6033c262541ca2e14d7deaa8595862ae",
-         intel: "7ac34331b60088f91f5f1c6978264ae0526de17262221e06d97c65489cfebd89"
+  version "0.25.1"
+  sha256 arm:   "fba2842091d28dd9c61b34576ab68173afc63562c39f8dc4fb403c0635622397",
+         intel: "bc6af0aa133e58774372840f8ddba6611ee54e2f0b7d638f5db0ea1bb9f9e780"
 
-  url "https://github.com/ZenPrivacy/zen-desktop/releases/download/v#{version}/Zen_darwin_#{arch}_noselfupdate.tar.gz",
-      verified: "github.com/ZenPrivacy/zen-desktop/"
+  url "https://github.com/ZenPrivacy/zen-desktop/releases/download/v#{version}/Zen_darwin_#{arch}_noselfupdate.tar.gz"
   name "Zen"
   desc "Ad-blocker and privacy guard"
   homepage "https://zenprivacy.net/"
@@ -18,6 +17,7 @@ cask "zen-privacy" do
 
   auto_updates true
   conflicts_with cask: "zen"
+  depends_on :macos
 
   app "Zen.app"
 

@@ -1,14 +1,13 @@
 cask "exelearning" do
-  version "3.0.2"
-  sha256 "882bc442a35defa5622f3909885459a4ec5e8dc1c31fa0e34ce133f277ed4601"
+  version "4.0.5"
+  sha256 "69f2468784f5db06a7d8ccb60fefe2830ec0a837651d3838d07e572a461bca3a"
 
-  url "https://github.com/exelearning/exelearning/releases/download/v#{version}/eXeLearning-#{version}-universal.dmg",
-      verified: "github.com/exelearning/exelearning/"
+  url "https://github.com/exelearning/exelearning/releases/download/v#{version}/eXeLearning-#{version}-universal.dmg"
   name "eXeLearning"
   desc "Authoring tool to create educational resources"
   homepage "https://exelearning.net/"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "eXeLearning.app"
 

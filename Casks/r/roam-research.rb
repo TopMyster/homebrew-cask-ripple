@@ -1,12 +1,11 @@
 cask "roam-research" do
   arch arm: "-arm64"
 
-  version "0.0.30"
-  sha256 arm:   "32f812076e68f591aae2273b8857d84e644b63445d372424030a292c3dd9f66a",
-         intel: "0c54a4892349d1a1cbc78e7f4a69dbaeb825d66d46a3edf876cc6354f271ce8b"
+  version "0.0.39"
+  sha256 arm:   "293a3896b28147e4b1140c2d2f480c07663c38f60d58462de9160d659985628d",
+         intel: "d42a367792fd9cdc06e264ddce7cdcbb953652dfa54d5e12c8a9dbcfe83c37ed"
 
-  url "https://roam-electron-deploy.s3.amazonaws.com/Roam+Research-#{version}#{arch}.dmg",
-      verified: "roam-electron-deploy.s3.amazonaws.com/"
+  url "https://roam-electron-deploy.s3.amazonaws.com/Roam+Research-#{version}#{arch}.dmg"
   name "Roam Research"
   desc "Note-taking tool for networked thought"
   homepage "https://roamresearch.com/"
@@ -16,7 +15,7 @@ cask "roam-research" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Roam Research.app"
 

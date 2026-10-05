@@ -2,12 +2,11 @@ cask "gitkraken" do
   arch arm: "arm64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "-arm64"
 
-  version "11.8.0"
-  sha256 arm:   "28979b4cfd09e87dda1444ebfcfb17ee6a6fc66a6d1a2887ee731b706d1bbad5",
-         intel: "38369d5b941ccaa639708057936283522e04aaa9d900edcdc55a9743fd3e87e7"
+  version "12.6.0"
+  sha256 arm:   "4c3a0485823d8c84fc7f66099d8abfac6a241f0bd2a3c86ca974063f9e265c45",
+         intel: "02f103b6842bfee85a2e166880572ea071320d6df3d7ef299ae1b4e1999f68dd"
 
-  url "https://api.gitkraken.dev/releases/production/darwin/#{arch}/#{version}/GitKraken-v#{version}.zip",
-      verified: "api.gitkraken.dev/releases/production/"
+  url "https://api.gitkraken.dev/releases/production/darwin/#{arch}/#{version}/GitKraken-v#{version}.zip"
   name "GitKraken"
   desc "Git client focusing on productivity"
   homepage "https://www.gitkraken.com/"
@@ -21,6 +20,7 @@ cask "gitkraken" do
 
   auto_updates true
   conflicts_with cask: "gitkraken-on-premise-serverless"
+  depends_on :macos
 
   app "GitKraken.app"
 

@@ -1,9 +1,8 @@
 cask "syncplay" do
-  version "1.7.4"
-  sha256 "3933a2011071b736d5acbd68111c1abd19a78135136661201918ea4596ade871"
+  version "1.7.6"
+  sha256 "b027d9ba402953db9fe66f2d3770d16e500f1f6ac7e5a5a6e9552310fe9febb7"
 
-  url "https://github.com/Syncplay/syncplay/releases/download/v#{version}/Syncplay_#{version}.dmg",
-      verified: "github.com/Syncplay/syncplay/"
+  url "https://github.com/Syncplay/syncplay/releases/download/v#{version}/Syncplay_#{version}.dmg"
   name "Syncplay"
   desc "Synchronises media players"
   homepage "https://syncplay.pl/"
@@ -14,6 +13,8 @@ cask "syncplay" do
   end
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "Syncplay.app"
 

@@ -1,9 +1,8 @@
 cask "rotato" do
-  version "154"
-  sha256 "f8a9b0c1cae6398b5b0973bcabe1ce8e840539b29df987adb92443c67662a3bc"
+  version "154.11"
+  sha256 "4f61946df2d43afcc9f41f872c4e375da304a1f4b140d2cff03c29f40cf6204f"
 
-  url "https://download.rota.to/Rotato-#{version}.dmg",
-      verified: "download.rota.to/"
+  url "https://download.rota.to/Rotato-#{version}.dmg"
   name "Rotato"
   desc "Mockup generator & animator 3D"
   homepage "https://rotato.app/"
@@ -16,7 +15,7 @@ cask "rotato" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Rotato.app"
 

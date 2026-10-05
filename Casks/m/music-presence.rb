@@ -1,12 +1,11 @@
 cask "music-presence" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2.3.5"
-  sha256 arm:   "18a67a5c81a1caf4b6f80d2cd39ed6e87d5b9be143ad66cc398e969c967104a1",
-         intel: "6df38fd103e91408338156743860adf930c3ac0f43a4110df3e789120b32105c"
+  version "2.3.6"
+  sha256 arm:   "22f532cd1f5a98c87258746e853baa50500b084dd04d18c79ac0122b27678fc4",
+         intel: "7bc0cf74efaf9a98c4dae8e3b26373cd49368d9c459111480b7be7decc3f032d"
 
-  url "https://github.com/ungive/discord-music-presence/releases/download/v#{version}/musicpresence-#{version}-mac-#{arch}.dmg",
-      verified: "github.com/ungive/discord-music-presence/"
+  url "https://github.com/ungive/discord-music-presence/releases/download/v#{version}/musicpresence-#{version}-mac-#{arch}.dmg"
   name "Music Presence"
   desc "Discord music status that works with any media player"
   homepage "https://musicpresence.app/"
@@ -16,7 +15,7 @@ cask "music-presence" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Music Presence.app"
 

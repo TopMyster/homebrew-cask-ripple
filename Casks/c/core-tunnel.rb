@@ -1,19 +1,19 @@
 cask "core-tunnel" do
-  version "3.10.9"
-  sha256 "18df05f4c87a17d45ef299f3cf032bf615f8bc06a2a904059f464736ac476e56"
+  version "5.1,4874"
+  sha256 "761f10b2504b25752b1be1dd63ce0eab85e5f83a77c07416fd101c284feb756d"
 
-  url "https://codinn.com/update/tunnel/Core%20Tunnel-#{version}.zip"
+  url "https://codinn.com/update/tunnel/Core%20Tunnel-#{version.csv.first}%20(#{version.csv.second}).zip"
   name "Core Tunnel"
   desc "SSH tunnel manager"
   homepage "https://codinn.com/tunnel/"
 
   livecheck do
     url "https://codinn.com/update/tunnel/appcast.xml"
-    strategy :sparkle, &:short_version
+    strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sequoia
 
   app "Core Tunnel.app"
 

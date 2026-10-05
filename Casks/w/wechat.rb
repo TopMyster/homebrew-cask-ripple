@@ -1,6 +1,6 @@
 cask "wechat" do
-  version "4.1.6.47,33480"
-  sha256 "a0468c8b53bacdd088c4f1d0b7ad5060b40ca8ef860053b977ecc752e25493d5"
+  version "4.1.15.22,270102"
+  sha256 "d87de447a43cd2d59aef441d3a8b32aad255427289581afcffc90aee0735dfc2"
 
   url "https://dldir1.qq.com/weixin/Universal/Mac/xWeChatMac_universal_#{version.csv.first}_#{version.csv.second}.dmg"
   name "WeChat for Mac"
@@ -24,7 +24,7 @@ cask "wechat" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "WeChat.app"
 
@@ -33,6 +33,7 @@ cask "wechat" do
   zap trash: [
     "~/Library/Application Scripts/$(TeamIdentifierPrefix)com.tencent.xinWeChat",
     "~/Library/Application Scripts/$(TeamIdentifierPrefix)com.tencent.xinWeChat.IPCHelper",
+    "~/Library/Application Scripts/5A4RE8SF68.com.tencent.xinWeChat",
     "~/Library/Application Scripts/com.tencent.xinWeChat",
     "~/Library/Application Scripts/com.tencent.xinWeChat.MiniProgram",
     "~/Library/Application Scripts/com.tencent.xinWeChat.WeChatMacShare",
@@ -43,6 +44,7 @@ cask "wechat" do
     "~/Library/Containers/com.tencent.xinWeChat.WeChatMacShare",
     "~/Library/Cookies/com.tencent.xinWeChat.binarycookies",
     "~/Library/Group Containers/$(TeamIdentifierPrefix)com.tencent.xinWeChat",
+    "~/Library/Group Containers/5A4RE8SF68.com.tencent.xinWeChat",
     "~/Library/Preferences/com.tencent.xinWeChat.plist",
     "~/Library/Saved Application State/com.tencent.xinWeChat.savedState",
   ]

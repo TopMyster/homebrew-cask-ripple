@@ -1,29 +1,19 @@
 cask "itsycal" do
-  on_catalina :or_older do
-    version "0.14.1"
-    sha256 "3cbd422fb43409bb2bdf5341c61d69882302dfb216a7bc50b3c08e4318e3a395"
+  version "0.15.14"
+  sha256 "c66dc8a76dfb9d13396fc7bc3f5b18a41d8710840fb091aa849af747439bc949"
 
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_big_sur :or_newer do
-    version "0.15.10"
-    sha256 "25095796017ca84ae20336e94ef30a59bc74b8514128c74e2d05bbca07cbb62a"
-
-    livecheck do
-      url "https://itsycal.s3.amazonaws.com/itsycal.xml"
-      strategy :sparkle, &:short_version
-    end
-  end
-
-  url "https://itsycal.s3.amazonaws.com/Itsycal-#{version}.zip",
-      verified: "itsycal.s3.amazonaws.com/"
+  url "https://itsycal.s3.amazonaws.com/Itsycal-#{version}.zip"
   name "Itsycal"
   desc "Menu bar calendar"
   homepage "https://www.mowglii.com/itsycal/"
 
+  livecheck do
+    url "https://itsycal.s3.amazonaws.com/itsycal.xml"
+    strategy :sparkle, &:short_version
+  end
+
   auto_updates true
+  depends_on :macos
 
   app "Itsycal.app"
 

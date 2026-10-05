@@ -1,9 +1,8 @@
 cask "font-codicon" do
-  version "0.0.44"
-  sha256 "427aa8128ff9ff09935dd3c9b027ba5666a9186b16a0afa9474cc0e88e72dd7d"
+  version "0.0.46-24"
+  sha256 "d77bf2ed152e82c4b81288c5271a3481c61559d1a5416593756e3b0fe8a02bf1"
 
-  url "https://registry.npmjs.org/@vscode/codicons/-/codicons-#{version}.tgz",
-      verified: "registry.npmjs.org/@vscode/codicons/"
+  url "https://registry.npmjs.org/@vscode/codicons/-/codicons-#{version}.tgz"
   name "Codicon"
   homepage "https://github.com/microsoft/vscode-codicons"
 

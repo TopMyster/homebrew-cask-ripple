@@ -1,12 +1,11 @@
 cask "gams" do
   arch arm: "_arm64"
 
-  version "52.4.0"
-  sha256 arm:   "d7261404496132f1af67f4659cfc078732fba33240b52cc6a1578dbef35f5bfe",
-         intel: "91b2b30858d29f265be669359546a21514b8512356a0f346613bccaf41c8becc"
+  version "54.5.0"
+  sha256 arm:   "f7dc5ecc2f91ffae0e04bd5e7944ecb2d5ded241dcaf1c7e1e095a515daacb1a",
+         intel: "9e7ff81efa4cb6ed9caa214ba704001bd245a1c6bac1c3d18761e13b2b39452a"
 
-  url "https://d37drm4t2jghv5.cloudfront.net/distributions/#{version}/macosx#{arch}/GAMS#{version}.pkg",
-      verified: "d37drm4t2jghv5.cloudfront.net/"
+  url "https://d37drm4t2jghv5.cloudfront.net/distributions/#{version}/macosx#{arch}/GAMS#{version}.pkg"
   name "GAMS"
   desc "General Algebraic Modeling System"
   homepage "https://www.gams.com/"
@@ -15,6 +14,8 @@ cask "gams" do
     url "https://www.gams.com/download/"
     regex(/GAMS\s*Release\s*v?(\d+(?:\.\d+)+)[ <"]/i)
   end
+
+  depends_on :macos
 
   pkg "GAMS#{version}.pkg",
       choices: [

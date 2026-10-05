@@ -1,9 +1,8 @@
 cask "subler" do
-  version "1.9.1"
-  sha256 "b58172046d86d809bed47752fa9c8e2abf4ca001296989884da774e02c962f76"
+  version "1.9.5"
+  sha256 "446cfe23d7b85063176afc7bf5cdd75e3eb267c0b23ae9831c85ed37d08e2f85"
 
-  url "https://github.com/SublerApp/Subler/releases/download/#{version}/Subler-#{version}.zip",
-      verified: "github.com/SublerApp/Subler/"
+  url "https://github.com/SublerApp/Subler/releases/download/#{version}/Subler-#{version}.zip"
   name "Subler"
   desc "Mux and tag mp4 files"
   homepage "https://subler.org/"
@@ -14,6 +13,7 @@ cask "subler" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Subler.app"
 

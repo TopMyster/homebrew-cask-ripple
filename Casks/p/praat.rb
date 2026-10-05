@@ -1,9 +1,8 @@
 cask "praat" do
-  version "6.4.55,6455"
-  sha256 "216da6d9b0d9ab14c5a273b7f1c70c89509821632059b2fb4f57ae7e135fa7e7"
+  version "7.0.02,7002"
+  sha256 "9e4d1d220cff32ccfa4521114d23c11ebbfd792db61884f6019a44bd4aba19d4"
 
-  url "https://github.com/praat/praat.github.io/releases/download/v#{version.csv.first}/praat#{version.csv.second}_mac.dmg",
-      verified: "github.com/praat/praat.github.io/"
+  url "https://github.com/praat/praat.github.io/releases/download/v#{version.csv.first}/praat#{version.csv.second}_mac.dmg"
   name "Praat"
   desc "Doing phonetics by computer"
   homepage "https://praat.org/"
@@ -20,6 +19,8 @@ cask "praat" do
       end
     end
   end
+
+  depends_on :macos
 
   app "Praat.app"
   binary "#{appdir}/Praat.app/Contents/MacOS/Praat", target: "praat"

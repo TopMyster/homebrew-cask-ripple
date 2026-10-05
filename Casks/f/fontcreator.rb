@@ -1,6 +1,6 @@
 cask "fontcreator" do
-  version "15.0.0.3042"
-  sha256 "05afef7dd75c4f45bfa6a96a7485e730ea076ab97e047832d14716978ed5fbd1"
+  version "16.0.0.3082"
+  sha256 "41a17d2baa849142333acacf504ad3ef8b01ca2e01ee86a3bf223884cca04bd8"
 
   url "https://www.high-logic.com/previousrelease/FontCreator#{version}.dmg"
   name "FontCreator"
@@ -12,7 +12,7 @@ cask "fontcreator" do
     regex(/Version\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "FontCreator.app"
 

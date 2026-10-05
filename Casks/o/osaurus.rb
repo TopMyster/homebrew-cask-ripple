@@ -1,9 +1,8 @@
 cask "osaurus" do
-  version "0.7.4"
-  sha256 "254a5990b04fc37ab8d9ba0a50e3d5d6148d11c520857f4cfe53a7dc82f23be6"
+  version "0.25.18"
+  sha256 "b83afd67f084114faeca6f6e817f5ce71ca39238b5ff2d77b96504d2394d67d5"
 
-  url "https://github.com/dinoki-ai/osaurus/releases/download/#{version}/Osaurus-#{version}.dmg",
-      verified: "github.com/dinoki-ai/osaurus/"
+  url "https://github.com/osaurus-ai/osaurus/releases/download/#{version}/Osaurus-#{version}.dmg"
   name "Osaurus"
   desc "LLM server built on MLX"
   homepage "https://osaurus.ai/"
@@ -13,8 +12,8 @@ cask "osaurus" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sequoia"
   depends_on arch: :arm64
+  depends_on macos: :sequoia
 
   app "Osaurus.app"
   binary "#{appdir}/Osaurus.app/Contents/Helpers/osaurus"
@@ -26,6 +25,7 @@ cask "osaurus" do
     "~/Library/Application Support/Osaurus",
     "~/Library/Caches/com.dinoki.osaurus",
     "~/Library/HTTPStorages/com.dinoki.osaurus",
+    "~/Library/Logs/Osaurus",
     "~/Library/Preferences/com.dinoki.osaurus.plist",
     "~/Library/Saved Application State/com.dinoki.osaurus.savedState",
     "~/MLXModels",

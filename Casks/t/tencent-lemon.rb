@@ -1,9 +1,8 @@
 cask "tencent-lemon" do
-  version "5.3.0,49930F7D5D2246ECF0BAEE20B056DD4A"
-  sha256 "4247c8971b28f78c00ad600c463da94a7c39b02db3a5ba99fb1e70c4c939c675"
+  version "5.3.7,E25538C48C5537951B45AD1DED4B7A60"
+  sha256 "312f352bd5cf596c15620c3e38e2cff27b1ed7547a041f6ee6d0d1b313f83a8f"
 
-  url "https://pm.myapp.com/invc/xfspeed/qqpcmgr/module_update/#{version.csv.second}/Lemon#{version.csv.first}.dmg",
-      verified: "pm.myapp.com/invc/xfspeed/qqpcmgr/"
+  url "https://pm.myapp.com/invc/xfspeed/qqpcmgr/module_update/#{version.csv.second}/Lemon#{version.csv.first}.dmg"
   name "Tencent Lemon Cleaner"
   desc "Cleanup and system status tool"
   homepage "https://lemon.qq.com/"
@@ -20,13 +19,15 @@ cask "tencent-lemon" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Tencent Lemon.app"
 
-  uninstall delete: [
-    "/Library/Logs/Lemon",
-    "/Library/Preferences/LemonDaemon_packet.dat",
-  ]
+  uninstall quit:   "com.tencent.Lemon",
+            delete: [
+              "/Library/Logs/Lemon",
+              "/Library/Preferences/LemonDaemon_packet.dat",
+            ]
 
   zap trash: [
     "~/Library/Caches/com.tencent.Lemon",

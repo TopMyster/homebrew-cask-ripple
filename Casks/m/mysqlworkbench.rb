@@ -2,20 +2,7 @@ cask "mysqlworkbench" do
   arch arm: "arm64", intel: "x86_64"
 
   on_monterey :or_older do
-    on_catalina :or_older do
-      version "8.0.23"
-      sha256 "4c8664f5686a449a9760bda9b85d7e8c6beb1367d35f668048ffe534652da7b3"
-
-      url "https://downloads.mysql.com/archives/get/p/#{version.major}/file/mysql-workbench-community-#{version}-macos-x86_64.dmg",
-          user_agent: :curl
-
-      disable! date: "2026-09-01", because: :fails_gatekeeper_check
-
-      caveats do
-        requires_rosetta
-      end
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "8.0.31"
       sha256 "6807ac1138c424c57d7e912c08301a838a90935dd0fc7a5658d3ded23f98a865"
 
@@ -40,9 +27,9 @@ cask "mysqlworkbench" do
     end
   end
   on_ventura :or_newer do
-    version "8.0.45"
-    sha256 arm:   "8bbf8bdcce3e890c979373a0dbff3617985ec032b1cf50cb16282a0797b20799",
-           intel: "0928d720134642fd51aad4370611bc427859b308851196cf6cb72df25eb4dc06"
+    version "8.0.47"
+    sha256 arm:   "90b177034b3e2c64b822f44920cb11996ec1323f4c49e2fa0224748103fb4844",
+           intel: "9fb82446b8c89a5326f9c4b2ab59ab6ac76b389713f1f13553743f34952639a8"
 
     url "https://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-#{version}-macos-#{arch}.dmg"
 
@@ -56,6 +43,8 @@ cask "mysqlworkbench" do
   name "MySQL Workbench"
   desc "Visual tool to design, develop and administer MySQL servers"
   homepage "https://www.mysql.com/products/workbench/"
+
+  depends_on :macos
 
   app "MySQLWorkbench.app"
 

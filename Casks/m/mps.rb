@@ -1,9 +1,9 @@
 cask "mps" do
   arch arm: "macos-aarch64", intel: "macos"
 
-  version "2025.3,253.28294.432"
-  sha256 arm:   "dc79c41ce851448f4862306173914eee1e63e230410ed65356498efd2d5f0444",
-         intel: "c216008ca905efd9ab9271df9599ef38ecb66cba2c61482e7a56434ae3eddee6"
+  version "2026.1.1,261.25134.877"
+  sha256 arm:   "b9170dce0b47f55513ced9f81614064043ead0a5eef52aaf9487cf04fbd78c9b",
+         intel: "817e93a2a9637802efdb3a24fa8dfee06345c13f40466c74a51a376bcfe3aae2"
 
   url "https://download.jetbrains.com/mps/#{version.major_minor}/MPS-#{version.csv.first}-#{arch}.dmg"
   name "JetBrains MPS"
@@ -24,18 +24,11 @@ cask "mps" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "MPS.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/mps.wrapper.sh"
-  binary shimscript, target: "mps"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/MPS.app/Contents/MacOS/mps' "$@"
-    EOS
-  end
+  command_wrapper "mps",
+                  executable: "#{appdir}/MPS.app/Contents/MacOS/mps"
 
   zap trash: [
     "~/Library/Application Support/MPS#{version.csv.first.major_minor}",

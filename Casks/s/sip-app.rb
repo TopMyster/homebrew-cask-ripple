@@ -18,8 +18,8 @@ cask "sip-app" do
     end
   end
   on_sonoma :or_newer do
-    version "4.1.2"
-    sha256 "abbc150af92e1dc43168110e64c12232389e75f3a4574f78ba98fa224f0f2197"
+    version "5.1"
+    sha256 "349ebb7e9bcf26a883287fd28053f532a6804fab39e229f7c27dc5180791e8b0"
 
     # Some older items in the Sparkle feed have a more recent pubDate, so it's necessary to
     # work with all of the items in the feed (not just the newest one).
@@ -31,13 +31,13 @@ cask "sip-app" do
     end
   end
 
-  url "https://sipapp.fra1.digitaloceanspaces.com/updates/v#{version.major}/sip-#{version}.dmg",
-      verified: "sipapp.fra1.digitaloceanspaces.com/updates/"
+  url "https://sipapp.fra1.digitaloceanspaces.com/updates/v#{version.major}/sip-#{version}.dmg"
   name "Sip"
   desc "Collect, organise & share colours"
   homepage "https://sipapp.io/"
 
   auto_updates true
+  depends_on :macos
 
   app "Sip.app"
 

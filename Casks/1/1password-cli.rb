@@ -2,14 +2,13 @@ cask "1password-cli" do
   arch arm: "arm64", intel: "amd64"
   os macos: "darwin", linux: "linux"
 
-  version "2.32.0"
-  sha256 arm:          "11f92951d25cf77aa1e7e714f45b05b07d816227afb3f2116595b40e4ff1d8f0",
-         x86_64:       "d65ab2430d95af45b735045cb797eb33274902b8e85f945cd420929fb9bec181",
-         x86_64_linux: "68e3141b11ad38ba5004fb40d71371b710c0bbf94733f0df9180768336f90097",
-         arm64_linux:  "6f3d571aabe7701e21ad4b0f9d30207c3dcabdb2f9c261e3651106dde0ee8946"
+  version "2.40.0"
+  sha256 arm:          "43b9e7c245b48207c789ba1b8a481ccf4a658f60dbed8cc8b70d36044548a994",
+         intel:        "a435e0257ea35db77efca2c668d0faec20502d4c7e1f250a8dee59a10a5d985c",
+         arm64_linux:  "0e8ac99ee93d661aa725dc24a5ef8bf344741d224064a5dfb469dc689faec86a",
+         x86_64_linux: "74277219e8da60958c00f9aee9d2023225e98fdda8bfd2156a5d9e85e0edaab3"
 
-  url "https://cache.agilebits.com/dist/1P/op2/pkg/v#{version}/op_#{os}_#{arch}_v#{version}.zip",
-      verified: "cache.agilebits.com/dist/1P/op2/pkg/"
+  url "https://cache.agilebits.com/dist/1P/op2/pkg/v#{version}/op_#{os}_#{arch}_v#{version}.zip"
   name "1Password CLI"
   desc "Command-line interface for 1Password"
   homepage "https://developer.1password.com/docs/cli"
@@ -27,6 +26,7 @@ cask "1password-cli" do
   ]
 
   binary "op"
+  generate_completions_from_executable "op", "completion"
 
-  zap trash: "~/.op"
+  zap trash: "~/.config/op"
 end

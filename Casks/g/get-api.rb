@@ -1,6 +1,6 @@
 cask "get-api" do
-  version "1.3.4"
-  sha256 "05f4e1cb870eb1797254efb857573b291ab4df4366611d936fb3cbdf56982ea5"
+  version "3.1.0"
+  sha256 "03c0a9e85bac8620c7950204430d03d5f45ccef7557b03a420ca44e54069bcba"
 
   url "https://files.getapi.io/macos/#{version}/Get%20API.dmg"
   name "GetAPI"
@@ -13,7 +13,7 @@ cask "get-api" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Get API.app"
 

@@ -1,8 +1,8 @@
 cask "quo" do
-  version "4.4.0"
-  sha256 "a5b55f870df3f8cb41512dd2d644c89d71783401701e49e3f92b53cd7178e243"
+  version "5.6.15"
+  sha256 "10ee16f9fba72316d88e453e1bf77a50adec7b47bb492a2744e9f2c089a0fdfc"
 
-  url "https://download.quo.com/Quo%20(formerly%20OpenPhone)-#{version}-universal.dmg"
+  url "https://download.quo.com/Quo-#{version}-universal.dmg"
   name "Quo"
   desc "Business phone for professionals, teams, and companies"
   homepage "https://www.quo.com/"
@@ -12,9 +12,9 @@ cask "quo" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
-  app "Quo (formerly OpenPhone).app"
+  app "Quo.app"
 
   zap trash: [
     "~/Library/Application Support/OpenPhone",

@@ -1,9 +1,8 @@
 cask "claude" do
-  version "1.1.381,c2a39e9c82f5a4d51f511f53f532afd276312731"
-  sha256 "8305d9096c62c1171f29494e3f1b884aa4f058064523e20ceb6493b80cf08bee"
+  version "2.19675.1,8613680e2e16d90700c039e084a7883f321ed4e3"
+  sha256 "ff85b8af9051d438d6a58b5ffdc871eede7e41e730fb80f24e3f8e2a21d98487"
 
-  url "https://downloads.claude.ai/releases/darwin/universal/#{version.csv.first}/Claude-#{version.csv.second}.zip",
-      verified: "downloads.claude.ai/releases/darwin/universal/"
+  url "https://downloads.claude.ai/releases/darwin/universal/#{version.csv.first}/Claude-#{version.csv.second}.zip"
   name "Claude"
   desc "Anthropic's official Claude AI desktop app"
   homepage "https://claude.com/download"
@@ -22,9 +21,14 @@ cask "claude" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Claude.app"
+
+  uninstall quit: [
+    "com.anthropic.claudefordesktop",
+    "com.anthropic.claudefordesktop.helper",
+  ]
 
   zap trash: [
     "~/Library/Application Support/Claude",

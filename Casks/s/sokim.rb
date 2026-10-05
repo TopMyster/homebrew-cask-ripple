@@ -1,6 +1,6 @@
 cask "sokim" do
-  version "1.2.2"
-  sha256 "c595435e73cfed1ff2f0d30f8b95968693e22893e809015bed6b8b849a38d9eb"
+  version "1.3.4"
+  sha256 "0a7b1f5ebe1b8858b373ca974948c11f75ab69926833429355d1431e2bf6c0c4"
 
   url "https://github.com/kiding/SokIM/releases/download/v#{version}/SokIM.pkg"
   name "SokIM"
@@ -15,7 +15,7 @@ cask "sokim" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   pkg "SokIM.pkg"
 

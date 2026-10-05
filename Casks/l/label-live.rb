@@ -1,6 +1,6 @@
 cask "label-live" do
-  version "4.4.7"
-  sha256 "29dcc2cd2014f506b5527aec5fc69e69a58d7f161572ac5ab90ea96e31585fc1"
+  version "4.14.2"
+  sha256 "cc85c729a6b6dc4b9a90a1948c3184b6019c6e8ee3de5906fc488a9942401bac"
 
   url "https://download.label.live/Label-LIVE-#{version}.dmg"
   name "Label LIVE"
@@ -12,7 +12,7 @@ cask "label-live" do
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "Label LIVE.app"
 

@@ -1,12 +1,11 @@
 cask "readyapi" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.64.0"
-  sha256 arm:   "e4dfb11620d95c6ab1c985fb89d64e1ca44dddebad6cba850de28ba8aac53f29",
-         intel: "9af43c2f6849cac8a4b7348f4d42ab40ec00f70983dacaa90a7b1112604c8dfd"
+  version "4.2.0"
+  sha256 arm:   "e1e5ca628fe41b12d17da9b4aacb1f82b33126657c9c3e1f0e6c44ef6a7dc9f1",
+         intel: "e7bb40c8419f168a488721004b0b0193d1fa75ac8ed378b051c39bed80962dec"
 
-  url "https://dl.eviware.com/ready-api/#{version}/ReadyAPI-#{arch}-#{version}.dmg",
-      verified: "dl.eviware.com/ready-api/"
+  url "https://dl.eviware.com/ready-api/#{version}/ReadyAPI-#{arch}-#{version}.dmg"
   name "ReadyAPI Desktop"
   desc "Automated API testing platform"
   homepage "https://smartbear.com/product/ready-api/"
@@ -16,17 +15,18 @@ cask "readyapi" do
     regex(/>\s*Ready(?:!\s+)?API\s+v?(\d+(?:\.\d+)+)/i)
   end
 
-  installer script: {
-    executable: "ReadyAPI #{version} Installer.app/Contents/MacOS/JavaApplicationStub",
-    args:       ["-q"],
-  }
+  depends_on :macos
 
-  uninstall delete: [
-    "/Applications/ReadyAPI-#{version}.app",
-    "~/Desktop/ReadyAPI #{version}",
+  app "ReadyAPI-#{version}.app"
+
+  # The app identifier has unique numeric parts like 3080-8797-1984-6034.102895.
+  uninstall quit: [
+    "com.install4j.3080-8797-1984-6034.102827",
+    "com.install4j.3080-8797-1984-6034.102895",
   ]
 
   zap trash: [
+    "~/.readyapi",
     "~/Library/Application Support/ReadyAPI-#{version}",
     "~/Library/Preferences/com.smartbear.ready.plist",
   ]

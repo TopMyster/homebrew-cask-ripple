@@ -1,7 +1,7 @@
 cask "iterm2" do
   # NOTE: "2" is not a version number, but an intrinsic part of the product name
-  version "3.6.6"
-  sha256 "68293d89ddf2140407879a651b42d9d05e12f403f69633ec635a96a29d90b4f3"
+  version "3.7.3"
+  sha256 "eb7a166061e58602e3d4bdf69d92f2c8cf6a63feed002f6adc07128a71c8dc39"
 
   url "https://iterm2.com/downloads/stable/iTerm2-#{version.dots_to_underscores}.zip"
   name "iTerm2"
@@ -9,11 +9,7 @@ cask "iterm2" do
   homepage "https://iterm2.com/"
 
   livecheck do
-    # workaround for
-    # - https://github.com/Homebrew/homebrew-cask/pull/104019
-    # - https://github.com/gnachman/iterm2-website/issues/82
-    # url "https://iterm2.com/appcasts/final_modern.xml"
-    url "https://raw.githubusercontent.com/gnachman/iterm2-website/master/source/appcasts/final_modern.xml"
+    url "https://iterm2.com/appcasts/final_modern.xml"
     strategy :sparkle
   end
 
@@ -22,9 +18,11 @@ cask "iterm2" do
     "iterm2@beta",
     "iterm2@nightly",
   ]
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "iTerm.app"
+
+  uninstall quit: "com.googlecode.iterm2"
 
   zap trash: [
     "~/Library/Application Scripts/com.googlecode.iterm2.iTermFileProvider",

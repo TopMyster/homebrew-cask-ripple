@@ -2,12 +2,12 @@ cask "popo" do
   arch arm: "arm", intel: "intel"
 
   on_arm do
-    version "4.27.0,1767698505178"
-    sha256 "dd936a6058718c7116513bfdcaf7b49f7cd1f0e0508432c70de680d6b0100ff8"
+    version "4.35.2,1789895602631"
+    sha256 "561557484b2408e73ae16a718b35a39b103b563fb291115921b70073638a0c2a"
   end
   on_intel do
-    version "4.27.0,1767698419961"
-    sha256 "c0f6b43a0fa8882aa5b75bd8da10a59dd7fe49f512b4a0a664d7873acb4f8420"
+    version "4.35.2,1789912919118"
+    sha256 "fafeb5b3f6a9fbccdf00f671930436f8d80e90b3e926b6c9ddfe0583599ed7d7"
   end
 
   url "https://popo.netease.com/file/popomac/POPO-setup_#{version.csv.first}_#{arch}_prod_#{version.csv.second}.dmg"
@@ -32,9 +32,11 @@ cask "popo" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "popo_mac.app"
+
+  uninstall quit: "com.netease.game.popo"
 
   zap trash: [
     "~/Library/Application Support/Netease/Popo",

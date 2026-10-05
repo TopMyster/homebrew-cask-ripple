@@ -1,18 +1,27 @@
 cask "kaku" do
-  version "2.0.2"
-  sha256 "ba89cd59a49b7c21d7ccde09044e2fed7e2deeb617798ac45281f83130e313ca"
+  version "0.22.0"
+  sha256 "935559bb221bf4e11e8d2ffd26003afa7fabd3c5425dab4e9ae44567f1548295"
 
-  url "https://github.com/EragonJ/Kaku/releases/download/#{version}/Kaku-#{version}.dmg",
-      verified: "github.com/EragonJ/Kaku/"
+  url "https://github.com/tw93/Kaku/releases/download/V#{version}/Kaku.dmg"
   name "Kaku"
-  homepage "https://kaku.rocks/"
+  desc "Terminal optimised for AI coding"
+  homepage "https://github.com/tw93/Kaku"
 
-  deprecate! date: "2024-07-17", because: :unmaintained
-  disable! date: "2025-07-17", because: :unmaintained
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  auto_updates true
+  depends_on :macos
 
   app "Kaku.app"
+  binary "#{appdir}/Kaku.app/Contents/MacOS/kaku", target: "kaku"
 
-  caveats do
-    requires_rosetta
-  end
+  zap trash: [
+    "~/Library/Application Support/kaku",
+    "~/Library/Caches/kaku",
+    "~/Library/Preferences/fun.tw93.kaku.plist",
+    "~/Library/Saved Application State/fun.tw93.kaku.savedState",
+  ]
 end

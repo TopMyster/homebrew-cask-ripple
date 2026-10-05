@@ -1,9 +1,8 @@
 cask "coin-wallet" do
-  version "6.22.0"
-  sha256 "cab6168d69968131874b5e00b9962bf906421dedbb65fcba303cc52132a3505f"
+  version "6.30.0"
+  sha256 "2bedcac20a44c532681099f44975d39d2fe497d4e13778a2a3c8bd5a1e160a03"
 
-  url "https://github.com/CoinSpace/CoinSpace/releases/download/v#{version}/Coin.Wallet.dmg",
-      verified: "github.com/CoinSpace/CoinSpace/"
+  url "https://github.com/CoinSpace/CoinSpace/releases/download/v#{version}/Coin.Wallet.dmg"
   name "Coin Wallet"
   desc "Digital currency wallet"
   homepage "https://coin.space/"
@@ -16,7 +15,7 @@ cask "coin-wallet" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Coin Wallet.app"
 

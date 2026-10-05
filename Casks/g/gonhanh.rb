@@ -1,6 +1,6 @@
 cask "gonhanh" do
-  version "1.0.109"
-  sha256 "a7299b587d227ffcf7283b79fbb6bdfd0408be1ed4a21bff82d25cc21a4ac9ea"
+  version "1.0.165"
+  sha256 "2d4c6dcd3422efc0573151415f7cad56bc0ef3f8423784047a50ad43091ffd1f"
 
   url "https://github.com/khaphanspace/gonhanh.org/releases/download/v#{version}/GoNhanh.dmg"
   name "Gõ Nhanh"
@@ -13,7 +13,7 @@ cask "gonhanh" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "GoNhanh.app"
 
@@ -21,6 +21,7 @@ cask "gonhanh" do
 
   zap trash: [
     "~/Library/Application Support/GoNhanh",
+    "~/Library/Preferences/org.gonhanh.GoNhanh.plist",
     "~/Library/Preferences/space.khaphan.gonhanh.plist",
   ]
 end

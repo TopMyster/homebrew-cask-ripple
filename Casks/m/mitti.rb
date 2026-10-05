@@ -1,6 +1,6 @@
 cask "mitti" do
-  version "2.8.16,1422"
-  sha256 "a71f6af893e724825236c57764e916e83990798096ed0fb8cc53455b64e9a1ff"
+  version "2.8.19,1449"
+  sha256 "c70abe85fd644a7ba08afa1f1221a28f6a0c4c60a038b3f3465de74b7d03bca6"
 
   url "https://dl.imimot.com/Mitti#{version.csv.first}_#{version.csv.second}.dmg"
   name "Mitti"
@@ -13,8 +13,11 @@ cask "mitti" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Mitti.app"
+
+  uninstall quit: "com.imimot.Mitti.#{version.major}"
 
   zap trash: [
     "~/Library/Application Scripts/com.imimot.Mitti.*.MittiQuicklook",

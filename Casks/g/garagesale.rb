@@ -1,6 +1,6 @@
 cask "garagesale" do
-  version "9.9.4"
-  sha256 "fc660983367f6f15175e1ecefdb8f48cb8858f76afe9e6b36db5a377a890491e"
+  version "10.0"
+  sha256 "6e7eea5477ebd5e7a9f215eae6d63feece37bb7f4aa1213f49b5d828a7eb3c9d"
 
   url "https://downloads.iwascoding.com/downloads/GarageSale_#{version}.dmg"
   name "GarageSale"
@@ -12,7 +12,11 @@ cask "garagesale" do
     regex(/href=.*?GarageSale[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  depends_on :macos
+
   app "GarageSale.app"
+
+  uninstall quit: "com.iwascoding.garagesale#{version.major}"
 
   zap trash: [
     "~/Library/Application Scripts/com.iwascoding.garagesale*",

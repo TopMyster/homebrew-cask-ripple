@@ -1,9 +1,8 @@
 cask "webull" do
-  version "9.4.0,9000300027"
-  sha256 "844066b9e0e6fd92381680bed3bd6697dc10e3b36212145546d3abdb595b3347"
+  version "9.16.1,9000300111"
+  sha256 "6e607fef5713aa3984681d04032c98417b27d803e1515e2f7affa416c2674931"
 
-  url "https://u1sweb.webullfintech.com/us/Webull%20Desktop_#{version.csv.first}_#{version.csv.second}_global_universalsigned.dmg",
-      verified: "u1sweb.webullfintech.com/us/"
+  url "https://u1sweb.webullfintech.com/us/Webull%20Desktop_#{version.csv.first}_#{version.csv.second}_global_universalsigned.dmg"
   name "Webull"
   desc "Desktop client for Webull Financial LLC"
   homepage "https://www.webull.com/"
@@ -16,7 +15,11 @@ cask "webull" do
     end
   end
 
+  depends_on :macos
+
   app "Webull Desktop.app"
+
+  uninstall quit: "com.webull.desktop.v1"
 
   zap trash: [
     "~/.config/Webull Desktop",

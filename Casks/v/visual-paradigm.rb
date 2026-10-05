@@ -1,11 +1,11 @@
 cask "visual-paradigm" do
   arch arm: "AArch64", intel: "WithJRE"
 
-  version "17.3,20260101"
-  sha256 arm:   "fb080dd4d6e86b349d9e14cc9875b083322da99bc12ddc80ea06875f3bcc27ec",
-         intel: "26cb3609d9127bbd172e796cdad77c26c40c9f3a7429eef8ebf00b03f6ba8baf"
+  version "18.1,20260914"
+  sha256 arm:   "069b0e7a7b53942c4f4022ac42044080a8fd582c6a613fa34999573d7b0d20ea",
+         intel: "d52b8b83a52f14db2d8ee0c9c49e2dfc4f36b02fe6cc9387cbf34089d6360a55"
 
-  url "https://www.visual-paradigm.com/downloads/vp#{version.csv.first}/#{version.csv.second}/Visual_Paradigm_#{version.csv.first.dots_to_underscores}_#{version.csv.second}_OSX_#{arch}.dmg"
+  url "https://eu8.dl.visual-paradigm.com/visual-paradigm/vp#{version.csv.first}/#{version.csv.second}/Visual_Paradigm_#{version.csv.first.dots_to_underscores}_#{version.csv.second}_OSX_#{arch}.dmg"
   name "Visual Paradigm"
   desc "UML, SysML, BPMN modelling platform"
   homepage "https://www.visual-paradigm.com/"
@@ -21,7 +21,7 @@ cask "visual-paradigm" do
     end
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
+  depends_on :macos
 
   app "Visual Paradigm.app"
 

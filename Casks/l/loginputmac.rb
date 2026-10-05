@@ -1,9 +1,8 @@
 cask "loginputmac" do
-  version "3.5.5,15661"
-  sha256 "956b47427d15a448d3be7a59c49c4ef9f848420034ae988bcfa5cd13c685b0d2"
+  version "3.7.1,17722"
+  sha256 "0799e4d81d78636ac72fd5cdf543ccba3e4b6bfbe01b43a36c1845d449609c7a"
 
-  url "https://loginput-mac2.totest.top/LogInputMac#{version.csv.first.major}.app#{version.csv.second}.zip",
-      verified: "loginput-mac2.totest.top/"
+  url "https://loginput-mac2.totest.top/LogInputMac#{version.csv.first.major}.app#{version.csv.second}.zip"
   name "LoginputMac"
   desc "Chinese input method"
   homepage "https://im.logcg.com/loginputmac#{version.major}"
@@ -14,6 +13,7 @@ cask "loginputmac" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "LogInputMac#{version.csv.first.major}.app"
 

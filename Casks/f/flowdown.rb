@@ -1,9 +1,8 @@
 cask "flowdown" do
-  version "4.5.3"
-  sha256 "a139eafbac57725fa1e594baad8c6da869868fa267b9d1097268e5a8aecd1520"
+  version "5.2.1"
+  sha256 "929e0810f34824889ba2f2f0162951fb20eaf09077e24f140e16b6dd1170d133"
 
-  url "https://github.com/Lakr233/FlowDown/releases/download/#{version}/FlowDown-#{version}.zip",
-      verified: "github.com/Lakr233/FlowDown/"
+  url "https://github.com/Lakr233/FlowDown/releases/download/#{version}/FlowDown-#{version}.zip"
   name "FlowDown"
   desc "AI agent"
   homepage "https://flowdown.ai/"
@@ -14,9 +13,11 @@ cask "flowdown" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "FlowDown.app"
+
+  uninstall quit: "wiki.qaq.flow"
 
   zap trash: [
     "~/Library/Containers/wiki.qaq.flow.FlowDownWidget",

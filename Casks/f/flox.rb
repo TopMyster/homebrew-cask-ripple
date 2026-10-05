@@ -1,9 +1,9 @@
 cask "flox" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "1.8.2"
-  sha256 arm:   "5b82623f7873042eb0b81690b1f3dc38b75c056e18468a5ce6f0fb7d0cbc26a9",
-         intel: "a128b27d1413dabc8b7d4af4115076717e0168b11808d79e06587f717d09dda9"
+  version "1.17.0"
+  sha256 arm:   "f791f6101e3ffd0765b82fc1b94720b0b949d8f2ff5537bf90f2a2313b28e561",
+         intel: "6eab25b211c9f2c647a4bd5cae3fae0076e50250bc14f1a8ff545baa5ca11d60"
 
   url "https://downloads.flox.dev/by-env/stable/osx/flox-#{version}.#{arch}-darwin.pkg"
   name "flox"
@@ -15,7 +15,7 @@ cask "flox" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  auto_updates true
+  depends_on :macos
 
   pkg "flox-#{version}.#{arch}-darwin.pkg"
 
@@ -44,5 +44,7 @@ cask "flox" do
         "/usr/local/share/flox/scripts/uninstall_zap",
         "~/.cache/flox",
         "~/.config/flox",
+        "~/.local/share/flox",
+        "~/.local/state/flox",
       ]
 end

@@ -1,9 +1,8 @@
 cask "unity-ios-support-for-editor" do
-  version "2023.2.20f1,0e25a174756c"
-  sha256 "57582ddd821bbbcc0d33fff594afa50b096535ee061c363b7691c9a28a1132ef"
+  version "6000.6.4f1,12bfff696524"
+  sha256 "f4d1c22f3b2574a4a95b105536a901e72fb1916b2174d8044c1af0514ca96dbb"
 
-  url "https://download.unity3d.com/download_unity/#{version.csv.second}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.csv.first}.pkg",
-      verified: "download.unity3d.com/download_unity/"
+  url "https://download.unity3d.com/download_unity/#{version.csv.second}/MacEditorTargetInstaller/UnitySetup-iOS-Support-for-Editor-#{version.csv.first}.pkg"
   name "Unity iOS Build Support"
   desc "iOS target support for Unity"
   homepage "https://unity.com/products"
@@ -13,8 +12,9 @@ cask "unity-ios-support-for-editor" do
   end
 
   depends_on cask: "unity"
+  depends_on :macos
 
   pkg "UnitySetup-iOS-Support-for-Editor-#{version.csv.first}.pkg"
 
-  uninstall pkgutil: "com.unity3d.iOSSupport"
+  uninstall pkgutil: "com.unity3d.iOSSupport-#{version.csv.first}"
 end

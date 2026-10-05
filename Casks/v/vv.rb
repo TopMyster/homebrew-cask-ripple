@@ -8,6 +8,7 @@ cask "vv" do
   homepage "https://github.com/vv-vim/vv"
 
   depends_on formula: "neovim"
+  depends_on :macos
 
   app "VV.app"
   binary "#{appdir}/VV.app/Contents/Resources/bin/vv"

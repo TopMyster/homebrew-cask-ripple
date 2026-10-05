@@ -1,18 +1,26 @@
 cask "muse" do
-  version "4.1.1"
-  sha256 "809ba172f9929b4b0d49bfbe5f9210946013761f3cdd27862fc887b31ae5d96c"
+  version "4.0"
+  sha256 :no_check
 
-  url "https://github.com/xzzz9097/Muse/releases/download/v#{version}/Muse.app.zip"
+  url "https://muse.ai/api/hatch/app-download/mac"
   name "Muse"
-  desc "Open-source Spotify controller with TouchBar support"
-  homepage "https://github.com/xzzz9097/Muse"
+  desc "AI assistant for managing tasks, projects, and long-term goals"
+  homepage "https://muse.ai/"
 
-  deprecate! date: "2024-07-27", because: :unmaintained
-  disable! date: "2025-07-27", because: :unmaintained
+  disable! date: "2026-10-01", because: "requires a signed download URL, which is not supported by Homebrew"
+
+  auto_updates true
+  depends_on macos: :sonoma
 
   app "Muse.app"
 
-  caveats do
-    requires_rosetta
-  end
+  uninstall quit: "com.meta.endo"
+
+  zap trash: [
+    "~/Library/Application Support/com.meta.endo",
+    "~/Library/Caches/com.meta.endo",
+    "~/Library/HTTPStorages/com.meta.endo",
+    "~/Library/Preferences/com.meta.endo.plist",
+    "~/Library/WebKit/com.meta.endo",
+  ]
 end

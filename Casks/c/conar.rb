@@ -1,12 +1,11 @@
 cask "conar" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.26.0,260108x7dzx5gyf"
-  sha256 arm:   "eab72dae10cf43889046155d5cac8d9b836127fa2d2354281381eecfe2d631e6",
-         intel: "de4629b632aed27acc00e7619d62c4619f5975ab515e35c62616dc1894a2e87d"
+  version "0.32.0,260626zr7mzvf8f"
+  sha256 arm:   "1c024b63b492d8866b3c060a3a0be0d77e5e364b2e79cd033af9a99fe72cd863",
+         intel: "1330a223ddb308073a91bc84fbf8e7dde95aa8cfcc2bb21412d6556c0f4f0a62"
 
-  url "https://download.todesktop.com/25112796k32u7/Conar%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}-mac.zip",
-      verified: "download.todesktop.com/25112796k32u7/"
+  url "https://download.todesktop.com/25112796k32u7/Conar%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}-mac.zip"
   name "Conar"
   desc "AI-powered database and data management tool"
   homepage "https://conar.app/"
@@ -25,7 +24,7 @@ cask "conar" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Conar.app"
 

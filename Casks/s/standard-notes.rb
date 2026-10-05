@@ -1,12 +1,36 @@
 cask "standard-notes" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "arm64", intel: on_system_conditional(macos: "x64", linux: "x86_64")
+  os macos: "mac", linux: "linux"
+  url_end = on_system_conditional macos: "zip", linux: "AppImage"
 
-  version "3.198.5"
-  sha256 arm:   "2bb6f23c2d11803bb609e8fa63ee169bf142a8a156f294853f0b130b4e71fbc2",
-         intel: "474c6142faabb5e29185050b6cbbcdbcb3267ef333ccad7716a4d04d08f8440a"
+  version "3.202.7"
+  sha256 arm:          "cf665e59f197896bef22d52c8a75cf3c80bb24e3fefbde90ba6798a166f5b8a7",
+         intel:        "1e4f047954cd5a7c2bc195558f277b9ab1446ff8e373d517f863511432890861",
+         arm64_linux:  "69e1ff1948f0ea2e4e022a37b1fd7bb42613887cb0fc2d73fe7ea238663611dd",
+         x86_64_linux: "ba769ff37d2733ea470cd00f402af86c63bff21451106eac6e9b525a25f05428"
 
-  url "https://github.com/standardnotes/app/releases/download/%40standardnotes%2Fdesktop%40#{version}/standard-notes-#{version}-mac-#{arch}.zip",
-      verified: "github.com/standardnotes/app/"
+  on_macos do
+    app "Standard Notes.app"
+
+    zap trash: [
+      "~/Library/Application Support/Standard Notes",
+      "~/Library/Caches/org.standardnotes.standardnotes",
+      "~/Library/Caches/org.standardnotes.standardnotes.ShipIt",
+      "~/Library/Preferences/org.standardnotes.standardnotes.helper.plist",
+      "~/Library/Preferences/org.standardnotes.standardnotes.plist",
+      "~/Library/Saved Application State/org.standardnotes.standardnotes.savedState",
+    ]
+  end
+  on_linux do
+    app_image "standard-notes-#{version}-linux-#{arch}.AppImage", target: "Standard Notes.AppImage"
+
+    zap trash: [
+      "~/.config/Standard Notes",
+      "~/.standardnotes",
+    ]
+  end
+
+  url "https://github.com/standardnotes/app/releases/download/%40standardnotes%2Fdesktop%40#{version}/standard-notes-#{version}-#{os}-#{arch}.#{url_end}"
   name "Standard Notes"
   desc "Free, open-source, and completely encrypted notes app"
   homepage "https://standardnotes.com/"
@@ -25,15 +49,4 @@ cask "standard-notes" do
   end
 
   auto_updates true
-
-  app "Standard Notes.app"
-
-  zap trash: [
-    "~/Library/Application Support/Standard Notes",
-    "~/Library/Caches/org.standardnotes.standardnotes",
-    "~/Library/Caches/org.standardnotes.standardnotes.ShipIt",
-    "~/Library/Preferences/org.standardnotes.standardnotes.helper.plist",
-    "~/Library/Preferences/org.standardnotes.standardnotes.plist",
-    "~/Library/Saved Application State/org.standardnotes.standardnotes.savedState",
-  ]
 end

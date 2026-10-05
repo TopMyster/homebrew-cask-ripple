@@ -1,9 +1,8 @@
 cask "amazon-photos" do
-  version "11.1.3,22"
+  version "11.3.0,36"
   sha256 :no_check
 
-  url "https://d29x207vrinatv.cloudfront.net/mac/AmazonPhotosApp.zip",
-      verified: "d29x207vrinatv.cloudfront.net/"
+  url "https://d29x207vrinatv.cloudfront.net/mac/AmazonPhotosApp.zip"
   name "Amazon Photos"
   name "Amazon Drive"
   desc "Photo storage and sharing service"
@@ -13,6 +12,8 @@ cask "amazon-photos" do
     url :url
     strategy :extract_plist
   end
+
+  depends_on :macos
 
   app "Amazon Photos.app"
 

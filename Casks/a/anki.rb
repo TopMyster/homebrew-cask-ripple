@@ -1,39 +1,38 @@
 cask "anki" do
   arch arm: "apple", intel: "intel"
 
-  on_catalina :or_older do
-    version "24.11"
-    sha256 "4d44b763ea114e2aae61aaaa8171fd54a9095a06cd8e84a863675b1bbc75a24a"
-
-    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}-qt5.dmg",
-        verified: "github.com/ankitects/anki/"
-
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_big_sur do
+  on_big_sur :or_older do
     version "25.02.7"
     sha256 arm:   "b2df44bf951404e1d5d56150ee50e158ca5dfd77416b442ed02218348bf1a43b",
            intel: "0d7eb9781596e44c0a833df71c6948706b97c4e89e8bdb315707de33c33c6052"
 
-    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}-qt6.dmg",
-        verified: "github.com/ankitects/anki/"
+    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}-qt6.dmg"
 
     livecheck do
       skip "Legacy version"
     end
   end
-  on_monterey :or_newer do
-    version "25.09"
-    sha256 "a20952ad45400db2522ff8e8c6e2303d8f5f3ba0fa0ca9e57a14a42912439e77"
+  on_monterey do
+    version "26.05"
+    sha256 arm:   "7393597f4b96341ed74036010ed82bb4253e0390ae724d2b275c451bc858d127",
+           intel: "2ff4d72a1d1c993a29eff44e03d602e1dc81cfd8801518695ee3516d1df0c189"
 
-    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-launcher-#{version}-mac.dmg",
-        verified: "github.com/ankitects/anki/"
+    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}.dmg"
+
+    livecheck do
+      skip "Legacy version"
+    end
+  end
+  on_ventura :or_newer do
+    version "26.09.3"
+    sha256 arm:   "b36fe8f6c015a602feaf3ef38f5967c27c8964ee30a5c74ca2532225cf602345",
+           intel: "7b123efecab1395d03fdf4e5df4df16efc72c9629c38b50ef8cad692d310bd77"
+
+    url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac-#{arch}.dmg"
 
     livecheck do
       url :homepage
-      regex(/href=.*?anki[._-]launcher[._-]v?(\d+(?:\.\d+)+)(?:[._-]mac)?\.dmg/i)
+      regex(/href=.*?anki[._-]v?(\d+(?:\.\d+)+)(?:[._-]mac)?[._-]#{arch}\.dmg/i)
     end
   end
 
@@ -41,7 +40,11 @@ cask "anki" do
   desc "Memory training application"
   homepage "https://apps.ankiweb.net/"
 
+  depends_on :macos
+
   app "Anki.app"
+
+  uninstall quit: "net.ankiweb.anki"
 
   zap trash: [
     "~/Library/Application Support/Anki*",

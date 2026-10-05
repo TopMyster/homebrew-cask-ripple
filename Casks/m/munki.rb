@@ -1,9 +1,8 @@
 cask "munki" do
-  version "7.0.5.5448"
-  sha256 "895e781d83b6bd6095e06e493fd6478b49943dbb3d1f302260afc208b596b4ef"
+  version "7.3.0.5808"
+  sha256 "4ed826bd32811ef54524a10300f66c9af4c9fdd8c243ada146d468485e1bffcc"
 
-  url "https://github.com/munki/munki/releases/download/v#{version.major_minor_patch}/munkitools-#{version}.pkg",
-      verified: "github.com/munki/munki/"
+  url "https://github.com/munki/munki/releases/download/v#{version.major_minor_patch}/munkitools-#{version}.pkg"
   name "Munki"
   desc "Software installation manager"
   homepage "https://www.munki.org/munki/"
@@ -20,6 +19,8 @@ cask "munki" do
       end
     end
   end
+
+  depends_on :macos
 
   pkg "munkitools-#{version}.pkg"
 

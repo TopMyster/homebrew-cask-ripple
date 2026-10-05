@@ -1,6 +1,6 @@
 cask "mailplane" do
-  version "4.3.12,4954"
-  sha256 "dcd7243a0ea909b838d92664ea8e85dcb9f3e0648da713568b4856384a7b924b"
+  version "4.3.15,4962"
+  sha256 "265e66a042082406d094317e17603a880d5490367d53fec62503016ee77806cc"
 
   url "https://builds.mailplaneapp.com/Mailplane_#{version.major}_#{version.csv.second}.tbz"
   name "Mailplane"
@@ -13,6 +13,7 @@ cask "mailplane" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Mailplane.app"
 

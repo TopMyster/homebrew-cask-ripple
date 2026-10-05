@@ -1,6 +1,6 @@
 cask "enpass" do
-  version "6.11.17.2135"
-  sha256 "0b4a9b7710ac6bc2c76f6eb5ac84f3147c444c626179628a47b1025b70906093"
+  version "6.12.7.2787"
+  sha256 "f7d53fec58262bb68749b2a78a4b60f125e72fba6f5ff433ce8da200ebead40f"
 
   url "https://dl.enpass.io/stable/mac/package/#{version}/Enpass.pkg"
   name "Enpass"
@@ -8,9 +8,12 @@ cask "enpass" do
   homepage "https://www.enpass.io/"
 
   livecheck do
-    url "https://www.enpass.io/download/macos/website/stable"
+    url "https://www.enpass.io/download/macos/website/stable",
+        user_agent: :browser
     strategy :header_match
   end
+
+  depends_on :macos
 
   pkg "Enpass.pkg"
 

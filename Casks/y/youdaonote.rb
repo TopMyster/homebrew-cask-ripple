@@ -1,13 +1,12 @@
 cask "youdaonote" do
   arch arm: "-arm64"
 
-  version "8.2.22"
-  sha256 arm:   "6d7dbc227a8ffd5cb06b1db33f5c6faf361215ee41bb6052db234b0c487b62af",
-         intel: "7686672f26b25eb469e8c4438525dcf0c67b676052f65f7b0b09d267a1ebd67a"
+  version "8.2.81"
+  sha256 arm:   "8fd7681156693e19eff489b2ef65fabe48a19839e04f3d8d8a972e437a6659c7",
+         intel: "c5d8b8aca8dd9619d079651a1cc9156611daaec572e843a10a66a3026480edc4"
 
   url "https://artifact.lx.netease.com/download/ynote-electron/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0-#{version}#{arch}.dmg",
-      user_agent: :fake,
-      verified:   "artifact.lx.netease.com/download/ynote-electron/"
+      user_agent: :fake
   name "youdaonote"
   name "有道云笔记"
   desc "Multi-platform note application"
@@ -17,6 +16,8 @@ cask "youdaonote" do
     url "https://artifact.lx.netease.com/download/ynote-electron/latest-mac.yml"
     strategy :electron_builder
   end
+
+  depends_on :macos
 
   app "有道云笔记.app"
 

@@ -1,9 +1,9 @@
 cask "cpu-info" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.8.0"
-  sha256 arm:   "6b3263812daa92c21df3820c73556735391d60764f4408eee64cd861cfd6bb7f",
-         intel: "6ad3561e4df3f4dbf97b3193433b59fd779c72b37bfc6b95962f29ec0eda559d"
+  version "1.10.0"
+  sha256 arm:   "080acf4cfd55d4d677bd962e2ab399b303a1a898066d7b2634870900729faa31",
+         intel: "7b7e943ef7855f838ab018a656a4ddc19dd39707ad4026316ee994e8a336be93"
 
   url "https://github.com/kamgurgul/cpu-info/releases/download/jvm-#{version}/CPU-Info-macos-#{arch}-#{version}.dmg"
   name "CPU Info"
@@ -15,7 +15,7 @@ cask "cpu-info" do
     regex(/^jvm[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "CPU-Info.app"
 

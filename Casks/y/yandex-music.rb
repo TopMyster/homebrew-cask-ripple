@@ -1,22 +1,22 @@
 cask "yandex-music" do
-  version "5.82.0"
-  sha256 "a51a79f817befa43ea91e29a269f8cf24cf0fc44f31de40b471dc6ca1a4222aa"
+  version "5.122.0"
+  sha256 "2b14e83c7fd20f4ad77626a9a0b9343d588bc33b1cb45ffe0deb8a7b8605c7ec"
 
-  url "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_universal_#{version}.dmg",
-      verified: "music-desktop-application.s3.yandex.net/stable/"
+  url "https://desktop.app.music.yandex.net/stable/Yandex_Music_universal_#{version}.dmg"
   name "Yandex Music"
   desc "Tune in to Yandex Music and get personal recommendations"
   homepage "https://music.yandex.ru/"
 
   livecheck do
-    url "https://music-desktop-application.s3.yandex.net/stable/latest-mac.yml"
+    url "https://desktop.app.music.yandex.net/stable/latest-mac.yml"
     strategy :electron_builder
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
-  app "Яндекс Музыка.app"
+  # Renamed for consistency: app name is different in the Finder and in a shell.
+  app "Яндекс Музыка.app", target: "Yandex Music.app"
 
   zap trash: [
     "~/Library/Application Support/YandexMusic",

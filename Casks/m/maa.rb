@@ -1,6 +1,6 @@
 cask "maa" do
-  version "6.2.3"
-  sha256 "655c270c210911d8fac74c8efca54dc8d9f43f13007b4808e2afe7a48415d9ec"
+  version "6.18.0"
+  sha256 "937718ded59ff4b301b5bb6056905cd60a14eaa6ee83ecd9fb1f3b6685ccaba4"
 
   url "https://github.com/MaaAssistantArknights/MaaAssistantArknights/releases/download/v#{version}/MAA-v#{version}-macos-universal.dmg"
   name "MAA"
@@ -9,13 +9,21 @@ cask "maa" do
 
   livecheck do
     url "https://maa-release.hguandl.com/macos/appcast.xml"
-    strategy :sparkle do |items|
-      items.find { |item| item.channel.nil? }&.short_version&.delete_prefix("v")
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    strategy :sparkle do |items, regex|
+      items.map do |item|
+        next unless item.channel.nil?
+
+        match = item.short_version&.match(regex)
+        next unless match
+
+        match[1]
+      end
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "MAA.app"
 

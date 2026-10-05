@@ -1,29 +1,31 @@
 cask "koodo-reader" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "arm64", intel: on_system_conditional(macos: "x64", linux: "x86_64")
+  os macos: "dmg", linux: "AppImage"
 
-  version "1.7.4"
-  sha256 arm:   "def811c8e477bda788ae1036a395da499556ecbd2ee624249d95c897576efc41",
-         intel: "6270ed3bf37965de4e9d430de4d72036f70df8d957f0220419424947081f324e"
+  version "2.4.5"
+  sha256 arm:          "a57972137620e94ec86ea732b5a7b1b1fe5c32d1630526649acc0d1c0c55c97d",
+         intel:        "91c88d6e4f5c8faa4afdb38f3ff3e67b435ad7ffabca7b1a55e5f1dfc685fc86",
+         arm64_linux:  "de8ae99f0388aac7e8b08b4bc7cdf833897fdd020ae387724a69f3925538b217",
+         x86_64_linux: "dbdfd34509023f6ee00694cb2afdde0e6e3bba5071491340208a7c770a48d53f"
 
-  url "https://dl.koodoreader.com/v#{version}/Koodo-Reader-#{version}-#{arch}.dmg"
-  name "Koodo Reader"
-  desc "Open-source epub reader"
-  homepage "https://www.koodoreader.com/en"
+  on_macos do
+    disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  livecheck do
-    url "https://api.960960.xyz/api/update"
-    strategy :json do |json|
-      json.dig("log", "version")
-    end
+    app "Koodo Reader.app"
+
+    zap trash: [
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/xyz.960960.koodo.sfl*",
+      "~/Library/Application Support/koodo-reader",
+      "~/Library/Preferences/xyz.960960.koodo.plist",
+      "~/Library/Saved Application State/xyz.960960.koodo.savedState",
+    ]
+  end
+  on_linux do
+    app_image "Koodo-Reader-#{version}-#{arch}.AppImage", target: "Koodo Reader.AppImage"
   end
 
-  disable! date: "2026-09-01", because: :fails_gatekeeper_check
-
-  app "Koodo Reader.app"
-
-  zap trash: [
-    "~/Library/Application Support/koodo-reader",
-    "~/Library/Preferences/xyz.960960.koodo.plist",
-    "~/Library/Saved Application State/xyz.960960.koodo.savedState",
-  ]
+  url "https://github.com/koodo-reader/koodo-reader/releases/download/v#{version}/Koodo-Reader-#{version}-#{arch}.#{os}"
+  name "Koodo Reader"
+  desc "Open-source e-book reader"
+  homepage "https://www.koodoreader.com/en"
 end

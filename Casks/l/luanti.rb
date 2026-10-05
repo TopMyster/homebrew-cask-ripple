@@ -1,12 +1,11 @@
 cask "luanti" do
-  arch arm: "arm64", intel: "x86_64_flag_O1"
+  arch arm: "arm64", intel: "x86_64"
 
-  version "5.14.0,11.3"
-  sha256 arm:   "c9a0a084e74c21010dd2b3577453cefab3090d73d2599ffe4e40a1ecd5402233",
-         intel: "fbacfe1b56661e99e3d8f65608f0504de5d287cb1e4c564e1a6a123f4b5ea136"
+  version "5.17.0,12.3"
+  sha256 arm:   "0ba118b537d3cc6fd07cd2268fef25e515fc6d87c27ad69b476144a8e28dba3c",
+         intel: "deb7c09b4425a95203ed6729949ca3c35e565e7771be896f6bd2b9ad52241de7"
 
-  url "https://github.com/minetest/minetest/releases/download/#{version.csv.first}/luanti_#{version.csv.first}-macos#{version.csv.second}_#{arch}.zip",
-      verified: "github.com/minetest/minetest/"
+  url "https://github.com/luanti-org/luanti/releases/download/#{version.csv.first}/luanti_#{version.csv.first}_macos#{version.csv.second}_#{arch}.zip"
   name "Luanti"
   desc "Voxel game-creation platform"
   homepage "https://www.luanti.org/"
@@ -19,9 +18,9 @@ cask "luanti" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
-  app "Luanti.app"
+  app "luanti.app"
 
   zap trash: [
     "~/Library/Application Support/minetest",

@@ -1,9 +1,8 @@
 cask "ths" do
-  version "5.2.2"
-  sha256 "9188f9c5965d7b01f117536e62761b94038cfbe1bfca3e95a193c7dbb63563ee"
+  version "5.3.5"
+  sha256 "14d228c77743771cb43d9f9796b666c6e36c9e43dc8d2ff61f97cd7aefa53dbc"
 
-  url "https://sp.thsi.cn/staticS3/mobileweb-upload-static-server.file/app_6/downloadcenter/ThsMac#{version}.dmg",
-      verified: "sp.thsi.cn/staticS3/mobileweb-upload-static-server.file/app_6/downloadcenter/"
+  url "https://sp.thsi.cn/staticS3/mobileweb-upload-static-server.file/app_6/downloadcenter/ThsMac#{version}.dmg"
   name "Straight Flush"
   name "同花顺"
   desc "Stock trading software"
@@ -13,6 +12,8 @@ cask "ths" do
     url "https://download.10jqka.com.cn/index/download/id/113/"
     strategy :header_match
   end
+
+  depends_on :macos
 
   app "同花顺.app"
 

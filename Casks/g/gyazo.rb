@@ -1,6 +1,6 @@
 cask "gyazo" do
-  version "10.5.0"
-  sha256 "cecfcde53826d8234343a8b5e146075f59493820419ff9d173285c67598c7650"
+  version "11.2.0"
+  sha256 "c201ad45449c560a4e00d0c2bc79abbde9e9289c5b2b4fe31ddd101ef9e6a9e9"
 
   url "https://files.gyazo.com/setup/Gyazo-#{version}.pkg"
   name "Nota Gyazo GIF"
@@ -12,9 +12,10 @@ cask "gyazo" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :big_sur"
+  auto_updates true
+  depends_on :macos
 
-  pkg "Gyazo-#{version}.pkg"
+  installer manual: "Gyazo-#{version}.pkg"
 
   uninstall launchctl: "com.gyazo.menu.helper",
             quit:      "com.gyazo.menu",

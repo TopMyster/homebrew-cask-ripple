@@ -1,5 +1,5 @@
 cask "archaeology" do
-  version "1.5,215"
+  version "1.7,306"
   sha256 :no_check
 
   url "https://www.mothersruin.com/software/downloads/Archaeology.dmg"
@@ -18,14 +18,16 @@ cask "archaeology" do
     end
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sonoma
 
   app "Archaeology.app"
   binary "#{appdir}/Archaeology.app/Contents/MacOS/trowel"
 
   zap trash: [
+    "~/Library/Application Scripts/*.com.mothersruin.MRSFoundation.ASN1AnnotationStore",
     "~/Library/Application Scripts/com.mothersruin.Archaeology",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mothersruin.archaeology.sfl*",
     "~/Library/Containers/com.mothersruin.Archaeology",
+    "~/Library/Group Containers/*.com.mothersruin.MRSFoundation.ASN1AnnotationStore",
   ]
 end

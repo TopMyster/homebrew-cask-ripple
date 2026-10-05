@@ -1,9 +1,8 @@
 cask "ai-studio" do
-  version "2026.0.2"
-  sha256 "02423a5f4a1c87cfe12d0e9ab7cfe8dcca90e6ee711a5017240e9aa362915d1a"
+  version "2026.1.1"
+  sha256 "39936193aac589e127535bc2660a1d744dac8d83ec16243b5b1af28332f305f1"
 
-  url "https://releases.rapidminer.com/archive/rapidminer-studio/#{version}/ai-studio-osx-#{version}.dmg",
-      verified: "releases.rapidminer.com/"
+  url "https://releases.rapidminer.com/archive/rapidminer-studio/#{version}/ai-studio-osx-#{version}.dmg"
   name "Altair AI Studio"
   desc "Data science platform"
   homepage "https://altair.com/altair-rapidminer"
@@ -12,6 +11,8 @@ cask "ai-studio" do
     url "https://releases.rapidminer.com/latest/rapidminer-studio/rapidminer-studio-osx.dmg"
     strategy :header_match
   end
+
+  depends_on :macos
 
   app "AI Studio #{version}.app"
 

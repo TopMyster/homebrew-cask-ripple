@@ -1,9 +1,8 @@
 cask "eqmac" do
-  version "1.8.12"
-  sha256 "ab75f4868390ae21e65d487cdbfe2be62acb3f2de4170bed4be16b3e059f1328"
+  version "1.9.2"
+  sha256 "b70af007a66efb5e25d368ae51f8510a23e1fc0e016a0891f3d1692caed226c2"
 
-  url "https://github.com/bitgapp/eqMac/releases/download/v#{version}/eqMac.dmg",
-      verified: "github.com/bitgapp/eqMac/"
+  url "https://github.com/bitgapp/eqMac/releases/download/v#{version}/eqMac.dmg"
   name "eqMac"
   desc "System-wide audio equaliser"
   homepage "https://eqmac.app/"
@@ -14,6 +13,7 @@ cask "eqmac" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "eqMac.app"
 

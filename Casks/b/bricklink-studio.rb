@@ -1,9 +1,8 @@
 cask "bricklink-studio" do
-  version "2.25.12_1"
-  sha256 "07a91b3c2f6bfa6e697ce03ae9729890e44012b3333fb76d8bb62b94d35531ba"
+  version "2.26.9_1"
+  sha256 "d8e05093c61fd12431d90495e5e44195405bf3184cf8117c5d369a93410aeb59"
 
-  url "https://studio.download.bricklink.info/Studio#{version.major}.0/Studio+#{version.major}.0.pkg",
-      verified: "studio.download.bricklink.info/"
+  url "https://studio.download.bricklink.info/Studio#{version.major}.0/Archive/#{version}/Studio+#{version.major}.0.pkg"
   name "Studio"
   desc "Build, render, and create LEGO instructions"
   homepage "https://www.bricklink.com/v3/studio/download.page"
@@ -14,6 +13,7 @@ cask "bricklink-studio" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Studio+#{version.major}.0.pkg"
 

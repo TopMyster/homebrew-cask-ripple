@@ -2,27 +2,29 @@ cask "apifox" do
   arch arm: "-macOS-arm64"
   livecheck_arch = on_arch_conditional arm: "-arm64"
 
-  version "2.8.2"
-  sha256 arm:   "df3a85d66622bc21c4a7b1dfb3c5d6c43b7bde409feaf861f1faac7373f8a806",
-         intel: "f2ecbea7f4572cd100460ece665a707bdc33c8501d9eba6f80f2104da071396f"
+  version "2.8.49"
+  sha256 arm:   "3d84857121ae26a58a42ee22efe40d7e1478483894fd0ba01b4a158ec7dbec53",
+         intel: "b9a5afeada96b24afab2abfaa23997aaeb831e8983b5b444e21fa646ccbdf9b9"
 
-  url "https://file-assets.apifox.com/download/#{version}/Apifox#{arch}-#{version}.dmg",
-      verified: "file-assets.apifox.com/download/"
+  url "https://file-assets.apifox.com/download/#{version}/Apifox#{arch}-#{version}.dmg"
   name "Apifox"
   desc "Platform for API documentation, debugging, and testing"
   homepage "https://github.com/apifox/apifox"
 
   livecheck do
-    url "https://api.apifox.com/api/v1/configs/client-updates/#{version}/mac#{livecheck_arch}/latest-mac.yml?noCache=#{Time.new.to_i * 2}"
+    url "https://api.apifox.com/api/v1/configs/client-updates/#{version}/mac#{livecheck_arch}/latest-mac.yml?noCache=#{Time.now.to_i * 2}"
     strategy :electron_builder
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Apifox.app"
 
   zap trash: [
+    "~/.apifox-ai-agent-debugger",
     "~/Library/Application Support/apifox",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/cn.apifox.app.sfl*",
     "~/Library/Preferences/cn.apifox.app.plist",
     "~/Library/Saved Application State/cn.apifox.app.savedState",
   ]

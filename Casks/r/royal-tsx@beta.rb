@@ -1,27 +1,30 @@
 cask "royal-tsx@beta" do
-  version "6.3.1.5"
-  sha256 "96aee2badfe3fb86319c0280e540e9af050fe26c172b5783119a407747693c1a"
+  version "26.0.14.0"
+  sha256 "67a7b132dbded863a79fef57e10833b64ae188a56c5944db499fb61522737024"
 
-  url "https://royaltsx-v#{version.major}.royalapps.com/updates/royaltsx_#{version}.dmg"
+  url "https://royaltsx-v#{version.major}.royalapps.com/app/updates/downloads/royaltsx_#{version}.dmg"
   name "Royal TSX"
   desc "Remote management solution"
-  homepage "https://www.royalapps.com/ts/mac/features"
+  homepage "https://www.royalapps.com/ts/mac/features-beta"
 
   livecheck do
-    url "https://royaltsx-v#{version.major}.royalapps.com/updates_beta.php"
+    url "https://royaltsx-v#{version.major}.royalapps.com/app/updates"
     strategy :sparkle
   end
 
   auto_updates true
   conflicts_with cask: "royal-tsx"
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   app "Royal TSX.app"
+
+  uninstall quit: "com.lemonmojo.RoyalTSX.App"
 
   zap trash: [
     "~/Library/Application Support/com.lemonmojo.RoyalTSX.App",
     "~/Library/Application Support/Royal TSX",
     "~/Library/Caches/com.lemonmojo.RoyalTSX.App",
+    "~/Library/HTTPStorages/com.lemonmojo.RoyalTSX.App",
     "~/Library/Preferences/com.lemonmojo.RoyalTSX.App.plist",
   ]
 end

@@ -1,12 +1,11 @@
 cask "fossa" do
   arch arm: "arm64", intel: "amd64"
 
-  version "3.15.4"
-  sha256 arm:   "5402079f9f17d4828001637044a54379277729dbb9eeac77d6a22a8836185264",
-         intel: "9c5d866959e71ea4306b409f8b48c170af4790ca2c48b9d28dd158dbb649f00e"
+  version "3.20.0"
+  sha256 arm:   "3042f3aeae2f1726c2fcd7ce4e703c9b149741b01aa27758a12d43ae93284889",
+         intel: "777e9d251d0bc77639a4634786998e10ef892fae1b1e6c794e6c29abcd73fed3"
 
-  url "https://github.com/fossas/fossa-cli/releases/download/v#{version}/fossa_#{version}_darwin_#{arch}.zip",
-      verified: "github.com/fossas/fossa-cli/"
+  url "https://github.com/fossas/fossa-cli/releases/download/v#{version}/fossa_#{version}_darwin_#{arch}.zip"
   name "FOSSA"
   desc "Zero-configuration polyglot dependency analysis tool"
   homepage "https://fossa.com/"
@@ -15,6 +14,8 @@ cask "fossa" do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   binary "fossa"
 

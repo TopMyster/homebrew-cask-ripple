@@ -1,9 +1,8 @@
 cask "opencpn" do
-  version "5.12.4,-universal+15189.37fd0cddb-14"
-  sha256 "9c28432fe4abaff0542bc24969e19ab363de59afd9bb72c8354787931f87d8e8"
+  version "5.14.2,-universal+18284.bd6986a08-14"
+  sha256 "cf56e9c55c2d72cae5ae3013876139f61b7757edc9777a022bddedc11fc3922b"
 
-  url "https://github.com/OpenCPN/OpenCPN/releases/download/Release_#{version.csv.first}/OpenCPN_#{version.csv.first}#{version.csv.second}.pkg",
-      verified: "github.com/OpenCPN/OpenCPN/"
+  url "https://github.com/OpenCPN/OpenCPN/releases/download/Release_#{version.csv.first}/OpenCPN_#{version.csv.first}#{version.csv.second}.pkg"
   name "OpenCPN"
   desc "Full-featured and concise ChartPlotter/Navigator"
   homepage "https://www.opencpn.org/"
@@ -18,6 +17,8 @@ cask "opencpn" do
       match[2].present? ? "#{match[1]},#{match[2]}" : match[1]
     end
   end
+
+  depends_on :macos
 
   pkg "OpenCPN_#{version.csv.first}#{version.csv.second}.pkg"
 

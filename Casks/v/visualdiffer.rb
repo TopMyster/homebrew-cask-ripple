@@ -1,9 +1,8 @@
 cask "visualdiffer" do
-  version "2.1.3"
-  sha256 "80e172d110283544330140c576c9e71b1d24dcec33ed2b2640b5ae35e32f0ced"
+  version "2.2.1"
+  sha256 "a12a2af07dee6dd2ad9bf85428190d177bf8ecfa7421a7137fbba2e0eb0fbbbe"
 
-  url "https://github.com/visualdiffer/visualdiffer/releases/download/v#{version}/VisualDiffer-#{version}.zip",
-      verified: "github.com/visualdiffer/visualdiffer/"
+  url "https://github.com/visualdiffer/visualdiffer/releases/download/v#{version}/VisualDiffer-#{version}.zip"
   name "VisualDiffer"
   desc "Visually compare folders and files"
   homepage "https://visualdiffer.com/"
@@ -14,7 +13,7 @@ cask "visualdiffer" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "VisualDiffer.app"
 

@@ -1,17 +1,19 @@
 cask "powerpanel" do
-  version "2.7.0"
-  sha256 "101673d616bfcb11b6b3b82ac98246d22f7c9fa56200740789812a7dba01d628"
+  version "2.7.2"
+  sha256 "87ca61bd45f8961f63e27b2953658fc503d652588b85f793e7f7a93a37cc685a"
 
-  url "https://dl4jz3rbrsfum.cloudfront.net/software/PPP_Mac_v#{version}.pkg",
-      verified: "dl4jz3rbrsfum.cloudfront.net/"
+  url "https://dl4jz3rbrsfum.cloudfront.net/software/PPP_Mac_v#{version}.pkg"
   name "CyberPower PowerPanel Personal"
   desc "Manage and control UPS systems"
   homepage "https://www.cyberpowersystems.com/products/software/power-panel-personal/"
 
   livecheck do
-    url "https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-personal-mac/"
+    url "https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-personal-mac/",
+        user_agent: :browser
     regex(/href=.*?PPP[._-]Mac[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
+
+  depends_on :macos
 
   pkg "PPP_Mac_v#{version}.pkg"
 
@@ -20,6 +22,7 @@ cask "powerpanel" do
               "com.cyberpower.powerpanel-personal.client",
               "com.cyberpower.powerpanel-personal.daemon",
             ],
+            quit:      "com.cyberpower.powerpanel-personal.client",
             pkgutil:   [
               "com.cpsww.ppupsd",
               "com.cyberpower.powerpanelpersonal.ppp",

@@ -20,23 +20,22 @@ jobs:
     strategy:
       matrix:
         runner:
-          - macos-14
           - macos-15
-          - macos-15-intel
           - macos-26
+          - xcode-27
           - ubuntu-latest
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@e99025eb970cfa124b8284a35463d87426917478 # 2026.09.28.1
         with:
           core: false
           cask: false
 
       - name: Cache Homebrew Gems
         id: cache
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
           key: ${{ matrix.runner }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}

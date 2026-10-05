@@ -1,6 +1,6 @@
 cask "hookmark" do
-  version "6.13"
-  sha256 "33926bc938999662c3b2f9e7a56d3633418e8db7a33c16652edc2b858becc725"
+  version "7.3.1"
+  sha256 "e73f2f93cc441f9f62160a08c925cb89577e4b64ac83392d9942309224010227"
 
   url "https://updates.hookproductivity.com/downloads/Hookmark-app-#{version}.dmg",
       user_agent: :browser
@@ -15,6 +15,7 @@ cask "hookmark" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Hookmark.app"
 

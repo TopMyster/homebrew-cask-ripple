@@ -1,6 +1,6 @@
 cask "diskcatalogmaker" do
-  version "9.1.9"
-  sha256 "fd4fbb28a2438a0e2069d32c9f2ce558131bb7a788c60646391b683f1ea2e7bb"
+  version "9.3.1"
+  sha256 "929f60b1000a7dae420ded33a1d8a1b68bbf53edb8ca84db3158931da00c5e70"
 
   url "https://diskcatalogmaker.com/download/zip/DiskCatalogMaker#{version.no_dots}.zip"
   name "DiskCatalogMaker"
@@ -13,8 +13,11 @@ cask "diskcatalogmaker" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "DiskCatalogMaker.app"
+
+  uninstall quit: "com.mac.fujisoft.DiskCatalogMaker"
 
   zap trash: [
     "~/Library/Application Support/com.mac.fujisoft.DiskCatalogMaker",

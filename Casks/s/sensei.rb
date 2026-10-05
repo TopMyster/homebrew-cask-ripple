@@ -1,6 +1,6 @@
 cask "sensei" do
-  version "2.0,125"
-  sha256 "4d395c8c997489d49e8f763026a45a8c765023d3826fc3afe27ad20425656583"
+  version "2.1.3,141"
+  sha256 "837b64711684aac349aaf6c242dbed32e1527f387aa74e19c68e7ea2625d6180"
 
   url "https://cdn.cindori.com/apps/sensei/updates/#{version.csv.first}-#{version.csv.second}/Sensei.dmg"
   name "Sensei"
@@ -13,11 +13,19 @@ cask "sensei" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Sensei.app"
 
-  uninstall launchctl: "org.cindori.SenseiTool",
+  uninstall launchctl: [
+              "org.cindori.SenseiMonitor",
+              "org.cindori.SenseiMonitor.agent",
+              "org.cindori.SenseiTool",
+            ],
+            quit:      [
+              "org.cindori.Sensei",
+              "org.cindori.SenseiMonitor",
+            ],
             delete:    [
               "/Library/LaunchAgents/org.cindori.SenseiMonitor.plist",
               "/Library/LaunchDaemons/org.cindori.SenseiDaemon.plist",
@@ -39,6 +47,7 @@ cask "sensei" do
     "~/Library/HTTPStorages/org.cindori.Sensei",
     "~/Library/HTTPStorages/org.cindori.Sensei.binarycookies",
     "~/Library/Preferences/org.cindori.Sensei.plist",
+    "~/Library/Preferences/org.cindori.SenseiMonitor.plist",
     "~/Library/Saved Application State/org.cindori.Sensei.savedState",
   ]
 end

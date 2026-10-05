@@ -1,16 +1,18 @@
 cask "ubar" do
-  version "4.2.3,423"
-  sha256 "1cc6319deeadb3b2501ef0a2546039f0392ace6576c6d4ad89e54187c70f2153"
+  version "4.2.5"
+  sha256 "a42e291dd832e773a4be194cb70106c19e18f2ca765781b7c71b57cc37b20938"
 
-  url "https://www.brawersoftware.com/downloads/ubar/ubar#{version.csv.second}.zip"
+  url "https://data.brawersoftware.com/downloads/ubar/ubar#{version.no_dots}.zip"
   name "uBar"
-  desc "Window manager and productivity tool"
-  homepage "https://brawersoftware.com/products/ubar"
+  desc "Dock replacement and taskbar"
+  homepage "https://ubarapp.com/"
 
   livecheck do
     url "https://brawersoftware.com/appcasts/feeds/ubar/ubar#{version.major}.xml"
-    strategy :sparkle
+    strategy :sparkle, &:short_version
   end
+
+  depends_on :macos
 
   app "uBar.app"
 

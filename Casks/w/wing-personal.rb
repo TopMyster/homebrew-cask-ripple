@@ -1,20 +1,21 @@
 cask "wing-personal" do
-  version "11.0.7.0"
-  sha256 "5a3ccecf870b9dba36609263b135ef4e987992f48eb9d1c4739bd71878aeea48"
+  version "11.1.0.0"
+  sha256 "cda18237fc627aa12bc8247c2c16be5650e82e90ac8d675ab657c537a9452303"
 
   url "https://wingware.com/pub/wing-personal/#{version}/wing-personal-#{version}.dmg"
   name "Wing Personal"
   desc "Free Python IDE designed for students and hobbyists"
-  homepage "https://www.wingware.com/"
+  homepage "https://wingware.com/"
 
-  livecheck do
-    url "https://wingware.com/downloads/wing-personal"
-    regex(%r{href=.*?/pub/wing-personal/v?(\d+(?:\.\d+)+)}i)
-  end
+  # https://wingware.com/downloads/wing-personal
+  # Wing Personal was discontinued with the release of Wing 12, but archived installers remain available.
+  deprecate! date: "2026-09-14", because: :discontinued
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Wing Personal.app"
+
+  uninstall quit: "com.wingware.wing-personal"
 
   zap trash: [
     "~/.wingpersonal#{version.major}",

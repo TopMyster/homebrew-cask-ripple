@@ -1,6 +1,6 @@
 cask "markedit" do
-  version "1.29.0"
-  sha256 "8d0a3e24614bd6f2465fea34dcf839065dba3f921e0765559292396843519a72"
+  version "1.36.0"
+  sha256 "b997f51467fa6800623d432cb5b8780baaf1c69b55d550eba708f83cd6a42d17"
 
   url "https://github.com/MarkEdit-app/MarkEdit/releases/download/v#{version}/MarkEdit-#{version}.dmg"
   name "MarkEdit"
@@ -12,16 +12,14 @@ cask "markedit" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "MarkEdit.app"
 
   zap trash: [
-    "~/Library/Application Scripts/app.cyan.markedit",
-    "~/Library/Application Scripts/app.cyan.markedit.preview-extension",
+    "~/Library/Application Scripts/app.cyan.markedit*",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/app.cyan.markedit.sfl*",
-    "~/Library/Containers/app.cyan.markedit",
-    "~/Library/Containers/app.cyan.markedit.preview-extension",
+    "~/Library/Containers/app.cyan.markedit*",
     "~/Library/Saved Application State/app.cyan.markedit.savedState",
   ]
 end

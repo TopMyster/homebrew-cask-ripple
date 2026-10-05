@@ -1,15 +1,16 @@
 cask "blood-on-the-clocktower-online" do
   arch arm: "aarch64", intel: "x64"
 
-  version "3.50.0"
-  sha256 arm:   "b558b483b4b34a8222f570cde9b023a82bbb4689a7d02eda6e4895fc92410f94",
-         intel: "d9e604d75f108cf276ddf2ad29e9ae0998ae844e3d2673bbf64d0f677cf503f5"
+  version "3.57.3"
+  sha256 arm:   "0382aba9bbd11761751ca494e9c153c0c1e31c236e11f656ab0bc59995f6018c",
+         intel: "9b1b5e89af34162ed904751c942e0041fb6dca5f54da2858db53759296401b6f"
 
-  url "https://github.com/ThePandemoniumInstitute/botc-release/releases/download/v#{version}/Blood.on.the.Clocktower.Online_#{version}_#{arch}.dmg",
-      verified: "github.com/ThePandemoniumInstitute/botc-release/"
+  url "https://github.com/ThePandemoniumInstitute/botc-release/releases/download/v#{version}/Blood.on.the.Clocktower.Online_#{version}_#{arch}.dmg"
   name "Blood on the Clocktower Online"
   desc "Client for the game Blood on the Clocktower"
   homepage "https://bloodontheclocktower.com/"
+
+  depends_on :macos
 
   app "Blood on the Clocktower Online.app"
 

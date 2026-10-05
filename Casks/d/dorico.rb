@@ -1,15 +1,18 @@
 cask "dorico" do
-  version "6.1.10"
-  sha256 "890cbaf877eb5bde79fe38c8677c640be3231eaf0a845b3a1e116515d1489b75"
+  version "6.2.31,27a07da9-fcfa-41e3-939e-e39e7ecf1d8c"
+  sha256 "2240db8753cdf82354f82bb63d23a9f41d5e3cc4c3090c29533dbef9d1caee0d"
 
-  url "https://download.steinberg.net/support/temporary/Dorico_#{version}/Dorico_#{version}_Installer_mac.dmg"
+  url "https://download.steinberg.net/automated_updates/sda_downloads/#{version.csv.second}/Dorico_#{version.csv.first}_Installer_mac.dmg"
   name "Dorico"
   desc "Scoring software"
   homepage "https://www.steinberg.net/dorico/"
 
   livecheck do
     url "https://o.steinberg.net/en/support/downloads/dorico_#{version.major}.html"
-    regex(%r{href=.*?/Dorico[._-]v?(\d+(?:\.\d+)*)[._-]Installer[._-]mac\.dmg}i)
+    regex(%r{href=.*?/([\h-]+)/Dorico[._-]v?(\d+(?:\.\d+)*)[._-]Installer[._-]mac\.dmg}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
+    end
   end
 
   auto_updates true
@@ -18,7 +21,7 @@ cask "dorico" do
     "steinberg-library-manager",
     "steinberg-mediabay",
   ]
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   pkg "Dorico #{version.major}.pkg"
 

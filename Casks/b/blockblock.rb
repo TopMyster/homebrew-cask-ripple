@@ -1,12 +1,13 @@
 cask "blockblock" do
-  version "2.2.5"
-  sha256 "836d8c4ccf4bc33be46f019f1f0fcb2ec61e84afa84dbb55098bb0ed7350fc89"
+  version "2.5.2"
+  sha256 "7e5a332a4da6a22e8b494418c3cac241d24b43176c8bfc4bb2ef8bdc640bd4c7"
 
-  url "https://github.com/objective-see/BlockBlock/releases/download/v#{version}/BlockBlock_#{version}.zip",
-      verified: "github.com/objective-see/BlockBlock/"
+  url "https://github.com/objective-see/BlockBlock/releases/download/v#{version}/BlockBlock_#{version}.zip"
   name "BlockBlock"
   desc "Monitors common persistence locations"
   homepage "https://objective-see.org/products/blockblock.html"
+
+  depends_on :macos
 
   installer script: {
     executable: "#{staged_path}/BlockBlock Installer.app/Contents/MacOS/BlockBlock Installer",

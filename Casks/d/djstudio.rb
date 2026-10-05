@@ -2,9 +2,9 @@ cask "djstudio" do
   arch arm: "-arm64"
   livecheck_arch = on_arch_conditional arm: "-apple"
 
-  version "4.0.16"
-  sha256 arm:   "5370a9455d65afb7bc2a5c4142b5b52bb58623e701cb670f17b34637b8e0d194",
-         intel: "a8604306cae2882a0cf84c6d6a82431a99b2c414173935947f5ffb4460ee5367"
+  version "4.2.15"
+  sha256 arm:   "34b1344985203bd4e881d966a136130a3cce2e09477bb8bdae467cca393605af",
+         intel: "30c80d5c94cc38433a066593ceb9bd3b2e6b1ecf4049b8dc0fee21bc690bc321"
 
   url "https://download.dj.studio/DJ.Studio-#{version}#{arch}.dmg"
   name "DJ.Studio"
@@ -17,7 +17,7 @@ cask "djstudio" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :monterey
 
   app "DJ.Studio.app"
 

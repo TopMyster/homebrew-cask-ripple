@@ -1,10 +1,9 @@
 cask "astah-uml" do
   on_arm do
-    version "11.0.0,ba221e"
-    sha256 "dc545402dd56ccfd94eb5a837233eb0b185bd7b5b7041b4bc11492cf6683d393"
+    version "12.0.0,4fa570"
+    sha256 "196b62798f78453cd220382dd9167972802e36ace4962183e39a6741b41a3044"
 
-    url "https://cdn.change-vision.com/files/astah-uml-#{version.csv.first.dots_to_underscores}-#{version.csv.second}-MacOs-aarch64.dmg",
-        verified: "cdn.change-vision.com/files/"
+    url "https://cdn.change-vision.com/files/astah-uml-#{version.csv.first.dots_to_underscores}-#{version.csv.second}-MacOs-aarch64.dmg"
 
     livecheck do
       url "https://members.change-vision.com/download/files/astah_UML/latest/mac_pkg"
@@ -23,8 +22,7 @@ cask "astah-uml" do
     version "10.1.0,9ceee1"
     sha256 "919592fdecfc26d1e2ebd798960f9e1bacd013145036552f703aeec2c4b27fdf"
 
-    url "https://cdn.change-vision.com/files/astah-uml-#{version.csv.first.dots_to_underscores}-#{version.csv.second}-MacOs.dmg",
-        verified: "cdn.change-vision.com/files/"
+    url "https://cdn.change-vision.com/files/astah-uml-#{version.csv.first.dots_to_underscores}-#{version.csv.second}-MacOs.dmg"
 
     livecheck do
       skip "Legacy version"
@@ -36,6 +34,8 @@ cask "astah-uml" do
   name "Change Vision Astah UML"
   desc "UML diagramming tool with mind mapping"
   homepage "https://astah.net/products/astah-uml/"
+
+  depends_on :macos
 
   uninstall pkgutil: "com.change-vision.astah.uml"
 

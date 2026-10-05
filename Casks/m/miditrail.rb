@@ -1,12 +1,13 @@
 cask "miditrail" do
-  version "2.0.3"
-  sha256 "c9143721f652f6ddf6a3134a3c2d20ca547663f1998e4a213630606f6ed23eb0"
+  version "2.1.1"
+  sha256 "dbd51f788d34e21971d53d0881cd2528d4f90aed0287e8b7a9699efddb98b6f7"
 
-  url "https://github.com/wdmss/MIDITrail-macOS/releases/download/v#{version}/MIDITrail-Ver.#{version}-macOS.zip",
-      verified: "github.com/wdmss/MIDITrail-macOS/"
+  url "https://github.com/wdmss/MIDITrail-macOS/releases/download/v#{version}/MIDITrail-Ver.#{version}-macOS.zip"
   name "MIDITrail"
   desc "MIDI player which provides 3D visualization of MIDI data sets"
   homepage "https://www.yknk.org/miditrail/en/"
+
+  depends_on :macos
 
   app "MIDITrail/MIDITrail.app"
 

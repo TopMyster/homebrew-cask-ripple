@@ -1,19 +1,11 @@
 cask "ricochet-refresh" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "3.0.39"
-  sha256 arm:   "f584db82b9e4a0cf735cab528925adeda75a899b9bf34567f90b5bea8cf6b1b2",
-         intel: "dd56433f3f04e9af3803248ffbf3ff8f8f19f5ad07a6fff5984101f7e49af129"
+  version "3.0.46"
+  sha256 arm:   "fad196cbd97c71ab15151aa6599a093040e81042d8bcee36f20934808ee70c6a",
+         intel: "bf6cb537f5a1409741991715b2bed0afaff8d82dff9e2def869582ca44c3fa1f"
 
-  on_arm do
-    depends_on macos: ">= :big_sur"
-  end
-  on_intel do
-    depends_on macos: ">= :catalina"
-  end
-
-  url "https://github.com/blueprint-freespeech/ricochet-refresh/releases/download/v#{version}-release/ricochet-refresh-#{version}-macos-#{arch}.dmg",
-      verified: "github.com/blueprint-freespeech/ricochet-refresh/"
+  url "https://github.com/blueprint-freespeech/ricochet-refresh/releases/download/v#{version}-release/ricochet-refresh-#{version}-macos-#{arch}.dmg"
   name "Ricochet Refresh"
   desc "Private and anonymous instant messaging over tor"
   homepage "https://www.ricochetrefresh.net/"
@@ -25,6 +17,7 @@ cask "ricochet-refresh" do
   end
 
   # The container is incorrectly detected as a generic archive
+  depends_on :macos
   container type: :dmg
 
   app "Ricochet Refresh.app"

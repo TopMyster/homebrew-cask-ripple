@@ -1,9 +1,8 @@
 cask "rocket-chat" do
-  version "4.11.2,4.11.1"
-  sha256 "2cd2b626b52cc3be3bde5611c24951fe38498000d42fbdb9c9f15e053730c19d"
+  version "4.17.4"
+  sha256 "951b31f7ee6a295359d467ce884af542893023f401dc45880ff8eeee4a78e290"
 
-  url "https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/#{version.csv.first}/rocketchat-#{version.csv.second || version.csv.first}-mac.dmg",
-      verified: "github.com/RocketChat/Rocket.Chat.Electron/"
+  url "https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/#{version.csv.first}/rocketchat-#{version.csv.second || version.csv.first}-mac.dmg"
   name "Rocket.Chat"
   desc "Official desktop client for Rocket.Chat"
   homepage "https://rocket.chat/"
@@ -26,7 +25,7 @@ cask "rocket-chat" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Rocket.Chat.app"
 

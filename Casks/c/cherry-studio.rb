@@ -1,32 +1,43 @@
 cask "cherry-studio" do
   arch arm: "arm64", intel: "x64"
+  os macos: "mac", linux: "linux"
+  url_end = on_system_conditional macos: "dmg", linux: "AppImage"
 
-  version "1.7.13"
-  sha256 arm:   "4ee8b381b5e5a47d913d09ce4c5fe12709db5f8d17c7c9e92d8aa96546096bc7",
-         intel: "953524807675b2da2ed143e5d360d017e35a0bad7f0cc41328397d8b530f8caa"
+  version "2.1.4"
+  sha256 arm:          "e443d494555f12aaae0fda2e32b0d86647394d7cb5f8b5604fd865e548c11d37",
+         intel:        "05ae03cf07b7d22ccd624b894a3145ec528bda45759ea17787c309520172ac9a",
+         arm64_linux:  "d180e27704317735141bbe32cf21b8b26b8050c77ee14b012c9a8a089cf68657",
+         x86_64_linux: "03c7ca2a183e38389330cbd61f226ed5685c274851f9514508619ba9617331bb"
 
-  url "https://releases.cherry-ai.com/Cherry-Studio-#{version}-#{arch}.zip"
+  on_macos do
+    depends_on macos: :ventura
+
+    app "Cherry Studio.app"
+    binary "#{appdir}/Cherry Studio.app/Contents/MacOS/Cherry Studio", target: "cherry-studio"
+
+    zap trash: [
+      "~/Library/Application Support/CherryStudio",
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.kangfenmao.cherrystudio.sfl*",
+      "~/Library/Caches/cherrystudio-updater",
+      "~/Library/HTTPStorages/com.kangfenmao.CherryStudio",
+      "~/Library/Logs/CherryStudio",
+      "~/Library/Preferences/com.kangfenmao.CherryStudio.plist",
+      "~/Library/Saved Application State/com.kangfenmao.CherryStudio.savedState",
+    ]
+  end
+  on_linux do
+    app_image "Cherry-Studio-#{version}-linux-#{arch}.AppImage", target: "Cherry Studio.AppImage"
+  end
+
+  url "https://github.com/CherryHQ/cherry-studio/releases/download/v#{version}/Cherry-Studio-#{version}-#{os}-#{arch}.#{url_end}"
   name "Cherry Studio"
   desc "Desktop client that supports multiple LLM providers"
-  homepage "https://cherry-ai.com/"
+  homepage "https://www.cherry-ai.com/"
 
   livecheck do
-    url "https://releases.cherry-ai.com/latest-mac.yml"
-    strategy :electron_builder
+    url :url
+    strategy :github_latest
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
-
-  app "Cherry Studio.app"
-  binary "#{appdir}/Cherry Studio.app/Contents/MacOS/Cherry Studio", target: "cherry-studio"
-
-  zap trash: [
-    "~/Library/Application Support/CherryStudio",
-    "~/Library/Caches/cherrystudio-updater",
-    "~/Library/HTTPStorages/com.kangfenmao.CherryStudio",
-    "~/Library/Logs/CherryStudio",
-    "~/Library/Preferences/com.kangfenmao.CherryStudio.plist",
-    "~/Library/Saved Application State/com.kangfenmao.CherryStudio.savedState",
-  ]
 end

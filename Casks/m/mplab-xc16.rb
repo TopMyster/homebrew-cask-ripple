@@ -14,6 +14,7 @@ cask "mplab-xc16" do
   end
 
   depends_on arch: :x86_64
+  depends_on :macos
 
   installer script: {
     executable: "xc16-v#{version}-osx-installer.app/Contents/MacOS/installbuilder.sh",
@@ -43,8 +44,8 @@ cask "mplab-xc16" do
   binary "#{staged_path}/bin/xc16-strings"
   binary "#{staged_path}/bin/xc16-strip"
 
-  postflight do
-    set_ownership staged_path.to_s
+  postflight_steps do
+    set_ownership "."
   end
 
   uninstall script: {

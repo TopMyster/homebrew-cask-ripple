@@ -1,6 +1,6 @@
 cask "emclient@beta" do
-  version "10.0.2362"
-  sha256 "7ba21c4bea1512e30ebf489f1d818c35d1d2ae43e144db63cc612ac7b78b694b"
+  version "11.0.865"
+  sha256 "b24d4930e8e95386375ebe4dbcb0fe858ea85360a96738c0778dd0a408e60f9f"
 
   url "https://cdn-dist.emclient.com/dist/v#{version}_Mac/setup.pkg"
   name "eM Client"
@@ -15,7 +15,7 @@ cask "emclient@beta" do
 
   auto_updates true
   conflicts_with cask: "emclient"
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :sonoma
 
   pkg "setup.pkg"
 

@@ -1,9 +1,8 @@
 cask "milanote" do
-  version "3.18.71"
-  sha256 "f071e3bad0017d3c04115b4d55513a1dbf36cd651919eea98863738e10969e01"
+  version "3.18.132"
+  sha256 "ce3c883c38e7fb25138385a3e9f1715c1278795ecdf05789be88e7a43cd6fab9"
 
-  url "https://milanote-app-releases.s3.amazonaws.com/Milanote-#{version}.dmg",
-      verified: "milanote-app-releases.s3.amazonaws.com/"
+  url "https://milanote-app-releases.s3.amazonaws.com/Milanote-#{version}.dmg"
   name "Milanote"
   desc "Organise your ideas and projects into visual boards"
   homepage "https://www.milanote.com/"
@@ -14,7 +13,7 @@ cask "milanote" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Milanote.app"
 

@@ -1,12 +1,11 @@
 cask "processing" do
   arch arm: "aarch64", intel: "x64"
 
-  version "4.4.10,1310"
-  sha256 arm:   "b7dc4c9c769863b45c1065d0bd5ec861f06fd06dc48518c6e44dc4f4272b6e4a",
-         intel: "7e85fe3203d6ff2f6f02d1add363b7f5d5c7df53354d396f659afc475fdcf974"
+  version "4.5.7,1435"
+  sha256 arm:   "27fb4bb8d5fb785c02cc6987649e215b224d49a3ad9ae7dbedc3a8ccf981cae9",
+         intel: "d22d90852cf6f9d1dbc0bf4152691baa98820a36ea93acafea942ebbd6a2d5e5"
 
-  url "https://github.com/processing/processing4/releases/download/processing-#{version.csv.second}-#{version.csv.first}/processing-#{version.csv.first}-macos-#{arch}.dmg",
-      verified: "github.com/processing/processing4/"
+  url "https://github.com/processing/processing4/releases/download/processing-#{version.csv.second}-#{version.csv.first}/processing-#{version.csv.first}-macos-#{arch}.dmg"
   name "Processing"
   desc "Flexible software sketchbook and a language for learning how to code"
   homepage "https://processing.org/"
@@ -27,7 +26,7 @@ cask "processing" do
     end
   end
 
-  conflicts_with cask: "processing@3"
+  depends_on :macos
 
   app "Processing.app"
 

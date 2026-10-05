@@ -15,18 +15,11 @@ cask "pycharm-ce" do
   deprecate! date: "2025-12-08", because: :discontinued, replacement_cask: "pycharm"
 
   auto_updates true
+  depends_on :macos
 
   app "PyCharm CE.app"
-  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
-  shimscript = "#{staged_path}/pycharm.wrapper.sh"
-  binary shimscript, target: "pycharm-ce"
-
-  preflight do
-    File.write shimscript, <<~EOS
-      #!/bin/sh
-      exec '#{appdir}/PyCharm CE.app/Contents/MacOS/pycharm' "$@"
-    EOS
-  end
+  command_wrapper "pycharm-ce",
+                  executable: "#{appdir}/PyCharm CE.app/Contents/MacOS/pycharm"
 
   zap trash: [
     "~/Library/Application Support/JetBrains/PyCharmCE#{version.major_minor}",

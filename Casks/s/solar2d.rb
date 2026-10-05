@@ -1,9 +1,8 @@
 cask "solar2d" do
-  version "2026.3727"
-  sha256 "4a29fb73a998bf0afd4356c3ae032feeeadb092ae49925e39ae9db120e6a8b9c"
+  version "2026.3734"
+  sha256 "9e4eddae04158a1addf312d279c870ea713d2c946115d0cf4f9f5db05e660661"
 
-  url "https://github.com/coronalabs/corona/releases/download/#{version.minor}/Solar2D-macOS-#{version}.dmg",
-      verified: "github.com/coronalabs/corona/"
+  url "https://github.com/coronalabs/corona/releases/download/#{version.minor}/Solar2D-macOS-#{version}.dmg"
   name "Solar2D"
   desc "Lua-based game engine"
   homepage "https://solar2d.com/"
@@ -20,6 +19,8 @@ cask "solar2d" do
       end
     end
   end
+
+  depends_on :macos
 
   suite "Corona-#{version.minor}"
 

@@ -1,12 +1,12 @@
 cask "adobe-creative-cloud" do
   arch arm: "macarm64", intel: "osx10"
 
-  version "6.8.0.821"
-  sha256 arm:   "beadfa4bdf2ab0b3b0c9c7aa9dbe5d699d8351afdbccd2eb18f8be1cf4960543",
-         intel: "d187ac7d1b7854c9a9a3552594337694205665ff84c0bedbb96657ca9466c4bf"
+  version "6.10.0.252.41"
+  sha256 arm:   "5115a16e2ecddade5d37e50fc55721521f92882bf3796ff0fa6fc345719801f7",
+         intel: "8ae886df0695f9206c3e89f7b54faf2972acc5431ef1d48f769bdb833b48bb8a"
 
   # If url breaks you can find the latest static urls - https://helpx.adobe.com/download-install/kb/creative-cloud-desktop-app-download.html
-  url "https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/#{version.major_minor_patch}/#{version.split(".").fourth}/#{arch}/ACCCx#{version.dots_to_underscores}.dmg"
+  url "https://ccmdls.adobe.com/AdobeProducts/StandaloneBuilds/ACCC/ESD/#{version.major_minor_patch}/#{version.split(".")[3..4].join(".")}/#{arch}/ACCCx#{version.dots_to_underscores}.dmg"
   name "Adobe Creative Cloud"
   desc "Collection of apps and services for photography, design, video, web, and UX"
   homepage "https://www.adobe.com/creativecloud.html"
@@ -23,6 +23,7 @@ cask "adobe-creative-cloud" do
   end
 
   auto_updates true
+  depends_on :macos
 
   installer script: {
     executable:   "#{staged_path}/Install.app/Contents/MacOS/Install",
@@ -30,16 +31,6 @@ cask "adobe-creative-cloud" do
     sudo:         true,
     print_stderr: false,
   }
-
-  uninstall_preflight do
-    set_ownership "/Library/Application Support/Adobe"
-  end
-
-  uninstall_postflight do
-    stdout, * = system_command "/bin/launchctl", args: ["print", "gui/#{Process.uid}"]
-    ccx_processes = stdout.lines.grep(/com\.adobe\.CCXProcess\.\d{5}/) { Regexp.last_match(0) }.uniq
-    ccx_processes.each { |id| system "/bin/launchctl", "bootout", "gui/#{Process.uid}/#{id}" }
-  end
 
   uninstall early_script: {
               executable:   "/usr/bin/pluginkit",
@@ -56,6 +47,7 @@ cask "adobe-creative-cloud" do
               "com.adobe.AdobeCreativeCloud",
               "com.adobe.AdobeDesktopService",
               "com.adobe.ccxprocess",
+              "com.adobe.CCXProcess.*",
             ],
             quit:         "com.adobe.acc.AdobeCreativeCloud",
             signal:       ["QUIT", "com.adobe.accmac"],

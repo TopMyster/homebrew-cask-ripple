@@ -1,6 +1,6 @@
 cask "geogebra@5" do
-  version "5.4.911.3"
-  sha256 "0e28d78b5efc587de6046db69fb86168043dfe9e3f21c3e8f871ee87f61ea897"
+  version "5.4.931.2"
+  sha256 "ee1a2c1bb4b26252a017eb62473111b9ecaa6ba7652d46aeadec8c17ebb53f9a"
 
   url "https://download.geogebra.org/installers/#{version.major_minor}/GeoGebra-MacOS-Installer-withJava-#{version.dots_to_hyphens}.zip"
   name "GeoGebra"
@@ -18,7 +18,9 @@ cask "geogebra@5" do
     end
   end
 
-  app "Geogebra.app"
+  depends_on :macos
+
+  app "GeoGebra.app"
 
   uninstall quit:       "org.geogebra#{version.major}.mac",
             login_item: "Geogebra"

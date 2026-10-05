@@ -1,9 +1,8 @@
 cask "mellel" do
-  version "6.6.0,66015"
-  sha256 "85a566b85cc8b1873a2765a69e181dc4ba68ad53051fac9118fe31ffc3da3d4c"
+  version "6.7.1,67102"
+  sha256 "c29a8f555a43b504fa4ecbfa186cfa526ac29a1f1a67a6b25d48014f4af7400d"
 
-  url "https://d1riogbqt3a9uw.cloudfront.net/mellel_#{version.csv.second}.dmg",
-      verified: "d1riogbqt3a9uw.cloudfront.net/"
+  url "https://d1riogbqt3a9uw.cloudfront.net/mellel_#{version.csv.second}.dmg"
   name "Mellel"
   desc "Advanced word processor built for long and complex documents"
   homepage "https://www.mellel.com/"
@@ -22,11 +21,13 @@ cask "mellel" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Mellel #{version.major}.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.redlex.mellel",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.redlex.mellel#{version.major}.sfl*",
     "~/Library/Application Support/com.redlex.mellel#{version.major}",
     "~/Library/Application Support/Mellel #{version.major}",
     "~/Library/Caches/com.redlex.mellel#{version.major}",

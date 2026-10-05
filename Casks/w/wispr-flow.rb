@@ -1,17 +1,11 @@
 cask "wispr-flow" do
   arch arm: "arm64", intel: "x64"
 
-  on_arm do
-    version "1.4.181"
-    sha256 "62829fb202840685ca8decf4b0cb396a37b3faf16302b606662c280879c6e987"
-  end
-  on_intel do
-    version "1.4.154"
-    sha256 "80e328769fab5cfcfc85ba423b031ddbf7a5086eee6781ccbb390f88a3b7b778"
-  end
+  version "1.6.1034"
+  sha256 arm:   "005160dec8fe0e53fe3cb063055e9c18b2ee48c0651b6f734d99fc09b5308c75",
+         intel: "00ce724c286004f9ef0bd61b1b74e87bd1a5d1c0e3e7bb6f2a8f56aa5762f5c0"
 
-  url "https://dl.wisprflow.com/wispr-flow/darwin/#{arch}/dmgs/Flow-v#{version}.dmg",
-      verified: "dl.wisprflow.com/wispr-flow/"
+  url "https://dl.wisprflow.com/wispr-flow/darwin/#{arch}/dmgs/Flow-v#{version}.dmg"
   name "Wispr Flow"
   desc "Voice-to-text dictation with AI-powered auto-editing"
   homepage "https://wisprflow.ai/"
@@ -24,7 +18,7 @@ cask "wispr-flow" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Wispr Flow.app"
 

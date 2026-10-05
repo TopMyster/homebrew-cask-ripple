@@ -1,6 +1,6 @@
 cask "jettison" do
-  version "1.9.5"
-  sha256 "45379dad6e2f6affb3bc75367b13dcbf8c4bb604c34d08c81393303969275675"
+  version "1.9.7"
+  sha256 "5786bb0a0eed2b979bf1186c084d5bdcaa1416ebfe1e55d68b7544cc16411e7a"
 
   url "https://stclairsoft.com/download/Jettison-#{version}.dmg"
   name "Jettison"
@@ -14,6 +14,7 @@ cask "jettison" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Jettison.app"
 

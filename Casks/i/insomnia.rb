@@ -1,9 +1,36 @@
 cask "insomnia" do
-  version "12.3.0"
-  sha256 "9d923e46ab4bf5b0155efe273a0f2bc4271d5ab596a8bc0653ce0bba09b83b21"
+  os macos: "dmg", linux: "AppImage"
 
-  url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/Insomnia.Core-#{version}.dmg",
-      verified: "github.com/Kong/insomnia/"
+  version "13.3.0"
+  sha256 arm:          "11c1b222bfa1d9203292cbedd2b142f00aae3b3b5702fbed738cdc0db1cf582f",
+         intel:        "11c1b222bfa1d9203292cbedd2b142f00aae3b3b5702fbed738cdc0db1cf582f",
+         x86_64_linux: "abbe41e5fefea1b162a0d0dd93ff4eadd197428327d68c6c74c52cc4007fe348"
+
+  on_macos do
+    depends_on macos: :monterey
+
+    app "Insomnia.app"
+
+    zap trash: [
+      "~/Library/Application Support/Insomnia",
+      "~/Library/Caches/com.insomnia.app",
+      "~/Library/Caches/com.insomnia.app.ShipIt",
+      "~/Library/Cookies/com.insomnia.app.binarycookies",
+      "~/Library/Preferences/ByHost/com.insomnia.app.ShipIt.*.plist",
+      "~/Library/Preferences/com.insomnia.app.helper.plist",
+      "~/Library/Preferences/com.insomnia.app.plist",
+      "~/Library/Saved Application State/com.insomnia.app.savedState",
+    ]
+  end
+  on_linux do
+    depends_on arch: :x86_64
+
+    app_image "Insomnia.Core-#{version}.AppImage", target: "Insomnia.AppImage"
+
+    zap trash: "~/.config/Insomnia"
+  end
+
+  url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/Insomnia.Core-#{version}.#{os}"
   name "Insomnia"
   desc "HTTP and GraphQL Client"
   homepage "https://insomnia.rest/"
@@ -22,18 +49,4 @@ cask "insomnia" do
 
   auto_updates true
   conflicts_with cask: "insomnia@alpha"
-  depends_on macos: ">= :monterey"
-
-  app "Insomnia.app"
-
-  zap trash: [
-    "~/Library/Application Support/Insomnia",
-    "~/Library/Caches/com.insomnia.app",
-    "~/Library/Caches/com.insomnia.app.ShipIt",
-    "~/Library/Cookies/com.insomnia.app.binarycookies",
-    "~/Library/Preferences/ByHost/com.insomnia.app.ShipIt.*.plist",
-    "~/Library/Preferences/com.insomnia.app.helper.plist",
-    "~/Library/Preferences/com.insomnia.app.plist",
-    "~/Library/Saved Application State/com.insomnia.app.savedState",
-  ]
 end

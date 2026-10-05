@@ -2,8 +2,7 @@ cask "duo-connect" do
   version "2.0.9"
   sha256 "12e8dd11775db5094ee2c9577ba3c11fb4c2fc4a3c696260ce2957a8d22e0b29"
 
-  url "https://dl.duosecurity.com/DuoConnect-#{version}.pkg",
-      verified: "dl.duosecurity.com/"
+  url "https://dl.duosecurity.com/DuoConnect-#{version}.pkg"
   name "DuoConnect"
   desc "Access your organisation’s SSH servers"
   homepage "https://guide.duo.com/duoconnect"
@@ -12,6 +11,8 @@ cask "duo-connect" do
     url "https://duo.com/docs/checksums#duoconnect-for-macos"
     regex(%r{href=.*?/DuoConnect[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
   end
+
+  depends_on :macos
 
   pkg "DuoConnect-#{version}.pkg"
 

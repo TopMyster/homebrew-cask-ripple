@@ -1,9 +1,8 @@
 cask "tiny-shield" do
-  version "1.7.0,10700"
-  sha256 "f0993398b93451e6afacba02db8a8786001c47c38eccc55cd9c7f2f89abd4301"
+  version "1.16.0,11600"
+  sha256 "51097efe4e366dc89e26fb43cf179203265406da2badf6d6dbc872b237a43f26"
 
-  url "https://download.proxyman.io/tinyshield/#{version.csv.second}/Tiny_Shield_#{version.csv.first}.dmg",
-      verified: "download.proxyman.io/tinyshield/"
+  url "https://download.proxyman.io/tinyshield/#{version.csv.second}/Tiny_Shield_#{version.csv.first}.dmg"
   name "Tiny Shield"
   desc "Control and monitor network connections"
   homepage "https://tinyshield.proxyman.com/"
@@ -14,7 +13,7 @@ cask "tiny-shield" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Tiny Shield.app"
 

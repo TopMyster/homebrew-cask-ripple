@@ -1,11 +1,11 @@
 cask "warp@preview" do
-  version "0.2026.01.14.08.15.preview_03"
-  sha256 "d85443446e1eafb0c643241ffd304788be8457767bd66a985c87cd219de1594b"
+  version "0.2026.09.30.08.29.preview_01"
+  sha256 "78455f0ded3fd5b6770b9d828fce297cd8c2b61b985f95e9d5e2e57c468527dc"
 
   url "https://releases.warp.dev/preview/v#{version}/WarpPreview.dmg"
   name "Warp Preview"
   desc "Rust-based terminal"
-  homepage "https://www.warp.dev/"
+  homepage "https://www.warp.dev/terminal"
 
   livecheck do
     url "https://releases.warp.dev/channel_versions.json"
@@ -15,7 +15,7 @@ cask "warp@preview" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "WarpPreview.app"
 

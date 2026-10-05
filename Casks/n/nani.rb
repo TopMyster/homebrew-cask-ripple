@@ -1,9 +1,8 @@
 cask "nani" do
-  version "1.0.57"
-  sha256 "8475c98211d102018bbbbf5dc9bf23c10c288451caf160ca112be707e433ee9a"
+  version "1.1.12"
+  sha256 "e252b341ff40ccb5cb6b14a88a483f7a9468827035fd4856544dc6f98b3268f4"
 
-  url "https://nani-desktop.kiok.jp/artifacts/nani-#{version}.dmg",
-      verified: "nani-desktop.kiok.jp/artifacts/"
+  url "https://nani-desktop.kiok.jp/artifacts/nani-#{version}.dmg"
   name "Nani Translate"
   desc "AI-powered translator"
   homepage "https://nani.now/"
@@ -14,7 +13,7 @@ cask "nani" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Nani.app"
 

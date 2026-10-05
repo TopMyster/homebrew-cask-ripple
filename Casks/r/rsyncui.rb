@@ -1,6 +1,6 @@
 cask "rsyncui" do
-  version "2.8.7"
-  sha256 "04ebba3fdc9520539ea21a775f6ec582a604347dbe2a857e86acff30e6b8caed"
+  version "3.0.5"
+  sha256 "7f665eab2d90b07f1cf2f64aa7dea892c22849f59815a92853d2b9098708b06d"
 
   url "https://github.com/rsyncOSX/RsyncUI/releases/download/v#{version}/RsyncUI.#{version}.dmg"
   name "RsyncUI"
@@ -14,7 +14,7 @@ cask "rsyncui" do
 
   no_autobump! because: :bumped_by_upstream
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "RsyncUI.app"
 

@@ -1,12 +1,39 @@
 cask "workflowy" do
-  version "4.3.2601150914"
-  sha256 "a3e9a523b7f8c6808e8507c23609511b6a46d336407d40ff81ba44687a3598cf"
+  url_end = on_system_conditional macos: ".zip", linux: "-x86_64.AppImage"
 
-  url "https://github.com/workflowy/desktop/releases/download/v#{version}/WorkFlowy.zip",
-      verified: "github.com/workflowy/desktop/"
+  version "4.3.2609291146"
+  sha256 arm:          "f559d587982c08b49a817673555d7297e51dfbc51c3817c48b4653002c541f8a",
+         intel:        "f559d587982c08b49a817673555d7297e51dfbc51c3817c48b4653002c541f8a",
+         x86_64_linux: "21b543237436704744497e67f40e1de79137efb99e71babb81c679e183ac8a63"
+
+  on_macos do
+    depends_on macos: :monterey
+
+    app "WorkFlowy.app"
+
+    zap trash: [
+      "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.workflowy.desktop.sfl*",
+      "~/Library/Application Support/WorkFlowy",
+      "~/Library/Logs/WorkFlowy",
+      "~/Library/Preferences/com.workflowy.desktop.plist",
+      "~/Library/Saved Application State/com.workflowy.desktop.savedState",
+    ]
+  end
+  on_linux do
+    depends_on arch: :x86_64
+
+    app_image "WorkFlowy-x86_64.AppImage", target: "WorkFlowy.AppImage"
+
+    zap trash: [
+      "~/.cache/workflowy-updater",
+      "~/.config/WorkFlowy",
+    ]
+  end
+
+  url "https://github.com/workflowy/desktop/releases/download/v#{version}/WorkFlowy#{url_end}"
   name "WorkFlowy"
   desc "Notetaking tool"
-  homepage "https://workflowy.com/downloads/mac/"
+  homepage "https://workflowy.com/download/"
 
   livecheck do
     url :url
@@ -14,13 +41,4 @@ cask "workflowy" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
-
-  app "WorkFlowy.app"
-
-  zap trash: [
-    "~/Library/Application Support/WorkFlowy",
-    "~/Library/Preferences/com.workflowy.desktop.plist",
-    "~/Library/Saved Application State/com.workflowy.desktop.savedState",
-  ]
 end

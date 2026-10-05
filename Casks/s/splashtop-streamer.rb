@@ -1,9 +1,8 @@
 cask "splashtop-streamer" do
-  version "3.8.0.2"
-  sha256 "64690656fd7dcf59fcdc2cb20b6c96775e24fab6f7b0bff6bd500af3f579059b"
+  version "3.8.6.3"
+  sha256 "bde3c94222fd72ee35501b383af32e091c504606c53c07e7912d9cab0a3018f7"
 
-  url "https://d17kmd0va0f0mp.cloudfront.net/mac/Splashtop_Streamer_Mac_INSTALLER_v#{version}.dmg",
-      verified: "d17kmd0va0f0mp.cloudfront.net/"
+  url "https://d17kmd0va0f0mp.cloudfront.net/mac/Splashtop_Streamer_Mac_INSTALLER_v#{version}.dmg"
   name "Splashtop Streamer"
   desc "Connect to and control computers from desktop and mobile devices"
   homepage "https://www.splashtop.com/downloads"
@@ -14,6 +13,7 @@ cask "splashtop-streamer" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Splashtop Streamer.pkg"
 
@@ -25,7 +25,14 @@ cask "splashtop-streamer" do
               "com.splashtop.streamer-srioframebuffer",
             ],
             quit:      "com.splashtop.Splashtop-Streamer",
-            pkgutil:   "com.splashtop.Splashtop-Streamer"
+            pkgutil:   [
+              "com.splashtop.soundDriver",
+              "com.splashtop.Splashtop-Streamer",
+            ],
+            delete:    [
+              "/Library/LaunchAgents/com.splashtop.streamer.plist",
+              "~/Library/LaunchAgents/com.splashtop.streamer.plist",
+            ]
 
   zap trash: [
     "~/Library/Application Support/Splashtop Streamer",

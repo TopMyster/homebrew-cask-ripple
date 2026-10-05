@@ -1,9 +1,8 @@
 cask "sublime-merge@dev" do
-  version "2120"
-  sha256 "3ed097b0ed0a85ca86bf3741f5bd6b491030bd8465a57950ee3c25f79166da46"
+  version "2131"
+  sha256 "3efe2bb2d29535e67fe68f8abcc848a3d7950a97aa12e1bd80a31dbcdf748693"
 
-  url "https://download.sublimetext.com/sublime_merge_build_#{version}_mac.zip",
-      verified: "download.sublimetext.com/"
+  url "https://download.sublimetext.com/sublime_merge_build_#{version}_mac.zip"
   name "Sublime Merge"
   desc "Git client"
   homepage "https://www.sublimemerge.com/dev"
@@ -17,6 +16,7 @@ cask "sublime-merge@dev" do
 
   auto_updates true
   conflicts_with cask: "sublime-merge"
+  depends_on :macos
 
   app "Sublime Merge.app"
   binary "#{appdir}/Sublime Merge.app/Contents/SharedSupport/bin/smerge"

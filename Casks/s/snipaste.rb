@@ -14,13 +14,14 @@ cask "snipaste" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Snipaste.app"
 
   uninstall quit: "com.Snipaste"
 
   zap trash: [
-    "~/.snipaste/",
+    "~/.snipaste",
     "~/Library/Preferences/com.Snipaste.plist",
   ]
 end

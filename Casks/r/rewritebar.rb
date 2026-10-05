@@ -1,6 +1,6 @@
 cask "rewritebar" do
-  version "2.23.1"
-  sha256 "f0510be660a76c3daf82741b3556b0cc3aac67832bd1bc583780012bb91bf5e7"
+  version "2.36.0"
+  sha256 "cb3f93ebb6a970024f1b473f1712db46a01ee517e22852000682a511f2a34420"
 
   url "https://rewritebar.com/download/v#{version}.zip"
   name "RewriteBar"
@@ -15,7 +15,7 @@ cask "rewritebar" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "RewriteBar.app"
 

@@ -1,14 +1,6 @@
 cask "displaylink" do
   on_ventura :or_older do
-    on_catalina :or_older do
-      version "1.5,2021-09"
-      sha256 "d703cc8e9093e4d163c5e612326c0907a02c6d4eec6aaca8d0727503859ef95d"
-
-      url "https://www.synaptics.com/sites/default/files/exe_files/#{version.csv.second}/DisplayLink%20Manager%20Graphics%20Connectivity#{version.csv.first}-EXE.pkg"
-
-      pkg "DisplayLink Manager Graphics Connectivity#{version.csv.first}-EXE.pkg"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "1.9,2023-07"
       sha256 "cd7f7c7c313b0699bfa187f7112a45e5c5441264447b381569839318676208aa"
 
@@ -40,8 +32,8 @@ cask "displaylink" do
     end
   end
   on_sonoma :or_newer do
-    version "15.0,2025-12"
-    sha256 "4cedae42b642c3662b3eea0e81989226e5ae510a404bcf1fbbbb90262a71e014"
+    version "17.0,2026-09"
+    sha256 "9a1186af0931227d8510edf88fe2c5ed6bcd039893b17eff2632b5a7079ba015"
 
     url "https://www.synaptics.com/sites/default/files/exe_files/#{version.csv.second}/DisplayLink%20Manager%20Graphics%20Connectivity#{version.csv.first}-EXE.pkg"
 
@@ -59,6 +51,8 @@ cask "displaylink" do
   name "DisplayLink USB Graphics Software"
   desc "Drivers for DisplayLink docks, adapters and monitors"
   homepage "https://www.synaptics.com/products/displaylink-graphics"
+
+  depends_on :macos
 
   uninstall launchctl: [
               "73YQY62QM3.com.displaylink.DisplayLinkAPServer",

@@ -1,19 +1,23 @@
 cask "easydict" do
-  version "2.16.3"
-  sha256 "f419ffb0899fb47a610a528f36c23485a47726d00798577d32a7cbebd9180f04"
+  version "2.23.0"
+  sha256 "3730227956d9cfa1cad24bf3684a95259b25939ff2b3c5d44f184ac3c21d9d8a"
 
-  url "https://github.com/tisfeng/Easydict/releases/download/#{version}/Easydict.#{version}.dmg"
+  url "https://github.com/tisfeng/Easydict/releases/download/#{version}/Easydict.dmg"
   name "Easydict"
   desc "Dictionary and translator app"
   homepage "https://github.com/tisfeng/Easydict/"
 
+  # The Sparkle feed can contain items on the "beta" channel, so we restrict
+  # matching to the default channel.
   livecheck do
     url "https://raw.githubusercontent.com/tisfeng/Easydict/main/appcast.xml"
-    strategy :sparkle, &:short_version
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Easydict.app"
 

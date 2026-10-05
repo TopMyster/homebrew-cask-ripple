@@ -1,24 +1,39 @@
 cask "eigent" do
   arch arm: "-arm64"
 
-  version "0.0.80"
-  sha256 arm:   "9c20f420a221d0c1c8e6fd4699c867e405da7533500899043be8fdb3bd7b800c",
-         intel: "fd37ec2f77a785117af6a34e685be13fd0b5f3b7a10c36ead8e5d7df92d5a43a"
+  version "1.0.5"
+  sha256 arm:   "baee954dc2b820aa13e603433b93c82f766c2e1bc8e5727b772b21d8b1adf466",
+         intel: "baaa910c9e063b1f83c9b771488c5bda30dc695a778453a225e64836952225f8"
 
-  url "https://github.com/eigent-ai/eigent/releases/download/v#{version}/Eigent-#{version}#{arch}.dmg",
-      verified: "github.com/eigent-ai/eigent/"
+  url "https://github.com/eigent-ai/eigent/releases/download/v#{version}/Eigent-#{version}#{arch}.dmg"
   name "Eigent"
   desc "Desktop AI agent"
   homepage "https://www.eigent.ai/"
 
+  # Not every GitHub release provides a file for each architecture, so we check multiple
+  # recent releases instead of only the "latest" release.
   livecheck do
     url :url
-    strategy :github_latest
+    regex(/^Eigent[._-]v?(\d+(?:\.\d+)+)#{arch}\.dmg$/i)
+    strategy :github_releases do |json, regex|
+      json.map do |release|
+        next if release["draft"] || release["prerelease"]
+
+        release["assets"]&.map do |asset|
+          match = asset["name"]&.match(regex)
+          next if match.blank?
+
+          match[1]
+        end
+      end.flatten
+    end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Eigent.app"
+
+  uninstall quit: "com.eigent.app"
 
   zap trash: [
     "~/.eigent",

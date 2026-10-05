@@ -1,6 +1,6 @@
 cask "steermouse" do
-  version "5.7.7"
-  sha256 "12b1d9c737af42a808138497aba98433c9f7a03e8f175a710dfa15c826076e54"
+  version "5.8"
+  sha256 "f3166054704323c6cdcf7ce25398e92670978e540e4dd30cbb4418ed5548537f"
 
   url "https://plentycom.jp/ctrl/files_sm/SteerMouse#{version}.dmg"
   name "SteerMouse"
@@ -12,7 +12,11 @@ cask "steermouse" do
     regex(/href=.*?SteerMouse[._-]?v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  depends_on macos: :monterey
+
   app "SteerMouse.app"
+
+  uninstall launchctl: "jp.plentycom.boa.SteerMouse"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/jp.plentycom.boa.steermouse.sfl*",

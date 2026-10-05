@@ -1,9 +1,8 @@
 cask "sipgate" do
-  version "2.30.6"
-  sha256 "0707d282059ec0abc7c2b92992c1ee2ac28697cf176b82ff93c60d401741f333"
+  version "2.44.8"
+  sha256 "e264808667348a386ba80914e946fed99bcdb90db403f0b16613ebd30a73af4a"
 
-  url "https://s3-eu-central-1.amazonaws.com/desktop.download.sipgate.com/sipgate-#{version}.zip",
-      verified: "s3-eu-central-1.amazonaws.com/desktop.download.sipgate.com/"
+  url "https://s3-eu-central-1.amazonaws.com/desktop.download.sipgate.com/sipgate-#{version}.zip"
   name "sipgate"
   desc "Softphone for making telephone calls over the internet"
   homepage "https://www.sipgate.de/app"
@@ -14,7 +13,7 @@ cask "sipgate" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "sipgate.app"
 

@@ -1,6 +1,6 @@
 cask "nozbe" do
-  version "2026.01"
-  sha256 "a77f87aeff56851634afd6eb4935ee81984a8ffd2c5b9f1f1804a67e4ba89323"
+  version "2026.17"
+  sha256 "4a5d2fa040bedc00aea845dea7f4fbf10dcb89d61c6f87b3e6c58fc324c5f156"
 
   url "https://builds.nozbe.com/mac/#{version}/Nozbe.app.zip"
   name "Nozbe"
@@ -14,7 +14,7 @@ cask "nozbe" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Nozbe.app"
 

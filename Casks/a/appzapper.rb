@@ -1,30 +1,30 @@
 cask "appzapper" do
-  version "2.0.3"
-  sha256 "bb541a89fd513c4fa95eeefe46ebac6b985ac6498a46da4e4622089a15ef6bcd"
+  version "1.0"
+  sha256 "eff16e4f7a9d8498cf10f6d29ce78a38b89e043b07f57848a250f61fee4a84a7"
 
-  url "https://appzapper.com/downloads/appzapper#{version.no_dots}.zip"
-  name "AppZapper"
+  url "https://appzapper.com/3000-updates/AppZapper-3000-#{version}-30.zip"
+  name "AppZapper 3000"
   desc "Tool to uninstall unwanted applications and their support files"
-  homepage "https://www.appzapper.com/"
+  homepage "https://appzapper.com/"
 
   livecheck do
-    url :homepage
-    regex(/href=.*?appzapper(\d+)(\d+)(\d+)\.zip/i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]}.#{match[1]}.#{match[2]}" }
-    end
+    url "https://appzapper.com/3000-updates/appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
-  auto_updates true
+  depends_on macos: :sequoia
 
-  app "AppZapper.app"
+  app "AppZapper 3000.app"
+
+  uninstall launchctl: "application.com.appzapper.appzapper3000*",
+            quit:      "com.appzapper.appzapper3000"
 
   zap trash: [
     "~/Library/Application Support/AppZapper",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.appzapper.appzapper3000.sfl*",
+    "~/Library/Caches/com.appzapper.appzapper3000",
+    "~/Library/HTTPStorages/com.appzapper.appzapper3000",
     "~/Library/Preferences/com.appzapper.appzapper2.plist",
+    "~/Library/Preferences/com.appzapper.appzapper3000.plist",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

@@ -1,13 +1,13 @@
 cask "privileges" do
-  version "2.5.0"
-  sha256 "a7587035b340bd5b0f37fdba9b0e57f8072c59f958fdc8193870c4df16df3f5a"
+  version "2.6.0"
+  sha256 "9677eb4c035368bea3fcc26a10fe7e5044920c9fcba750760ae20ec8f2c49009"
 
   url "https://github.com/SAP/macOS-enterprise-privileges/releases/download/#{version}/Privileges_#{version}.pkg"
   name "Privileges"
   desc "Admin rights switcher"
   homepage "https://github.com/SAP/macOS-enterprise-privileges"
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   pkg "Privileges_#{version}.pkg"
   binary "#{appdir}/Privileges.app/Contents/MacOS/PrivilegesCLI"

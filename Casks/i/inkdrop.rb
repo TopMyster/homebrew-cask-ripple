@@ -1,22 +1,21 @@
 cask "inkdrop" do
   arch arm: "arm64", intel: "x64"
 
-  version "5.11.7"
-  sha256 arm:   "97eb6f11184aee6d676eb3b15d1cd371b72804011f4dbae5cc6f3ef01965ec1a",
-         intel: "25f9166f6e574e4d4a010a9743ab64cf7cde3a2eebc9b7553ea4ae68df1371ad"
+  version "6.1.5"
+  sha256 arm:   "96c9a1e636a64814f3e3e6b32e5f612d981b7d99284ce8ef938c8d9a4b46bf49",
+         intel: "41365e04b23dad589b10b863ffd66aed4fc799fb47757b020c0128cb0d896400"
 
-  url "https://d3ip0rje8grhnl.cloudfront.net/v#{version}/Inkdrop-#{version}-#{arch}-Mac.zip",
-      verified: "d3ip0rje8grhnl.cloudfront.net/"
+  url "https://dist.inkdrop.app/releases/inkdrop-#{version}-#{arch}-mac.zip"
   name "Inkdrop"
   desc "Markdown editor"
-  homepage "https://www.inkdrop.info/"
+  homepage "https://www.inkdrop.app/"
 
   livecheck do
-    url "https://api.inkdrop.app/update/links"
-    strategy :json do |json|
-      json["version"]
-    end
+    url "https://dist.inkdrop.app/releases/latest-mac.yml"
+    strategy :electron_builder
   end
+
+  depends_on macos: :monterey
 
   app "Inkdrop.app"
 

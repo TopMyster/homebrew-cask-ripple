@@ -3,27 +3,22 @@ cask "lark" do
   livecheck_arch = on_arch_conditional arm: "_m1"
 
   on_arm do
-    version "7.59.12,6a063d43"
-    sha256 "a5f73540c9b0549338ce0ae70b204b16ab700845d8924764e2330074a55654e6"
-
-    depends_on macos: ">= :big_sur"
+    version "8.1.22,9dd05af0"
+    sha256 "4aaa5bdec6f1aac0cd99d47fd294c8ce7a0f236438a0b5853d8ca723eab01ccd"
   end
   on_intel do
-    version "7.59.12,7292f901"
-    sha256 "97bac21617b87daf2433d063c07c856335b3dc20543940c2e20ef2dc2a16d2dc"
-
-    depends_on macos: ">= :catalina"
+    version "8.1.24,0d3ff4df"
+    sha256 "657f3956ad06c4fa2da9761c8040f8e5c3f7e3c0ae5f492dd9969c8d5a57a7d9"
   end
 
-  url "https://sf16-sg.larksuitecdn.com/obj/lark-artifact-storage/#{version.csv.second}/Lark-darwin_#{arch}-#{version.csv.first}-signed.dmg",
-      verified: "sf16-sg.larksuitecdn.com/obj/lark-artifact-storage/"
+  url "https://sf16-sg.larksuitecdn.com/obj/lark-version-sg/#{version.csv.second}/Lark-darwin_#{arch}-#{version.csv.first}-signed.dmg"
   name "Lark"
   desc "Project management software"
   homepage "https://www.larksuite.com/"
 
   livecheck do
     url "https://www.larksuite.com/api/downloads"
-    regex(%r{/lark-artifact-storage/(\h+)/Lark[._-]darwin[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)[._-]signed\.dmg}i)
+    regex(%r{/lark-version-sg/(\h+)/Lark[._-]darwin[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)[._-]signed\.dmg}i)
     strategy :json do |json, regex|
       match = json.dig("versions", "MacOS#{livecheck_arch}", "download_link")&.match(regex)
       next if match.blank?
@@ -33,6 +28,7 @@ cask "lark" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "LarkSuite.app"
 

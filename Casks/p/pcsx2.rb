@@ -1,9 +1,8 @@
 cask "pcsx2" do
-  version "2.6.2"
-  sha256 "7c933d634bea423aad6096f7d481986619dbf45e71c083a9a34340085ec556f3"
+  version "2.8.2"
+  sha256 "3ed9eb40a33eae67134142c24255a079be444f0616ca29575a04a37981f7d426"
 
-  url "https://github.com/PCSX2/pcsx2/releases/download/v#{version}/pcsx2-v#{version}-macos-Qt.tar.xz",
-      verified: "github.com/PCSX2/pcsx2/"
+  url "https://github.com/PCSX2/pcsx2/releases/download/v#{version}/pcsx2-v#{version}-macos-Qt.tar.xz"
   name "PCSX2"
   desc "Playstation 2 Emulator"
   homepage "https://pcsx2.net/"
@@ -20,9 +19,11 @@ cask "pcsx2" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "PCSX2-v#{version}.app", target: "PCSX2.app"
+
+  uninstall quit: "net.pcsx2.pcsx2"
 
   zap trash: [
     "~/Library/Application Support/PCSX2",

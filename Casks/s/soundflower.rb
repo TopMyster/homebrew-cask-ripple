@@ -10,13 +10,12 @@ cask "soundflower" do
   disable! date: "2025-11-16", because: :unmaintained
 
   depends_on arch: :x86_64
+  depends_on :macos
 
   pkg "Soundflower.pkg"
 
-  postflight do
-    system_command "/sbin/kextload",
-                   args: ["-b", "com.Cycling74.driver.Soundflower"],
-                   sudo: true
+  postflight_steps do
+    run "/sbin/kextload", args: ["-b", "com.Cycling74.driver.Soundflower"], sudo: true
   end
 
   # early_script is a workaround for a slowly unloading kext, see private-eye Cask

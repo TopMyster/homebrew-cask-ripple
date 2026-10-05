@@ -1,16 +1,18 @@
 cask "openforis-collect" do
-  version "4.0.102"
-  sha256 "451f694a9aa42698c21c013783a4a25f8cd071328f93ef577e2af467fe974756"
+  version "4.0.110"
+  sha256 "6e6f305ef12135dcaf28e9c5fa8b7c72189d10ac03b3391fe37f6381b0cf58d7"
 
-  url "https://search.maven.org/remotecontent?filepath=org/openforis/collect/collect-installer/#{version}/collect-installer-#{version}-osx.dmg",
-      verified: "search.maven.org/"
+  url "https://search.maven.org/remotecontent?filepath=org/openforis/collect/collect-installer/#{version}/collect-installer-#{version}-osx.dmg"
   name "Open Foris Collect"
   desc "Data management for field-based inventories"
   homepage "https://openforis.org/solutions/collect/"
 
   livecheck do
-    url "https://github.com/openforis/collect"
+    url "https://search.maven.org/remotecontent?filepath=org/openforis/collect/collect-installer/maven-metadata.xml"
+    regex(%r{<version>v?(\d+(?:\.\d+)+)</version>}i)
   end
+
+  depends_on :macos
 
   rename "OpenForisCollect-*-osx-installer.app", "OpenForisCollect-osx-installer.app"
 

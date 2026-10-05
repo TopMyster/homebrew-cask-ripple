@@ -1,6 +1,6 @@
 cask "morisawa-desktop-manager" do
-  version "3.0.0"
-  sha256 "93f49bf329cd862ff2905824e76791c2ce7a981b91d4ff2d511264b8144ce227"
+  version "3.2.0"
+  sha256 "7e1f81aab5faab5caaf9ffef5eda6c7afcfe66721e698bf23b58a18e85eaba7a"
 
   url "https://morisawafonts.com/resources/dm/#{version}/mac/site/MorisawaDesktopManager_#{version}.dmg"
   name "Morisawa Desktop Manager"
@@ -15,6 +15,7 @@ cask "morisawa-desktop-manager" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Morisawa Desktop Manager.pkg"
 

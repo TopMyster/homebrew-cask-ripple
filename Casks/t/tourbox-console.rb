@@ -1,23 +1,23 @@
 cask "tourbox-console" do
-  version "5.11.0"
-  sha256 "31d92ac5eb43710b4d25451a5372d60694093bc903d40a63b065f48a4c3b0c34"
+  version "5.11.3,260612142948"
+  sha256 "59ba5f51b7022253b7912b5b1b1e284947bad4dfd71cecaef732b53175f27abd"
 
-  url "https://tourbox-web-files.s3.us-west-2.amazonaws.com/prod/console/TourBoxInstall#{version}.zip",
-      verified: "tourbox-web-files.s3.us-west-2.amazonaws.com/prod/console/"
+  url "https://cdn.tourboxtech.com/prod/console/TourBoxInstall#{version.csv.join("_")}.zip"
   name "TourBox Console"
   desc "Configuration app for TourBox devices"
   homepage "https://www.tourboxtech.com/"
 
   livecheck do
-    url "https://www.tourboxtech.com/tbmall/download/newest?local=US", post_json: {
-      softName: "TourBox Console",
-    }
-    strategy :json do |json|
-      json.dig("result", "normalSoft", "version")
+    url "https://www.tourboxtech.com/en/downloads/macos/"
+    regex(/TourBoxInstall(\d+(?:\.\d+)+)_(\d+)\.zip/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end
   end
 
-  pkg "TourBoxInstall#{version}/TourBoxInstall#{version}.pkg"
+  depends_on :macos
+
+  pkg "TourBoxInstall#{version.csv.first}/TourBoxInstall#{version.csv.first}.pkg"
 
   uninstall quit:    "com.tourbox.ui.launch",
             pkgutil: "com.tourbox.ui.launch"

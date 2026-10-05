@@ -1,12 +1,11 @@
 cask "socialstream" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.3.82"
-  sha256 arm:   "030a0408dbe18a6cc43d09441e479cee84cc2ecc4b54ae0811fdde1e5864301d",
-         intel: "66042ea511c21a8ef26e9e8f084b4349254dfccc0954ee380e1528b67ac319ab"
+  version "0.4.18"
+  sha256 arm:   "6f45d36dff6ae4ace9e2b3b51ba326d17a4c32f2cc502bf1e4938b5e31629395",
+         intel: "d978fdb1475dfef0a73434d43880c1548e6f7715248c89efc9271722b10db83a"
 
-  url "https://github.com/steveseguin/social_stream/releases/download/#{version}/socialstreamninja_mac_v#{version}_#{arch}.dmg",
-      verified: "github.com/steveseguin/social_stream/"
+  url "https://github.com/steveseguin/social_stream/releases/download/v#{version}/socialstreamninja_mac_v#{version}_#{arch}.dmg"
   name "Social Stream"
   name "Social Stream Ninja"
   desc "Consolidate, control, and customise live social messaging streams"
@@ -17,7 +16,7 @@ cask "socialstream" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "socialstream.app"
 

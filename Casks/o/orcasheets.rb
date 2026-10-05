@@ -1,12 +1,11 @@
 cask "orcasheets" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "26.1.5"
-  sha256 arm:   "b0dea9e7b389fb6ce090c782ed53afa26ec0b0dcf50d84ede9ff8b106579c3ed",
-         intel: "fedaf939fc52a3f2afbec95d464ad312e7c4ad406bb3dbcbcd34c76946be5efc"
+  version "26.9.2"
+  sha256 arm:   "4a05507bba305fc90547223afe78f54f2c45013ca2a7b7590a8c33677bbd9436",
+         intel: "fb9b50f278d8d84ffaaf9cd5ade7a5ca2894cc2c07c2e04d39b8b3bd4ea4d647"
 
-  url "https://github.com/dataorchestration/homebrew-orcasheets/releases/download/#{version}/orcasheets_#{version}_#{arch}.dmg",
-      verified: "github.com/dataorchestration/homebrew-orcasheets/"
+  url "https://github.com/dataorchestration/homebrew-orcasheets/releases/download/#{version}/orcasheets_#{version}_#{arch}.dmg"
   name "OrcaSheets"
   desc "Local-first data analytics"
   homepage "https://orcasheets.ai/"
@@ -16,9 +15,9 @@ cask "orcasheets" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
-  app "OrcaSheets.app"
+  app "orcasheets.app"
 
   zap trash: "~/Library/Application Support/OrcaSheets"
 end

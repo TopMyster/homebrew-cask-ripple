@@ -1,9 +1,9 @@
 cask "eclipse-cpp" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "4.38,2025-12"
-  sha256 arm:   "a3f4fb1bd93089fd4f41b655147db4f9e4bbb0c13fbc65d0e857222031a985c6",
-         intel: "6499e4256dde82f6944775a8c945c2fef9d109c7afb12ec6fc04cc3c23a6638d"
+  version "4.41,2026-09"
+  sha256 arm:   "0c8dc7fdcdf9b49adb136a91088432aaa20e12fe267da2111c14fbce80ea467f",
+         intel: "6c221fa477ecaaf1d371202593cd64b8f78cecc113f26cb560f1863c960247a2"
 
   url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.csv.second}/R/eclipse-cpp-#{version.csv.second}-R-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse IDE for C/C++ Developers"
@@ -14,7 +14,7 @@ cask "eclipse-cpp" do
     cask "eclipse-ide"
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   # Renamed to avoid conflict with other Eclipse.
   app "Eclipse.app", target: "Eclipse CPP.app"

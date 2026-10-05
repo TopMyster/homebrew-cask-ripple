@@ -1,6 +1,6 @@
 cask "taphouse" do
-  version "1.3.1.1"
-  sha256 "a55418a246e2c491a1be365bb92a11d736cca96178225a6ee69ac16ae2d51666"
+  version "1.5.8.7"
+  sha256 "53edd87919d83ec49229f40e1e8715a209d89a52d4af4ede8d2bb9cf546ada98"
 
   url "https://taphouse.multimodalsolutions.gr/downloads/Taphouse-#{version}.dmg"
   name "Taphouse"
@@ -13,9 +13,11 @@ cask "taphouse" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Taphouse.app"
+
+  uninstall quit: "com.multimodalsolutions.taphouse"
 
   zap trash: [
     "~/Library/Application Support/Taphouse",

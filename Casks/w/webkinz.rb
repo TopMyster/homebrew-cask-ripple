@@ -1,6 +1,6 @@
 cask "webkinz" do
-  version "1.7.7"
-  sha256 "c0611b8e48b2fea1d73e10f9a6c05bbf172a7d1f4ff2cf6fd3f63351f55f0411"
+  version "1.7.9"
+  sha256 "3040892fc1f0fd67208f54cb788177207fe61963ae546117423eecd0c22110e0"
 
   url "https://downloads.webkinz.com/apps/wxsetup-#{version}.dmg"
   name "Webkinz Classic"
@@ -11,6 +11,8 @@ cask "webkinz" do
     url "https://downloads.webkinz.com/apps/latest-mac.yml"
     strategy :electron_builder
   end
+
+  depends_on :macos
 
   app "Webkinz.app"
 

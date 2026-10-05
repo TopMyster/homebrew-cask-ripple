@@ -1,21 +1,19 @@
 cask "mater" do
-  version "1.0.10"
-  sha256 "613dba1cd8ca8dee74b30a456d3d2cb87896020b5305d6ff25f5f324499c4ee7"
+  version "3.0.2"
+  sha256 "59b0f6c5a6c9cb276deecc63a3ea3abaeaa17fea4304e76443a6cdf306bac4b9"
 
-  url "https://github.com/jasonlong/mater/releases/download/#{version}/Mater-darwin-x64.zip"
+  url "https://github.com/jasonlong/mater/releases/download/v#{version}/Mater-v#{version}-macos.zip"
   name "Mater"
   desc "Menubar pomodoro app"
   homepage "https://github.com/jasonlong/mater"
 
-  app "Mater-darwin-x64/Mater.app"
+  depends_on macos: :sonoma
+
+  app "Mater.app"
 
   zap trash: [
     "~/Library/Application Support/mater",
     "~/Library/Preferences/com.electron.mater.plist",
     "~/Library/Saved Application State/com.electron.mater.savedState",
   ]
-
-  caveats do
-    requires_rosetta
-  end
 end

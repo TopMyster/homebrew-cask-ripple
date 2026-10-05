@@ -1,39 +1,46 @@
 cask "antigravity" do
   arch arm: "arm", intel: "x64"
-  livecheck_arch = on_arch_conditional arm: "-arm64"
+  livecheck_arch = on_arch_conditional arm: "arm64", intel: "x64"
 
-  version "1.14.2,6046590149459968"
-  sha256 arm:   "014f5eeb231bf5e00837abbc45c47be5d68b542dad3cd969444becbd0bf12860",
-         intel: "f516b8ea7d3566140d70dd6825cd5a07b0c899370c08acfdc9b133c6d0ef5ded"
+  version "2.19.1,6046815158665216"
+  sha256 arm:   "566f4bad24daa7ddd3bb1daa88a7ec7adc292e2c691d077fd931ac889990b7cb",
+         intel: "f2a18293281547ae1c5780236156bd3b2c4ae9d5502f5b2378a5f416707140c1"
 
-  url "https://edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/stable/#{version.csv.first}-#{version.csv.second}/darwin-#{arch}/Antigravity.zip",
-      verified: "edgedl.me.gvt1.com/edgedl/release2/j0qc3/antigravity/"
+  url "https://storage.googleapis.com/antigravity-public/antigravity-hub/#{version.csv.first}-#{version.csv.second}/darwin-#{arch}/Antigravity.dmg"
   name "Google Antigravity"
-  desc "AI Coding Agent IDE"
-  homepage "https://antigravity.google/"
+  desc "Agent orchestration platform"
+  homepage "https://antigravity.google/product/antigravity-2"
 
   livecheck do
-    url "https://antigravity-auto-updater-974169037036.us-central1.run.app/api/update/darwin#{livecheck_arch}/stable/latest"
-    regex(%r{/stable/([^/]+)/}i)
-    strategy :json do |json, regex|
-      match = json["url"]&.match(regex)
-      next if match.blank?
+    url "https://antigravity-hub-auto-updater-974169037036.us-central1.run.app/manifest/latest-#{livecheck_arch}-mac.yml?noCache=#{Time.now.to_i}"
+    regex(%r{/v?(\d+(?:\.\d+)+)(?:-(\d+)?)/darwin-#{arch}/Antigravity\.(?:dmg|zip)}i)
+    strategy :electron_builder do |yaml, regex|
+      yaml["files"]&.map do |item|
+        match = item["url"]&.match(regex)
+        next if match.blank?
 
-      match[1]&.tr("-", ",").to_s
+        match[2].present? ? "#{match[1]},#{match[2]}" : match[1]
+      end
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "Antigravity.app"
-  binary "#{appdir}/Antigravity.app/Contents/Resources/app/bin/antigravity", target: "agy"
+
+  uninstall quit: "com.google.antigravity"
 
   zap trash: [
-    "~/.antigravity/",
+    "~/.antigravity",
+    "~/.gemini/antigravity",
     "~/Library/Application Support/Antigravity",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.google.antigravity.sfl*",
     "~/Library/Caches/com.google.antigravity",
+    "~/Library/Caches/com.google.antigravity.ShipIt",
     "~/Library/HTTPStorages/com.google.antigravity",
+    "~/Library/Logs/Antigravity",
+    "~/Library/Preferences/ByHost/com.google.antigravity.ShipIt.*.plist",
     "~/Library/Preferences/com.google.antigravity.plist",
     "~/Library/Saved Application State/com.google.Antigravity.savedState",
   ]

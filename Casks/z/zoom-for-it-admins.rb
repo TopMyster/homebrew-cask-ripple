@@ -1,6 +1,6 @@
 cask "zoom-for-it-admins" do
-  version "6.7.2.72191"
-  sha256 "916567f66e40418282d523f8fd49e72fb3e6eb8632069de70b4c1d97639e06ba"
+  version "7.2.2.88465"
+  sha256 "422f801771ef0c3db68bdf1a47a9c44e18b6f822b2f5d751adc3242270dc6417"
 
   url "https://cdn.zoom.us/prod/#{version}/ZoomInstallerIT.pkg"
   name "Zoom for IT Admins"
@@ -13,6 +13,7 @@ cask "zoom-for-it-admins" do
 
   auto_updates true
   conflicts_with cask: "zoom"
+  depends_on :macos
 
   pkg "ZoomInstallerIT.pkg"
 

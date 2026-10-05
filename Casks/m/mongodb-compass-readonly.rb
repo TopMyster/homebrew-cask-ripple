@@ -1,9 +1,9 @@
 cask "mongodb-compass-readonly" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.49.0"
-  sha256 arm:   "7a53d51497097b0281e730246a65cc3cd6045adade4494f5b2a07019af0bb31d",
-         intel: "10afc6d74f931e9606ff77ae0dc307e3d50a6154f149e789feac3486b84408a3"
+  version "1.52.0"
+  sha256 arm:   "eeb30b24cda41f6110befecde4c829666f9bd8f5e81f9714e97ae625b561a741",
+         intel: "5e3e9cadeab3d3410350edfb0ec82bd02cce5f3295bfa967d51f9104dc6ffada"
 
   url "https://downloads.mongodb.com/compass/mongodb-compass-readonly-#{version}-darwin-#{arch}.dmg"
   name "MongoDB Compass Readonly"
@@ -23,12 +23,15 @@ cask "mongodb-compass-readonly" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: :ventura
 
   app "MongoDB Compass Readonly.app"
 
+  uninstall quit: "com.mongodb.compass.readonly"
+
   zap trash: [
     "~/.mongodb/compass",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mongodb.compass.readonly.sfl*",
     "~/Library/Application Support/MongoDB Compass Readonly",
     "~/Library/Caches/com.mongodb.compass.readonly",
     "~/Library/Caches/com.mongodb.compass.readonly.ShipIt",

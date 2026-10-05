@@ -1,12 +1,11 @@
 cask "sunsama" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.2.6,260114cp6zmcvo0"
-  sha256 arm:   "16e42e632a2c7b88ce7f567a7a22c8301bdf5e812c8d3af138dc889d7d3bb092",
-         intel: "11e31d6628aaede088cf4f096fdb3373deb7de478b2faec627434369c70ef1f2"
+  version "3.4.14,2610024fcalyyd7"
+  sha256 arm:   "e341941acb102321350862590bd2ed331f842ea7a127b82707ce570593c4d0dc",
+         intel: "11d2daca22b1a3a9e8887d6880025d50d311958b27221ac077d1458e9001967c"
 
-  url "https://download.todesktop.com/2003096gmmnl0g1/Sunsama%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}-mac.zip",
-      verified: "download.todesktop.com/2003096gmmnl0g1/"
+  url "https://download.todesktop.com/2003096gmmnl0g1/Sunsama%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}-mac.zip"
   name "Sunsama"
   desc "Daily planner and calendar"
   homepage "https://www.sunsama.com/desktop"
@@ -25,7 +24,7 @@ cask "sunsama" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "Sunsama.app"
 

@@ -1,9 +1,8 @@
 cask "marginnote" do
-  version "4.2.3"
-  sha256 "f5d23a43bcf48a6a64314c8843e1b6c6b08b6ebb61733539bf586520203a7917"
+  version "4.4.6"
+  sha256 "2e6f0f4cace14aa7033592febefc65bde042c4fa5033978a82b9581399dd1c20"
 
-  url "https://dist.marginnote.cn/MarginNote#{version}.dmg",
-      verified: "marginnote.cn/"
+  url "https://dist.marginnote.cn/MarginNote#{version}.dmg"
   name "MarginNote"
   desc "E-reader"
   homepage "https://www.marginnote.com/"
@@ -14,7 +13,7 @@ cask "marginnote" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :sonoma
 
   app "MarginNote #{version.major}.app"
 

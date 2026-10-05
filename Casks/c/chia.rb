@@ -1,12 +1,11 @@
 cask "chia" do
   arch arm: "-arm64"
 
-  version "2.5.7"
-  sha256 arm:   "173a0a4882bafcf9bfa6cbc51847c8b393364a20f1b2de820759e9fc8ef576aa",
-         intel: "2bbcaa1702ddd10d4bf6741a7ecb083ce4fed2c33f68c3dae734a32927831d99"
+  version "2.7.4"
+  sha256 arm:   "447e61c99897ffb85381a92dff8df89d9b14453df2e84b50ed519cf976ef2aea",
+         intel: "88520e6b1a8c3d67a50200d3427402b87985a1742adc31c0787f4d08e65eaf07"
 
-  url "https://github.com/Chia-Network/chia-blockchain/releases/download/#{version}/Chia-#{version}#{arch}.dmg",
-      verified: "github.com/Chia-Network/chia-blockchain/"
+  url "https://github.com/Chia-Network/chia-blockchain/releases/download/#{version}/Chia-#{version}#{arch}.dmg"
   name "Chia Blockchain"
   desc "GUI Python implementation for the Chia blockchain"
   homepage "https://www.chia.net/"
@@ -16,13 +15,16 @@ cask "chia" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :sequoia
 
   app "Chia.app"
+
+  uninstall quit: "net.chia.blockchain"
 
   zap trash: [
     "~/.chia",
     "~/Library/Application Support/Chia Blockchain",
+    "~/Library/Caches/Chia Blockchain",
     "~/Library/Preferences/net.chia.blockchain.plist",
     "~/Library/Saved Application State/net.chia.blockchain.savedState",
   ]

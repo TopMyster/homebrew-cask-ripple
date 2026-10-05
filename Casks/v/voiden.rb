@@ -1,12 +1,11 @@
 cask "voiden" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.2"
-  sha256 arm:   "cf20a957f10c5d16ac08714bb22c9fa98372cf946e9369ec03d4573a107139dc",
-         intel: "50e97df52e0ab72d6ed4c719b0e79f3c21d66ddaac483c1d9dcaf12080463645"
+  version "2.3.1"
+  sha256 arm:   "646fb538d3239f911656b15a09194e1879b0c19d586b92ec358d212f4f0d2497",
+         intel: "001c85b817064fe4c5c4d2bc44484d1d699fb25eda5a4cdddb77131b60726bcd"
 
-  url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/#{arch}/Voiden-darwin-#{arch}-#{version}.zip",
-      verified: "voiden-releases.s3.eu-west-1.amazonaws.com/"
+  url "https://voiden-releases.s3.eu-west-1.amazonaws.com/voiden/darwin/#{arch}/Voiden-darwin-#{arch}-#{version}.zip"
   name "Voiden"
   desc "API development tool"
   homepage "https://voiden.md/"
@@ -17,6 +16,9 @@ cask "voiden" do
       json["currentRelease"]
     end
   end
+
+  conflicts_with cask: "voiden@beta"
+  depends_on macos: :monterey
 
   app "Voiden.app"
 

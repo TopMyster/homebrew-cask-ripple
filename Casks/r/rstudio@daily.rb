@@ -1,9 +1,8 @@
 cask "rstudio@daily" do
-  version "2026.04.0-daily-127"
-  sha256 "4fee01862b7c93ff3cbafd4ea2de5a8eb78e0b0bac9bc77e06bc8a932e9578ef"
+  version "2026.10.0-daily-228"
+  sha256 "ee84ba88909d1697913c688de0f1b0bb7c94abbfbbdea17dbf85687b6e8d9433"
 
-  url "https://rstudio-ide-build.s3.amazonaws.com/electron/macos/RStudio-#{version}.dmg",
-      verified: "rstudio-ide-build.s3.amazonaws.com/electron/macos/"
+  url "https://rstudio-ide-build.s3.amazonaws.com/electron/macos/RStudio-#{version}.dmg"
   name "RStudio Daily"
   desc "Data science software focusing on R and Python"
   homepage "https://dailies.rstudio.com/"
@@ -17,11 +16,18 @@ cask "rstudio@daily" do
   end
 
   conflicts_with cask: "rstudio"
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "RStudio.app"
 
-  zap trash: "~/.rstudio-desktop"
+  uninstall quit: "com.rstudio.desktop"
+
+  zap trash: [
+    "~/.rstudio-desktop",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.rstudio.desktop.sfl*",
+    "~/Library/Application Support/RStudio",
+    "~/Library/Preferences/com.rstudio.desktop.plist",
+  ]
 
   caveats <<~EOS
     #{token} depends on R. The R Project provides official binaries:

@@ -1,6 +1,6 @@
 cask "elephas" do
-  version "11.4010,4010"
-  sha256 "1ffb275b41026c62490f15f388be2ea7a6189299494de2ebf7f06f12014ea23a"
+  version "12.0001"
+  sha256 "085c4188f1a797e737490ff9f09b67ca88f6355d8fa4b21c61522fbdd4de1d42"
 
   url "https://assets.elephas.app/Elephas_#{version.csv.second || version.csv.first}.dmg"
   name "Elephas"
@@ -20,7 +20,7 @@ cask "elephas" do
 
   auto_updates true
   conflicts_with cask: "elephas@beta"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Elephas.app"
 

@@ -1,12 +1,11 @@
 cask "dynobase" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.5.1,230920qzouyzmgy"
-  sha256 arm:   "369fe11880c25e1b51852b4446ea844ac09a953d9bae3111977143bbed697ec7",
-         intel: "d059b25cb5bd3203c5bd59e787f5470c70265ac8d6d3235aca0a06eacc26b67d"
+  version "3.0.8,260930f317xih77"
+  sha256 arm:   "441e34ae9972da782a0a514efad764b48325e88ebcc116cc63e588367201aebb",
+         intel: "425ac1dcc37db0861bdb5859d86d82e19ee0999b90d846df6e2af7dd1830fb99"
 
-  url "https://download.todesktop.com/220811zswf4aj4x/Dynobase%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}.dmg",
-      verified: "download.todesktop.com/220811zswf4aj4x/"
+  url "https://download.todesktop.com/220811zswf4aj4x/Dynobase%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}.dmg"
   name "Dynobase"
   desc "GUI Client for DynamoDB"
   homepage "https://dynobase.dev/"
@@ -21,6 +20,8 @@ cask "dynobase" do
       "#{match[1]},#{match[2]}"
     end
   end
+
+  depends_on macos: :monterey
 
   app "Dynobase.app"
 

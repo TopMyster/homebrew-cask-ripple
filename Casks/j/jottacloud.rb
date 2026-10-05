@@ -1,9 +1,8 @@
 cask "jottacloud" do
-  version "25.11.25.151437,328aa07662094da70cea79907e77c68e4ecd8ff876f094c1db765956e1e3301a"
-  sha256 "328aa07662094da70cea79907e77c68e4ecd8ff876f094c1db765956e1e3301a"
+  version "26.09.18.182029,df3b690717a1ab9113e6d74b72e04cb24f23e683faf7eada76a7edd966a5004b"
+  sha256 "df3b690717a1ab9113e6d74b72e04cb24f23e683faf7eada76a7edd966a5004b"
 
-  url "https://sw.jotta.cloud/desktop/download/data/#{version.csv.second}/Jottacloud.dmg",
-      verified: "sw.jotta.cloud/"
+  url "https://sw.jotta.cloud/desktop/download/data/#{version.csv.second}/Jottacloud.dmg"
   name "Jottacloud"
   desc "Client for the Jottacloud cloud storage service"
   homepage "https://jottacloud.com/"
@@ -20,6 +19,7 @@ cask "jottacloud" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Jottacloud.app"
 

@@ -1,11 +1,11 @@
 cask "baidunetdisk" do
-  arch arm: "arm64", intel: "x64"
+  arch arm: "_arm64", intel: "_x64"
 
-  version "8.1.8"
-  sha256 arm:   "035b5150d39d04fe4d4ade94bac99216d936eceaacbc40fccd93c9a77275b4e6",
-         intel: "8ff17e969364fd7531e05a6a9aacd0933833ff9aa7b09c0a70f35bb31606462c"
+  version "8.8.8"
+  sha256 arm:   "e95c2b2164a72fff8ecb7b603d87639a3049b49c89ace1ed9b2c791a7d9bcf2b",
+         intel: "770c3fdc73ae617e933f37273b50d6fff9d230b01a163d1f3220724f664cb476"
 
-  url "https://pkg-ant.baidu.com/issue/netdisk/MACguanjia/#{version}/BaiduNetdisk_mac_#{version}_#{arch}.dmg"
+  url "https://pkg-ant.baidu.com/issue/netdisk/MACguanjia/#{version}/BaiduNetdisk_mac_#{version}#{arch}.dmg"
   name "Baidu NetDisk"
   name "百度网盘"
   desc "Cloud storage service"
@@ -13,12 +13,15 @@ cask "baidunetdisk" do
 
   livecheck do
     url "https://pan.baidu.com/disk/cmsdata?do=client"
-    regex(/BaiduNetdisk(?:[._-]mac)?[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
+    regex(/BaiduNetdisk(?:[._-]mac)?[._-]v?(\d+(?:\.\d+)+)#{arch}\.dmg/i)
   end
 
   auto_updates true
+  depends_on :macos
 
   app "BaiduNetdisk_mac.app"
+
+  uninstall launchctl: "netdisk_service"
 
   zap trash: [
         "~/Library/Application Scripts/com.baidu.BaiduNetdisk-mac.FinderSync",

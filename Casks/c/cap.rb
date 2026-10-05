@@ -2,23 +2,22 @@ cask "cap" do
   arch arm: "aarch64", intel: "x86_64"
 
   on_arm do
-    version "0.4.4,01KEZQT2Q2FRT9X2WY6FHR6TD9"
-    sha256 "f41f8bc556f4b0974449f28bbe6103084fd633364dbe9fbe3baa84f83b03eb8b"
+    version "0.6.0,01M2JE5SBQ73J4PJ6TZW168VGT"
+    sha256 "8b09b0610cb4ef282d4bd61d3c4482129bf7fa61fe6607baa22a6f9590b5dcc7"
   end
   on_intel do
-    version "0.4.4,01KEZQXDK7G0VBB5VT8W2H1VAX"
-    sha256 "618c9c72ad0a37724ecebec0fbe7e3b54c360f4e78e66050877623d0b9c38f3d"
+    version "0.6.0,01M2JEBK9WK5WW00728DRDGCKG"
+    sha256 "181fa30db35a7a474cef6d344c33f58484748c592ea5bfabb98dfae0b86bde90"
   end
 
-  url "https://cdn.crabnebula.app/asset/#{version.csv.second}",
-      verified: "crabnebula.app/asset/"
+  url "https://cdn.crabnebula.app/asset/#{version.csv.second}"
   name "Cap"
   desc "Screen recording software"
   homepage "https://cap.so/"
 
   livecheck do
     url "https://cdn.crabnebula.app/update/cap/cap/darwin-#{arch}/0.0.0"
-    regex(%r{cdn.crabnebula.app/asset/(.+)}i)
+    regex(%r{/asset/([^?/]+)}i)
     strategy :json do |json, regex|
       asset_id = json["url"]&.[](regex, 1)
       version = json["version"]
@@ -29,6 +28,7 @@ cask "cap" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   app "Cap.app"
 

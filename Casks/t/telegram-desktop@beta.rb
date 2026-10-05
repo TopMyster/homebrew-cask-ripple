@@ -1,9 +1,8 @@
 cask "telegram-desktop@beta" do
-  version "6.4.2"
-  sha256 "a374d407380938a32d1072976ca2008c88d628de1b6d1e4c177a2e4a44ab8754"
+  version "7.2.10-beta,7.2.10"
+  sha256 "3ed9a3016d9297814a6bdd56b30ab2a762b434925de8c28462d258fb991d72d9"
 
-  url "https://github.com/telegramdesktop/tdesktop/releases/download/v#{version.major_minor_patch}/tsetup.#{version}.dmg",
-      verified: "github.com/telegramdesktop/tdesktop/"
+  url "https://github.com/telegramdesktop/tdesktop/releases/download/v#{version.csv.second || version.csv.first}/td-setup-mac-#{version.csv.first}.dmg"
   name "Telegram Desktop"
   desc "Desktop client for Telegram messenger"
   homepage "https://desktop.telegram.org/"
@@ -13,7 +12,10 @@ cask "telegram-desktop@beta" do
   # omitting the newest release(s) due to a file name format change.
   livecheck do
     url :url
-    regex(/tsetup[._-]v?(\d+(?:\.\d+)+(?:[._-]beta)?)/i)
+    regex(%r{
+      /v?(\d+(?:\.\d+)+(?:[._-]beta)?)/
+      (?:td[._-]?setup(?:[._-]mac)?|tsetup)[._-]v?(\d+(?:\.\d+)+(?:[._-]beta)?)
+    }ix)
     strategy :github_releases do |json, regex|
       json.map do |release|
         next if release["draft"]
@@ -22,14 +24,15 @@ cask "telegram-desktop@beta" do
           match = asset["browser_download_url"]&.match(regex)
           next if match.blank?
 
-          match[1]
-        end.presence || release["tag_name"]&.[](/v?(\d+(?:\.\d+)+)/i, 1)
+          (match[1] == match[2]) ? match[1] : "#{match[2]},#{match[1]}"
+        end.presence || release["tag_name"]&.[](/v?(\d+(?:\.\d+)+(?:[._-]beta)?)/i, 1)
       end.flatten
     end
   end
 
   auto_updates true
   conflicts_with cask: "telegram-desktop"
+  depends_on :macos
 
   # Renamed to avoid conflict with telegram
   app "Telegram.app", target: "Telegram Desktop.app"

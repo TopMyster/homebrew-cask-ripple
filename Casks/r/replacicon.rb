@@ -1,6 +1,6 @@
 cask "replacicon" do
-  version "2.1,52"
-  sha256 "4f55684292c667a7e11ee5d984d94cc1c1c532e2df9f254b1116981af1d1f35b"
+  version "2.1.1,54"
+  sha256 "e1cdf6f6568bba307b85e2600ecb465ac0272c447ea979a938c5df80bc4682b6"
 
   url "https://replacicon.app/builds/Replacicon_#{version.csv.second}.zip"
   name "Replacicon"
@@ -13,11 +13,12 @@ cask "replacicon" do
   end
 
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Replacicon.app"
 
   uninstall launchctl: "com.Replacicon.SetIcon",
+            quit:      "com.Replacicon.Replacicon",
             delete:    [
               "/Library/LaunchDaemons/com.Replacicon.SetIcon.plist",
               "/Library/PrivilegedHelperTools/com.Replacicon.SetIcon",

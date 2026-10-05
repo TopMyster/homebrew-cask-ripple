@@ -1,6 +1,6 @@
 cask "microsoft-edge@dev" do
-  version "145.0.3789.1,9d00e216-e3fc-461b-befa-8da14449befa"
-  sha256 "efdd339cf19246b4edb971974fcf2dfef9ac5ec34a592180805046b6d448121a"
+  version "156.0.4301.0,64cd3810-1629-481f-b867-f6a603d8d6db"
+  sha256 "ef8978d930aaceb74963d4d242566407e63bf7e8b56768a8af8378554c777f39"
 
   url "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/#{version.csv.second}/MicrosoftEdgeDev-#{version.csv.first}.dmg"
   name "Microsoft Edge Dev"
@@ -19,11 +19,12 @@ cask "microsoft-edge@dev" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :ventura
 
   app "Microsoft Edge Dev.app"
 
-  uninstall launchctl: "com.microsoft.EdgeUpdater.wake"
+  uninstall launchctl: "com.microsoft.EdgeUpdater.wake",
+            quit:      "com.microsoft.edgemac.Dev"
 
   zap trash: [
         "~/Library/Application Scripts/com.microsoft.edgemac.wdgExtension.Dev",

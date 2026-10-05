@@ -4,12 +4,7 @@ cask "maintenance" do
   # NOTE: We use separate `url` values in each of the macOS on_system blocks
   # so that the API data correctly includes URL variants for each.
   on_sonoma :or_older do
-    on_catalina :or_older do
-      version "2.7.1"
-
-      url "https://www.titanium-software.fr/download/1015/Maintenance.dmg"
-    end
-    on_big_sur do
+    on_big_sur :or_older do
       version "2.8.2"
 
       url "https://www.titanium-software.fr/download/11/Maintenance.dmg"
@@ -39,16 +34,21 @@ cask "maintenance" do
 
     url "https://www.titanium-software.fr/download/15/Maintenance.dmg"
   end
-  on_tahoe :or_newer do
-    version "3.4.4"
+  on_tahoe do
+    version "3.5.3"
 
     url "https://www.titanium-software.fr/download/26/Maintenance.dmg"
+  end
+  on_golden_gate :or_newer do
+    version "3.6.0"
+
+    url "https://www.titanium-software.fr/download/27/Maintenance.dmg"
 
     # We check the version on the homepage, as the version in the related plist
     # file can be out of date.
     livecheck do
       url :homepage
-      regex(/>\s*Maintenance\s+v?(\d+(?:\.\d+)+)\s+for\s+[\w\s]*26\s*</i)
+      regex(/>\s*Maintenance\s+v?(\d+(?:\.\d+)+)\s+for\s+[\w\s]*27\s*</i)
     end
   end
 
@@ -57,13 +57,13 @@ cask "maintenance" do
   homepage "https://www.titanium-software.fr/en/maintenance.html"
 
   depends_on macos: [
-    :catalina,
     :big_sur,
     :monterey,
     :ventura,
     :sonoma,
     :sequoia,
     :tahoe,
+    :golden_gate,
   ]
 
   app "Maintenance.app"

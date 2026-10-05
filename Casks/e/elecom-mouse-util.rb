@@ -1,6 +1,6 @@
 cask "elecom-mouse-util" do
-  version "6.1.5"
-  sha256 "0082853137027bc901088a4e0ca02debeea70d758520ff15944ba888826e12df"
+  version "6.3.2"
+  sha256 "701eecca8e662ffcad4044c789d3d8d2df8021282073f93dd7ec988e84283adb"
 
   url "https://dl.elecom.co.jp/support/download/peripheral/mouse/assistant/mac/ELECOM_MA_Setup_#{version}.zip"
   name "ELECOM Mouse Assistant"
@@ -8,11 +8,12 @@ cask "elecom-mouse-util" do
   homepage "https://www.elecom.co.jp/global/download-list/utility/mouse_assistant/mac/"
 
   livecheck do
-    url :homepage
+    url :homepage,
+        user_agent: :browser
     regex(/ELECOM[._-]MA[._-]Setup[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   pkg "ELECOM_MA_Setup_#{version}.pkg"
 
@@ -27,6 +28,7 @@ cask "elecom-mouse-util" do
             ]
 
   zap trash: [
+        "/Library/LaunchAgents/jp.com.ELECOM.autorun.MouseAssistant.plist",
         "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/jp.co.elecom.mouseassistantui.sfl*",
         "~/Library/Application Support/elecom_mouse_assistant_ui",
         "~/Library/Application Support/jp.co.ELECOM/MouseAssistant",

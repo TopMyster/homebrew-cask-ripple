@@ -1,6 +1,6 @@
 cask "profind" do
-  version "1.35"
-  sha256 "e1bd15bc0b5675564283dbc2e8e124258e50dd0c139fe3b0929f27fafe19d8e0"
+  version "1.42"
+  sha256 "f4a794aba4fc9d9027a32aec00e988690226b19d4881f0318be411a9a1cfdd4c"
 
   url "https://www.zeroonetwenty.com/profind/downloads/ProFind#{version.major_minor.no_dots}.dmg"
   name "ProFind"
@@ -13,8 +13,12 @@ cask "profind" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "ProFind.app"
+
+  uninstall launchctl: "com.zeroonetwenty.ProFindHelper",
+            quit:      "com.zeroonetwenty.ProFind"
 
   zap trash: [
     "~/Library/Application Scripts/com.zeroonetwenty.ProFind",

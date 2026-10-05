@@ -1,33 +1,23 @@
 cask "tunnelbear" do
-  on_catalina :or_older do
-    version "4.1.8"
-    sha256 "60c332511b91b794405249132ceb0c88e999b070c087b5f70f1cf09a84e5e5e9"
+  version "5.10.0"
+  sha256 "f1a4ff16be2945bd766d3c796a6da8fb55319a086437a53fc5bb3e0d3dd66044"
 
-    livecheck do
-      skip "Legacy version"
-    end
-  end
-  on_big_sur :or_newer do
-    version "5.8.0"
-    sha256 "43c24496f824e141315636bd03336bf5e40353bf3d347a6009293d108ac3df06"
-
-    # Older versions may have a more recent `pubDate` than newer versions, so we
-    # have to check all the items in the appcast.
-    livecheck do
-      url "https://tunnelbear.s3.amazonaws.com/downloads/mac/appcast.xml"
-      strategy :sparkle do |items|
-        items.map(&:short_version)
-      end
-    end
-  end
-
-  url "https://tunnelbear.s3.amazonaws.com/downloads/mac/TunnelBear-#{version}.zip",
-      verified: "tunnelbear.s3.amazonaws.com/downloads/mac/"
+  url "https://tunnelbear.s3.amazonaws.com/downloads/mac/TunnelBear-#{version}.zip"
   name "TunnelBear"
   desc "VPN client for secure internet access and private browsing"
   homepage "https://www.tunnelbear.com/"
 
+  # Older versions may have a more recent `pubDate` than newer versions, so we
+  # have to check all the items in the appcast.
+  livecheck do
+    url "https://tunnelbear.s3.amazonaws.com/downloads/mac/appcast.xml"
+    strategy :sparkle do |items|
+      items.map(&:short_version)
+    end
+  end
+
   auto_updates true
+  depends_on :macos
 
   app "TunnelBear.app"
 

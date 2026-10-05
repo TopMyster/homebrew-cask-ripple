@@ -1,6 +1,6 @@
 cask "meta" do
-  version "2.3.1"
-  sha256 "98374faed8bb47ca9d8b418705aaa20b1bee26f314c51a336784ae6cc13b317b"
+  version "2.5.9"
+  sha256 "b84650f45fe7ea931fbee8bfd73480a2c98732d38ca7a334cd2075147fba20bd"
 
   url "https://www.nightbirdsevolve.com/meta/updates/bin/Meta%20#{version}.zip"
   name "Meta"
@@ -13,10 +13,14 @@ cask "meta" do
   end
 
   auto_updates true
+  depends_on :macos
 
   app "Meta.app"
 
+  uninstall quit: "com.nightbirdsevolve.Meta"
+
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.nightbirdsevolve.meta.sfl*",
     "~/Library/Application Support/Meta",
     "~/Library/Caches/com.nightbirdsevolve.Meta",
     "~/Library/HTTPStorages/com.nightbirdsevolve.Meta",

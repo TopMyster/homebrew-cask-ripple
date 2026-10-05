@@ -1,12 +1,11 @@
 cask "shift" do
   arch arm: "arm64", intel: "x64"
 
-  version "9.6.4.1231"
-  sha256 arm:   "51210315db71db2be06d95bacad1921c73011f0c62c239cd1cfa527189d255c5",
-         intel: "73e27d3d282406decde79c8204693ea3eb3eee2a2d0a89c3b83c0909b174baad"
+  version "9.6.9.1283"
+  sha256 arm:   "ca34a501b4b5eaa4cbf50065ce28b378d0a09e0695ff220642a5053bfc184ead",
+         intel: "d08eaee10e9e89971efedb83b7b78586768e55a65306fca237cc64e8bff93cd3"
 
-  url "https://updates.tryshift.com/v#{version.major_minor_patch}/stable/shift-v#{version}-stable-#{arch}.dmg",
-      verified: "updates.tryshift.com/"
+  url "https://updates.tryshift.com/v#{version.major_minor_patch}/stable/shift-v#{version}-stable-#{arch}.dmg"
   name "Shift"
   desc "Workstation to streamline your accounts, apps, and workflows"
   homepage "https://shift.com/"
@@ -19,7 +18,7 @@ cask "shift" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Shift.app"
 

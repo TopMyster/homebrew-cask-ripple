@@ -1,8 +1,8 @@
 cask "microsoft-auto-update" do
-  version "4.81.25121042"
-  sha256 "bf281c826c18a0a8e8fd8abe1c9bcbc8deb9b25c251fc6b219e3e5dd7452aa21"
+  version "4.85.26091737"
+  sha256 "d647aba9538983f0c6cd892d2c3442b71ae1c8573ce53cbf62eb3ea831e9d165"
 
-  url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_AutoUpdate_#{version}_Updater.pkg"
+  url "https://res.public.onecdn.static.microsoft/mro1cdnstorage/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_AutoUpdate_#{version}_Updater.pkg"
   name "Microsoft Auto Update"
   desc "Provides updates to various Microsoft products"
   homepage "https://docs.microsoft.com/officeupdates/release-history-microsoft-autoupdate"
@@ -14,6 +14,7 @@ cask "microsoft-auto-update" do
   end
 
   auto_updates true
+  depends_on macos: :monterey
 
   pkg "Microsoft_AutoUpdate_#{version}_Updater.pkg"
 
@@ -34,6 +35,7 @@ cask "microsoft-auto-update" do
             delete:    [
               "/Library/Caches/com.microsoft.autoupdate.fba",
               "/Library/Caches/com.microsoft.autoupdate.helper",
+              "/Library/LaunchAgents/com.microsoft.update.agent.plist",
               "/Library/LaunchDaemons/com.microsoft.autoupdate.helper.plist",
               "/Library/Preferences/com.microsoft.autoupdate2.plist",
               "/Library/PrivilegedHelperTools/com.microsoft.autoupdate.helper",

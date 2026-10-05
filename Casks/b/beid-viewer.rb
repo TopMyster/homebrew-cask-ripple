@@ -1,6 +1,6 @@
 cask "beid-viewer" do
-  version "5.1.22"
-  sha256 "925bf141569f0f27c28b54f25f2cfe61c5733a5bc5be4d1a2e827cdf3da21a80"
+  version "5.1.31"
+  sha256 "afa0795da0c1d49b4af0c9de0f38a6f66c4930ab4cc785822ca2eb7fd8773b5b"
 
   url "https://eid.belgium.be/sites/default/files/software/eID%20Viewer-#{version}.dmg"
   name "Belgian eID Viewer"
@@ -13,7 +13,12 @@ cask "beid-viewer" do
   end
 
   depends_on cask: "beid-token"
+  depends_on macos: :sonoma
 
   app "eID Viewer.app"
-  # No zap stanza required
+
+  zap trash: [
+    "~/Library/Caches/be.fedict.eid.eID-Viewer",
+    "~/Library/HTTPStorages/be.fedict.eid.eID-Viewer",
+  ]
 end

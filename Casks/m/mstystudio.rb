@@ -1,11 +1,10 @@
 cask "mstystudio" do
   arch arm: "arm64", intel: "x64"
 
-  version "2.3.0"
+  version "2.9.11"
   sha256 :no_check
 
-  url "https://next-assets.msty.studio/app/latest/mac/MstyStudio_#{arch}.dmg",
-      verified: "msty.studio/"
+  url "https://next-assets.msty.studio/app/latest/mac/MstyStudio_#{arch}.dmg"
   name "Msty Studio"
   desc "AI platform with local and online models"
   homepage "https://msty.ai/"
@@ -16,7 +15,7 @@ cask "mstystudio" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "MstyStudio.app"
 

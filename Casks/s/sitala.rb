@@ -1,6 +1,6 @@
 cask "sitala" do
-  version "2.0.1"
-  sha256 "5c1c95ec63440bc59d013b8bf9000f41b4b7c010a9cd728bb9ee7fbd3ccd772a"
+  version "2.1.2"
+  sha256 "971e8dfc5a78a3f29be0046ea5c7d7d4582fc8cc04f54dcccc44d721f0bfdceb"
 
   url "https://decomposer.de/sitala/releases/Sitala-#{version}.dmg"
   name "Sitala"
@@ -12,11 +12,13 @@ cask "sitala" do
     regex(/Sitala-(\d+(?:\.\d+)+)\.dmg/i)
   end
 
-  app "Sitala.app"
-  pkg "Install Plug-ins.pkg"
+  depends_on :macos
+
+  pkg "Install Sitala.pkg"
 
   uninstall pkgutil: [
     "de.decomposer.Sitala.aax",
+    "de.decomposer.Sitala.app",
     "de.decomposer.Sitala.au",
     "de.decomposer.Sitala.vst",
     "de.decomposer.Sitala.vst3",

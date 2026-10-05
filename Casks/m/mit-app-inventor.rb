@@ -2,8 +2,7 @@ cask "mit-app-inventor" do
   version "3.0rc3"
   sha256 "7c1a5801eef82baac4045a8d6508b2b388d632baf79d4ef26cc150d53d19aa7d"
 
-  url "https://appinv.us/aisetup_mac_#{version}",
-      verified: "appinv.us/"
+  url "https://appinv.us/aisetup_mac_#{version}"
   name "MIT App Inventor"
   desc "Android emulator"
   homepage "https://appinventor.mit.edu/explore/ai2/mac"
@@ -12,6 +11,7 @@ cask "mit-app-inventor" do
   disable! date: "2025-10-27", because: :unmaintained
 
   depends_on arch: :x86_64
+  depends_on :macos
 
   pkg "MITAppInventorSetup.pkg"
 

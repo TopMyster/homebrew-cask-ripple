@@ -1,6 +1,6 @@
 cask "tradingview" do
-  version "2.14.0"
-  sha256 "e92b84d164f46dd6558ec0d8b38b6d07a45e5b58daafba86a9688bbc7fc37cdf"
+  version "3.4.1"
+  sha256 "cf8cd66b5bc7f3755e1d77c31e068ed7b40fce17a76df9b4086ebff04fe85e32"
 
   url "https://tvd-packages.tradingview.com/stable/#{version}/darwin/TradingView.dmg"
   name "TradingView Desktop"
@@ -13,9 +13,11 @@ cask "tradingview" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "TradingView.app"
+
+  uninstall quit: "com.tradingview.tradingviewapp.desktop"
 
   zap trash: [
     "~/Library/Application Support/TradingView",

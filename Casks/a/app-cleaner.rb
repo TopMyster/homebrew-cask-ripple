@@ -1,6 +1,6 @@
 cask "app-cleaner" do
-  version "9.0.3,2074"
-  sha256 "2588b790b9e564a1dbda85a36b3ef78bf551d203de9bd3a1fece34797ec6b707"
+  version "10.0.1,2336"
+  sha256 "d5decfb9f6bedbaab54a65565bd2a35f1ee5185d8560b95ab4b85b93e69f1783"
 
   url "https://download.nektony.com/download/app-cleaner-uninstaller/app-cleaner-uninstaller.dmg?build=#{version.csv.second}"
   name "Nektony App Cleaner & Uninstaller"
@@ -13,7 +13,7 @@ cask "app-cleaner" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "App Cleaner #{version.major}.app"
 

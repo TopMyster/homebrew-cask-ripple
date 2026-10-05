@@ -10,6 +10,10 @@ on:
     # Every 3 hours 23 minutes past the hour
     - cron: "23 */3 * * *"
 
+concurrency:
+  group: autobump-${{ inputs.casks && github.run_id || 'scheduled' }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -22,18 +26,18 @@ jobs:
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@main
+        uses: Homebrew/actions/setup-homebrew@e99025eb970cfa124b8284a35463d87426917478 # 2026.09.28.1
         with:
           core: true
           cask: true
 
       - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@main
+        uses: Homebrew/actions/git-user-config@e99025eb970cfa124b8284a35463d87426917478 # 2026.09.28.1
         with:
           username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
 
       - name: Set up commit signing
-        uses: Homebrew/actions/setup-commit-signing@main
+        uses: Homebrew/actions/setup-commit-signing@e99025eb970cfa124b8284a35463d87426917478 # 2026.09.28.1
         with:
           signing_key: ${{ secrets.BREWTESTBOT_SSH_SIGNING_KEY }}
 

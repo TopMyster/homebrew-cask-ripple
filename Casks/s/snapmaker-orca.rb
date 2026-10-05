@@ -1,9 +1,8 @@
 cask "snapmaker-orca" do
-  version "2.2.1"
-  sha256 "c03700053d5cc2810395f006bd81a77f91aafb171157602002ea68a982be4881"
+  version "2.4.0"
+  sha256 "fc767bd09e523870a5164426b2d85fdd2259936079ab2159b0ebf4ab21bdd97c"
 
-  url "https://github.com/snapmaker/orcaslicer/releases/download/v#{version}/Snapmaker_Orca_Mac_universal_V#{version}.dmg",
-      verified: "github.com/snapmaker/orcaslicer/"
+  url "https://github.com/snapmaker/orcaslicer/releases/download/v#{version}/Snapmaker_Orca_Mac_universal_V#{version}.dmg"
   name "Snapmaker Orca"
   desc "Slicing software for Snapmaker 3D printers, a fork of OrcaSlicer"
   homepage "https://www.snapmaker.com/snapmaker-orca"
@@ -14,9 +13,11 @@ cask "snapmaker-orca" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "Snapmaker Orca.app"
+
+  uninstall quit: "com.snapmaker.snapmaker-orca"
 
   zap trash: [
     "~/Library/Application Support/Snapmaker_Orca",

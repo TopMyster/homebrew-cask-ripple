@@ -1,9 +1,8 @@
 cask "packages" do
-  version "1.2.10"
-  sha256 "9d9a73a64317ea6697a380014d2e5c8c8188b59d5fb8ce8872e56cec06cd78e8"
+  version "1.2.11"
+  sha256 "c7d599842562b18f8dfb6e9f76fc915dde7716a263c967aaf1fe11e17d283ded"
 
-  url "https://github.com/packagesdev/packages/releases/download/v#{version}/Packages.dmg",
-      verified: "github.com/packagesdev/packages/"
+  url "https://github.com/packagesdev/packages/releases/download/v#{version}-GM/Packages.dmg"
   name "Packages"
   desc "Integrated packaging environment"
   homepage "http://s.sudre.free.fr/Software/Packages/about.html"
@@ -14,6 +13,7 @@ cask "packages" do
   end
 
   auto_updates true
+  depends_on :macos
 
   pkg "Install Packages.pkg"
 

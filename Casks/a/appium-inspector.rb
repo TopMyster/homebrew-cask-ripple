@@ -1,9 +1,9 @@
 cask "appium-inspector" do
   arch arm: "arm64", intel: "x64"
 
-  version "2026.1.2"
-  sha256 arm:   "63bde33359c7ade71226169d76984231c4ed529d4f14f88ee5b612321245b66a",
-         intel: "1f112e8217e4de5d087b2a2b55829221ada9851a7fcf3a7cb14247ccd309d5ac"
+  version "2026.7.1"
+  sha256 arm:   "0d67af30dacf5cc84545ab7356375349b8e0594a01f6f96dc5d5268cec730bd4",
+         intel: "5c855085441a591d86c24ea387c651e64a24248942bf32c23653788c26b15df1"
 
   url "https://github.com/appium/appium-inspector/releases/download/v#{version}/Appium-Inspector-#{version}-mac-#{arch}.zip"
   name "Appium Inspector GUI"
@@ -31,12 +31,13 @@ cask "appium-inspector" do
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Appium Inspector.app"
 
   zap trash: [
     "~/Library/Application Support/appium-inspector",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/io.appium.inspector.sfl*",
     "~/Library/Logs/Appium Inspector",
     "~/Library/Preferences/io.appium.inspector.plist",
     "~/Library/Saved Application State/io.appium.inspector.savedState",

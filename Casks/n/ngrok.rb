@@ -2,43 +2,46 @@ cask "ngrok" do
   arch arm: "arm64", intel: "amd64"
 
   on_arm do
-    version "3.35.0,6S1r8a6kUrQ,a"
-    sha256 "ff0c29df3156fab539a3dc438eb36f342e852e058638841db99e69ce5edda16d"
+    version "3.39.11,dy27whJwwmb,a"
+    sha256 "9324a6552d74e25d5bdfdbedc4b32422c96f044fda37877498ad8ef10bddf7f7"
   end
   on_intel do
-    version "3.35.0,uQRUsybuCY,a"
-    sha256 "cde0994278c7e5cc46a10128258b6de826a59eb210556a7a06a9b3887ce06914"
+    version "3.39.11,8QQF2ciKqxM,a"
+    sha256 "c6b9b3d9184fc08c33fb8b181d9f241d8f5d61162a0be0521b6dfc1f11813a96"
   end
 
-  url "https://bin.equinox.io/#{version.csv.third}/#{version.csv.second}/ngrok-v#{version.major}-#{version.csv.first}-darwin-#{arch}.zip",
-      verified: "bin.equinox.io/"
+  url "https://bin.ngrok.com/#{version.csv.third}/#{version.csv.second}/ngrok-v#{version.major}-#{version.csv.first}-darwin-#{arch}.zip"
   name "ngrok"
   desc "Reverse proxy, secure introspectable tunnels to localhost"
   homepage "https://ngrok.com/"
 
   livecheck do
-    url "https://dl.equinox.io/ngrok/ngrok-v#{version.major}/stable/archive"
+    url "https://ngrok.com/download/archive/ngrok/ngrok-v#{version.major}/stable/ngrok_archive"
     regex(%r{href=.*?/([^/]+)/([^/]+)/ngrok[._-]v#{version.major}[._-]v?(\d+(?:\.\d+)+)[._-]darwin[._-]#{arch}\.zip}i)
     strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[2]},#{match[1]},#{match[0]}" }
     end
   end
 
-  binary "ngrok"
+  depends_on :macos
 
-  postflight do
-    set_permissions "#{staged_path}/ngrok", "0755"
+  binary "ngrok"
+  generate_completions_from_executable "/usr/bin/env", "SHELL=/bin/bash",
+                                       "#{staged_path}/ngrok", "completion",
+                                       base_name: "ngrok", shells: [:bash], shell_parameter_format: :none
+  generate_completions_from_executable "/usr/bin/env", "SHELL=/bin/zsh",
+                                       "#{staged_path}/ngrok", "completion",
+                                       base_name: "ngrok", shells: [:zsh], shell_parameter_format: :none
+  generate_completions_from_executable "/usr/bin/env", "SHELL=/bin/fish",
+                                       "#{staged_path}/ngrok", "completion",
+                                       base_name: "ngrok", shells: [:fish], shell_parameter_format: :none
+
+  postflight_steps do
+    set_permissions "ngrok", "0755"
   end
 
   zap trash: [
     "~/.ngrok#{version.major}",
     "~/Library/Application Support/ngrok",
   ]
-
-  caveats <<~EOS
-    To install shell completions, add this to your profile:
-      if command -v ngrok &>/dev/null; then
-        eval "$(ngrok completion)"
-      fi
-  EOS
 end

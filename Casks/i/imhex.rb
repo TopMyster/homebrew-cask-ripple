@@ -6,19 +6,20 @@ cask "imhex" do
          intel: "4acd57408770cdfe533fb277f8746a5fdb9cb2048a9b7f8295931aafea97bd0e"
 
   on_arm do
-    depends_on macos: ">= :ventura"
+    depends_on macos: :ventura
   end
   on_intel do
-    depends_on macos: ">= :sequoia"
+    depends_on macos: :sequoia
   end
 
-  url "https://github.com/WerWolv/ImHex/releases/download/v#{version}/imhex-#{version}-macOS-#{arch}.dmg",
-      verified: "github.com/WerWolv/ImHex/"
+  url "https://github.com/WerWolv/ImHex/releases/download/v#{version}/imhex-#{version}-macOS-#{arch}.dmg"
   name "ImHex"
   desc "Hex editor for reverse engineers"
   homepage "https://imhex.werwolv.net/"
 
   disable! date: "2026-09-01", because: :fails_gatekeeper_check
+
+  depends_on :macos
 
   app "ImHex.app"
 

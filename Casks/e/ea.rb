@@ -1,9 +1,8 @@
 cask "ea" do
-  version "13.626.1.6134"
+  version "13.801.10.6309"
   sha256 :no_check
 
-  url "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EA%20app.dmg",
-      verified: "origin-a.akamaihd.net/EA-Desktop-Client-Download/"
+  url "https://origin-a.akamaihd.net/EA-Desktop-Client-Download/installer-releases/EA%20app.pkg"
   name "EA App"
   desc "Electronic Arts game launcher"
   homepage "https://www.ea.com/ea-app"
@@ -16,8 +15,16 @@ cask "ea" do
   end
 
   auto_updates true
+  depends_on :macos
 
-  app "EA app.app"
+  pkg "EA app.pkg"
+
+  uninstall launchctl: [
+              "com.ea.app.backgroundAgent",
+              "com.ea.app.backgroundservice",
+            ],
+            quit:      "com.ea.mac.eaapp",
+            pkgutil:   "com.ea.mac.eaapp"
 
   zap delete: [
         "/Library/Application Support/Electronic Arts",

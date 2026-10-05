@@ -1,6 +1,6 @@
 cask "earnapp" do
-  version "1.597.201"
-  sha256 "6be502f3df0bf53b5af870e3c88fc6422a50c7ef0b9313515797490ada856c55"
+  version "1.660.965"
+  sha256 "06b5f120fe1897857ab3f61a8e0f1b1ddcfa65643af5e4162027acfa197fae96"
 
   url "https://cdn.earnapp.com/static/earnapp-macos-#{version}.pkg"
   name "EarnApp"
@@ -13,6 +13,8 @@ cask "earnapp" do
       json["mac"]
     end
   end
+
+  depends_on :macos
 
   pkg "earnapp-macos-#{version}.pkg"
 

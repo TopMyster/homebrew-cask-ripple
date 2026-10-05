@@ -1,6 +1,6 @@
 cask "ledger-wallet" do
-  version "2.135.2"
-  sha256 "74e9aba2253f6343c90b5cdd26e40ab2271cd2726da15eb6f16179836a6015e1"
+  version "4.23.0"
+  sha256 "d57f5bf7965a62133f5ab0203f061fa48284ff96cf5769dc99069af6248b9787"
 
   url "https://download.live.ledger.com/ledger-live-desktop-#{version}-mac.dmg"
   name "Ledger Wallet"
@@ -13,7 +13,7 @@ cask "ledger-wallet" do
   end
 
   auto_updates true
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Ledger Wallet.app"
 
@@ -23,6 +23,7 @@ cask "ledger-wallet" do
   ]
 
   zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.ledger.live.sfl*",
     "~/Library/Application Support/Ledger Wallet",
     "~/Library/Preferences/com.ledger.live.plist",
     "~/Library/Saved Application State/com.ledger.live.savedState",

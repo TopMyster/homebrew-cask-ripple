@@ -1,9 +1,8 @@
 cask "idrive" do
-  version "4.0.0.61,011426"
-  sha256 "49ff716dedaabca1e06fc05b40cf3fb39850296c5708055d3f22fe3e6c983fca"
+  version "4.0.0.94,091626"
+  sha256 "a600096cbc44b27007b3faddbac057f50e6d77212eb835a73ba39a5f24a12bed"
 
-  url "https://static.idriveonlinebackup.com/downloads/#{version.csv.second}/IDrive.dmg",
-      verified: "static.idriveonlinebackup.com/downloads/"
+  url "https://static.idriveonlinebackup.com/downloads/#{version.csv.second}/IDrive.dmg"
   name "iDrive"
   desc "Cloud backup and storage solution"
   homepage "https://www.idrive.com/"
@@ -22,6 +21,8 @@ cask "idrive" do
       "#{version_match[1]},#{id_match[1]}"
     end
   end
+
+  depends_on :macos
 
   pkg "IDrive.pkg"
 
@@ -47,9 +48,15 @@ cask "idrive" do
 
   zap trash: [
     "/Library/Application Support/IDriveforMac",
+    "~/Library/Application Scripts/Idrive.Finder*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.prosoftnet.idrivemonitor.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/idrive.finderpluginapp.sfl*",
     "~/Library/Application Support/IDriveforMac",
     "~/Library/Caches/com.prosoftnet.IDriveMonitor",
+    "~/Library/Containers/Idrive.FinderPluginApp.IDriveFinderSync",
+    "~/Library/Group Containers/Idrive.Finder",
     "~/Library/Preferences/com.prosoftnet.IDrive.plist",
     "~/Library/Preferences/com.prosoftnet.IDriveMonitor.plist",
+    "~/Library/Preferences/Idrive.FinderPluginApp.plist",
   ]
 end
